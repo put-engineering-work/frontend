@@ -3,6 +3,7 @@ import Brightness4Icon from "@mui/icons-material/Brightness4";
 import Brightness7Icon from "@mui/icons-material/Brightness7";
 import { FC } from "react";
 import { drawerWidth } from "../../utils/Constants";
+import LanguageSwitcher from "../LanguageSwitcher";
 
 const NavBar: FC<{ colorMode: any; theme: Theme }> = ({ colorMode, theme }) => {
   return (
@@ -26,8 +27,9 @@ const NavBar: FC<{ colorMode: any; theme: Theme }> = ({ colorMode, theme }) => {
           ml: `${drawerWidth}px`,
         }}
       >
-        Gym Cum Project
+        LeisureLink
       </Typography>
+      <LanguageSwitcher />
       <IconButton
         sx={{ ml: 1 }}
         onClick={colorMode.toggleColorMode}
