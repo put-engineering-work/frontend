@@ -1,0 +1,11 @@
+{
+  "sideBar": {
+    "home": "Głowna",
+    "map": "Mapa",
+    "ratings": "Oceny",
+    "recommendation": "Rekomendacje"
+  },
+  "navBar": {
+    "language": "Język"
+  }
+}

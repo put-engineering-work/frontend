@@ -10,8 +10,11 @@ import StarsIcon from "@mui/icons-material/Stars";
 import RecommendIcon from "@mui/icons-material/Recommend";
 import { Drawer, Toolbar } from "@mui/material";
 import { drawerWidth } from "../../utils/Constants";
+import { useTranslation } from "react-i18next";
 
 const SideBar = () => {
+  const { t } = useTranslation();
+
   return (
     <>
       <Drawer
@@ -29,39 +32,39 @@ const SideBar = () => {
         <Toolbar />
         <Divider />
         <List>
-          <ListItem key="Home" disablePadding>
+          <ListItem key={t("sideBar.home")} disablePadding>
             <ListItemButton>
               <ListItemIcon>
                 <HomeIcon />
               </ListItemIcon>
-              <ListItemText primary="Home" />
+              <ListItemText primary={t("sideBar.home")} />
             </ListItemButton>
           </ListItem>
-          <ListItem key="Map" disablePadding>
+          <ListItem key={t("sideBar.map")} disablePadding>
             <ListItemButton>
               <ListItemIcon>
                 <MapIcon />
               </ListItemIcon>
-              <ListItemText primary="Map" />
+              <ListItemText primary={t("sideBar.map")} />
             </ListItemButton>
           </ListItem>
-          <ListItem key="Ratings" disablePadding>
+          <ListItem key={t("sideBar.ratings")} disablePadding>
             <ListItemButton>
               <ListItemIcon>
                 <StarsIcon />
               </ListItemIcon>
-              <ListItemText primary="Ratings" />
+              <ListItemText primary={t("sideBar.ratings")} />
             </ListItemButton>
           </ListItem>
         </List>
         <Divider />
         <List>
-          <ListItem key="Recommendation" disablePadding>
+          <ListItem key={t("sideBar.recommendation")} disablePadding>
             <ListItemButton>
               <ListItemIcon>
                 <RecommendIcon />
               </ListItemIcon>
-              <ListItemText primary="Recommendation" />
+              <ListItemText primary={t("sideBar.recommendation")} />
             </ListItemButton>
           </ListItem>
         </List>

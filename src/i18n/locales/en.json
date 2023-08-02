@@ -1,0 +1,11 @@
+{
+  "sideBar": {
+    "home": "Home",
+    "map": "Map",
+    "ratings": "Ratings",
+    "recommendation": "Recommendation"
+  },
+  "navBar": {
+    "language": "Language"
+  }
+}
