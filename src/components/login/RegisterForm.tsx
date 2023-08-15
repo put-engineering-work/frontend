@@ -11,15 +11,45 @@ import Box from "@mui/material/Box";
 import LockOutlinedIcon from "@mui/icons-material/LockOutlined";
 import Typography from "@mui/material/Typography";
 import Container from "@mui/material/Container";
+import { useNavigate } from "react-router-dom";
 
 export default function SignUp() {
-  const handleSubmit = (event: React.FormEvent<HTMLFormElement>) => {
+  const navigate = useNavigate();
+  
+  const handleSubmit = async (event: React.FormEvent<HTMLFormElement>) => {
     event.preventDefault();
     const data = new FormData(event.currentTarget);
     console.log({
       email: data.get("email"),
       password: data.get("password"),
     });
+
+    const dataTo = {
+      email: data.get("email"),
+      password: data.get("password"),
+    };
+
+    try {
+      const response = await fetch("http://localhost:8085/tutor/signup", {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify(dataTo),
+      });
+
+      const responseData = await response.json();
+      console.log(responseData);
+
+      if (responseData.code === "ACCEPTED") {
+        console.log("Registered");
+        navigate("/login");
+      }
+
+      // Обработка ответа от сервера
+    } catch (error) {
+      console.error("Ошибка при отправке запроса:", error);
+    }
   };
 
   return (

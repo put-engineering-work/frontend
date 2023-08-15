@@ -9,11 +9,12 @@ import {
 } from "@mui/material";
 import Brightness4Icon from "@mui/icons-material/Brightness4";
 import Brightness7Icon from "@mui/icons-material/Brightness7";
-import { FC, useState } from "react";
+import { FC, useEffect, useState } from "react";
 import { drawerWidth } from "../../utils/Constants";
 import LanguageSwitcher from "../LanguageSwitcher";
 import Tooltip from "@mui/material/Tooltip";
 import Avatar from "@mui/material/Avatar";
+import { useNavigate } from "react-router-dom";
 
 const NavBar: FC<{
   colorMode: any;
@@ -22,6 +23,7 @@ const NavBar: FC<{
   handleLogged: any;
 }> = ({ colorMode, theme, isLogged, handleLogged }) => {
   const [anchorElUser, setAnchorElUser] = useState<null | HTMLElement>(null);
+  const navigate = useNavigate();
 
   const handleOpenUserMenu = (event: React.MouseEvent<HTMLElement>) => {
     setAnchorElUser(event.currentTarget);
@@ -29,7 +31,30 @@ const NavBar: FC<{
 
   const handleCloseUserMenu = () => {
     setAnchorElUser(null);
+  };
+
+  const logoutUserMenu = () => {
+    setAnchorElUser(null);
     handleLogged();
+    clearUserData();
+    navigate("/login");
+  };
+
+  const checkPermiisons = () => {
+    const data = localStorage.getItem("user");
+    if (data !== null) {
+      const parsedData = JSON.parse(data);
+      if (parsedData.code === "ACCEPTED") {
+        return true;
+      }
+      return false;
+    } else {
+      return false;
+    }
+  };
+
+  const clearUserData = () => {
+    localStorage.removeItem("user");
   };
 
   return (
@@ -44,17 +69,30 @@ const NavBar: FC<{
         p: 3,
       }}
     >
-      <Typography
-        variant="h4"
-        component="div"
-        sx={{
-          flexGrow: 1,
-          width: `calc(100% - ${drawerWidth}px)`,
-          ml: `${drawerWidth}px`,
-        }}
-      >
-        LeisureLink
-      </Typography>
+      {isLogged || checkPermiisons() ? (
+        <Typography
+          variant="h4"
+          component="div"
+          sx={{
+            flexGrow: 1,
+            width: `calc(100% - ${drawerWidth}px)`,
+            ml: `${drawerWidth}px`,
+          }}
+        >
+          LeisureLink
+        </Typography>
+      ) : (
+        <Typography
+          variant="h4"
+          component="div"
+          sx={{
+            flexGrow: 1,
+          }}
+        >
+          LeisureLink
+        </Typography>
+      )}
+
       <LanguageSwitcher />
       <IconButton
         sx={{ ml: 1, mr: 2 }}
@@ -67,7 +105,7 @@ const NavBar: FC<{
           <Brightness4Icon />
         )}
       </IconButton>
-      {isLogged && (
+      {(isLogged || checkPermiisons()) && (
         <Box sx={{ flexGrow: 0 }}>
           <Tooltip title="Open settings">
             <IconButton onClick={handleOpenUserMenu} sx={{ p: 0 }}>
@@ -99,7 +137,7 @@ const NavBar: FC<{
             <MenuItem key="Dashboard" onClick={handleCloseUserMenu}>
               <Typography textAlign="center">Dashboard</Typography>
             </MenuItem>
-            <MenuItem key="Logout" onClick={handleCloseUserMenu}>
+            <MenuItem key="Logout" onClick={logoutUserMenu}>
               <Link href="/login" underline="none">
                 <Typography textAlign="center">Logout</Typography>
               </Link>

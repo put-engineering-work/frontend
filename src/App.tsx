@@ -16,7 +16,7 @@ const ColorModeContext = React.createContext({ toggleColorMode: () => {} });
 const App = () => {
   const theme = useTheme();
   const colorMode = React.useContext(ColorModeContext);
-  const [isLogged, setIsLogged] = useState(true);
+  const [isLogged, setIsLogged] = useState(false);
 
   useEffect(() => {
     const language = localStorage.getItem("language");
@@ -40,7 +40,10 @@ const App = () => {
       />
       <Routes>
         <Route path="/" element={<LoginForm />} />
-        <Route path="/login" element={<LoginForm />} />
+        <Route
+          path="/login"
+          element={<LoginForm handleLogged={handleLogged} />}
+        />
         <Route path="/home" element={<Home />} />
         <Route path="/register" element={<RegisterForm />} />
       </Routes>
