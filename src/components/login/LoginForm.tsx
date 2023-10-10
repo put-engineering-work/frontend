@@ -11,7 +11,6 @@ import Box from "@mui/material/Box";
 import LockOutlinedIcon from "@mui/icons-material/LockOutlined";
 import Typography from "@mui/material/Typography";
 import Container from "@mui/material/Container";
-import { useState } from "react";
 import { useNavigate } from "react-router-dom";
 
 export default function SignIn(props: any) {
@@ -31,12 +30,14 @@ export default function SignIn(props: any) {
     };
 
     try {
-      const response = await fetch("http://localhost:8085/tutor/signin", {
+      const response = await fetch("http://localhost:8085/user/signin", {
         method: "POST",
         headers: {
           "Content-Type": "application/json",
+          "Access-Control-Request-Method": "*",
         },
         body: JSON.stringify(dataTo),
+        mode: 'cors'
       });
 
       const responseData = await response.json();

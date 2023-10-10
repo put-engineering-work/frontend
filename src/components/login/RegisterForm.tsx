@@ -15,7 +15,7 @@ import { useNavigate } from "react-router-dom";
 
 export default function SignUp() {
   const navigate = useNavigate();
-  
+
   const handleSubmit = async (event: React.FormEvent<HTMLFormElement>) => {
     event.preventDefault();
     const data = new FormData(event.currentTarget);
@@ -30,12 +30,14 @@ export default function SignUp() {
     };
 
     try {
-      const response = await fetch("http://localhost:8085/tutor/signup", {
+      const response = await fetch("http://localhost:8085/user/signup", {
         method: "POST",
         headers: {
           "Content-Type": "application/json",
+          "Access-Control-Allow-Origin": "*",
         },
         body: JSON.stringify(dataTo),
+        mode: 'cors'
       });
 
       const responseData = await response.json();
@@ -48,7 +50,7 @@ export default function SignUp() {
 
       // Обработка ответа от сервера
     } catch (error) {
-      console.error("Ошибка при отправке запроса:", error);
+      console.error(error);
     }
   };
 
