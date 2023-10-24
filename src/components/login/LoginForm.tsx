@@ -31,7 +31,7 @@ export default function SignIn(props: any) {
     };
 
     try {
-      const response = await fetch("http://localhost:8085/tutor/signin", {
+      const response = await fetch("http://localhost:8085/user/signin", {
         method: "POST",
         headers: {
           "Content-Type": "application/json",
