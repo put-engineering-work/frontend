@@ -21,7 +21,8 @@ const NavBar: FC<{
   theme: Theme;
   isLogged: Boolean;
   handleLogged: any;
-}> = ({ colorMode, theme, isLogged, handleLogged }) => {
+  isSidebarOpen: boolean;
+}> = ({ colorMode, theme, isLogged, handleLogged, isSidebarOpen }) => {
   const [anchorElUser, setAnchorElUser] = useState<null | HTMLElement>(null);
   const navigate = useNavigate();
 
@@ -67,6 +68,7 @@ const NavBar: FC<{
         color: "text.primary",
         borderRadius: 1,
         p: 3,
+        paddingLeft: isSidebarOpen ? drawerWidth + 50 + `px` : `110px`,
       }}
     >
       {isLogged || checkPermiisons() ? (
@@ -75,8 +77,8 @@ const NavBar: FC<{
           component="div"
           sx={{
             flexGrow: 1,
-            width: `calc(100% - ${drawerWidth}px)`,
-            ml: `${drawerWidth}px`,
+            // width: `calc(100% - ${drawerWidth}px)`,
+            // ml: `${drawerWidth}px`,
           }}
         >
           LeisureLink

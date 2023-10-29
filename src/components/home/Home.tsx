@@ -11,16 +11,31 @@ import HomeContent from "../homeContent/HomeContent";
 //   );
 // };
 
-const Home = () => {
+const Home = ({
+  isSidebarOpen,
+  onSidebarToggle,
+}: {
+  isSidebarOpen: boolean;
+  onSidebarToggle: () => void;
+}) => {
   const [selectedItem, setSelectedItem] = useState<string | null>(null);
+  // const [isSidebarOpen, setIsSidebarOpen] = useState(true);
 
   const handleSidebarItemClick = (item: string) => {
     setSelectedItem(item);
   };
 
+  const toggleSidebar = () => {
+    // setIsSidebarOpen(!isSidebarOpen);
+    onSidebarToggle();
+  };
+
   return (
     <Box>
-      <SideBar onItemClick={handleSidebarItemClick} />
+      <SideBar
+        onItemClick={handleSidebarItemClick}
+        onToggleSidebar={toggleSidebar}
+      />
       {selectedItem === "home" && <HomeContent />}
       {/* {selectedItem === "map" && <MapContent />}
       {selectedItem === "ratings" && <RatingsContent />}
