@@ -7,5 +7,9 @@
   },
   "navBar": {
     "language": "Język"
+  },
+  "homeContent": {
+    "find": "Znaleź wydadarzenie",
+    "allEvents": "Wszystkie wydarzenia"
   }
 }

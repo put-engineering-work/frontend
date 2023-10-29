@@ -12,7 +12,7 @@ import { Drawer, Toolbar } from "@mui/material";
 import { drawerWidth } from "../../utils/Constants";
 import { useTranslation } from "react-i18next";
 
-const SideBar = () => {
+const SideBar = ({ onItemClick }: { onItemClick: (item: string) => void }) => {
   const { t } = useTranslation();
 
   return (
@@ -33,7 +33,7 @@ const SideBar = () => {
         <Divider />
         <List>
           <ListItem key={t("sideBar.home")} disablePadding>
-            <ListItemButton>
+            <ListItemButton onClick={() => onItemClick("home")}>
               <ListItemIcon>
                 <HomeIcon />
               </ListItemIcon>
@@ -41,7 +41,7 @@ const SideBar = () => {
             </ListItemButton>
           </ListItem>
           <ListItem key={t("sideBar.map")} disablePadding>
-            <ListItemButton>
+            <ListItemButton onClick={() => onItemClick("map")}>
               <ListItemIcon>
                 <MapIcon />
               </ListItemIcon>
@@ -49,7 +49,7 @@ const SideBar = () => {
             </ListItemButton>
           </ListItem>
           <ListItem key={t("sideBar.ratings")} disablePadding>
-            <ListItemButton>
+            <ListItemButton onClick={() => onItemClick("ratings")}>
               <ListItemIcon>
                 <StarsIcon />
               </ListItemIcon>
@@ -60,7 +60,7 @@ const SideBar = () => {
         <Divider />
         <List>
           <ListItem key={t("sideBar.recommendation")} disablePadding>
-            <ListItemButton>
+            <ListItemButton onClick={() => onItemClick("recommendation")}>
               <ListItemIcon>
                 <RecommendIcon />
               </ListItemIcon>
