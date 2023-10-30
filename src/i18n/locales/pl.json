@@ -18,7 +18,20 @@
     "register": "Rejestr",
     "back_tp_login": "Posiadasz już konto? \nZaloguj się",
     "errors": {
-      "UNPROCESSABLE_ENTITY": "Użytkownik już istnieje"
+      "UNPROCESSABLE_ENTITY": "Użytkownik już istnieje",
+      "oops": "Ups! Coś poszło nie tak",
+      "passwords": "Hasła nie są takie same",
+      "email": "Zły format wiadomości e-mail"
+    }
+  },
+  "login": {
+    "remember_me": "Zapamiętaj mnie",
+    "signIn": "Zalogować się",
+    "no_account": "Nie masz konta? \nUtwórz konto",
+    "button": "Zaloguj sie",
+    "errors": {
+      "UNAUTHORIZED": "Nieprawidłowe hasło lub login",
+      "email": "Zły format wiadomości e-mail"
     }
   }
 }

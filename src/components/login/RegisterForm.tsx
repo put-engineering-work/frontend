@@ -5,24 +5,21 @@ import CssBaseline from "@mui/material/CssBaseline";
 import TextField from "@mui/material/TextField";
 import FormControlLabel from "@mui/material/FormControlLabel";
 import Checkbox from "@mui/material/Checkbox";
-import Link from "@mui/material/Link";
 import Grid from "@mui/material/Grid";
 import Box from "@mui/material/Box";
 import LockOutlinedIcon from "@mui/icons-material/LockOutlined";
 import Typography from "@mui/material/Typography";
 import Container from "@mui/material/Container";
-import { useNavigate } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import { useTranslation } from "react-i18next";
 import { useState } from "react";
 import { isValidEmail } from "../../utils/utlits";
 
 import { toast, ToastContainer } from "react-toastify";
-import "react-toastify/dist/ReactToastify.css";
 import { useTheme } from "@mui/material";
 
 const SignUp = () => {
   const theme = useTheme();
-  console.log(theme);
   const navigate = useNavigate();
   const { t } = useTranslation();
 
@@ -36,12 +33,12 @@ const SignUp = () => {
     const repeat_password = data.get("repeat_password");
 
     if (!isValidEmail(email)) {
-      toast.error("Bad email format");
+      toast.error(t(`registration.errors.email`));
       return;
     }
 
     if (password !== repeat_password) {
-      toast.error("Passwords are not the same");
+      toast.error(t(`registration.errors.passwords`));
       return;
     }
 
@@ -62,17 +59,14 @@ const SignUp = () => {
       });
 
       const responseData = await response.json();
-      console.log(responseData);
 
       if (responseData.code === "ACCEPTED") {
-        console.log("Registered");
         navigate("/login");
       } else {
         toast.error(t(`registration.errors.${responseData.code}`));
       }
     } catch (error) {
-      toast.error("An error occurred");
-      console.error(error);
+      toast.error(t(`registration.errors.oops`));
     }
   };
 
@@ -166,7 +160,7 @@ const SignUp = () => {
           </Button>
           <Grid container justifyContent="flex-end">
             <Grid item>
-              <Link href="/login" variant="body2">
+              <Link style={{ color: theme.palette.text.primary }} to="/login">
                 {t("registration.back_tp_login")}
               </Link>
             </Grid>
@@ -178,7 +172,6 @@ const SignUp = () => {
         autoClose={3000}
         hideProgressBar={false}
         closeOnClick
-        pauseOnHover
         theme={theme.palette.mode}
       />
     </Container>

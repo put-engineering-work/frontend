@@ -19,7 +19,20 @@
     "register": "Register ",
     "back_tp_login": "Already have an account? Sign in",
     "errors": {
-      "UNPROCESSABLE_ENTITY": "User already exist"
+      "UNPROCESSABLE_ENTITY": "User already exist",
+      "oops": "Oops something went wrong",
+      "passwords": "Passwords are not the same",
+      "email": "Bad email format"
     }
+  },
+  "login": {
+    "errors": {
+      "email": "Bad email format",
+      "UNAUTHORIZED": "Incorrect password or login"
+    },
+    "remember_me": "Remember me",
+    "signIn": "Sign in",
+    "no_account": "Don't have an account? Create account",
+    "button": "Login"
   }
 }

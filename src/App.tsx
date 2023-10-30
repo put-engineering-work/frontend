@@ -10,6 +10,8 @@ import Home from "./components/home/Home";
 import RegisterForm from "./components/login/RegisterForm";
 import LoginForm from "./components/login/LoginForm";
 import NavBar from "./components/navBar/NavBar";
+import "react-toastify/dist/ReactToastify.css";
+import "./App.css";
 
 const ColorModeContext = React.createContext({ toggleColorMode: () => {} });
 
