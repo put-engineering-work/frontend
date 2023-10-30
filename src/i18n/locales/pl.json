@@ -21,7 +21,8 @@
       "UNPROCESSABLE_ENTITY": "Użytkownik już istnieje",
       "oops": "Ups! Coś poszło nie tak",
       "passwords": "Hasła nie są takie same",
-      "email": "Zły format wiadomości e-mail"
+      "email": "Zły format wiadomości e-mail",
+      "password_length": "Hasło musi składać się z co najmniej 8 znaków"
     }
   },
   "login": {

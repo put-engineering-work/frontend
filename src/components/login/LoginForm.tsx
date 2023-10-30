@@ -27,10 +27,15 @@ export default function SignIn(props: any) {
     const data = new FormData(event.currentTarget);
 
     const email = data.get("email");
+    const password = data.get("password");
 
     if (!isValidEmail(email)) {
       toast.error(t("login.errors.email"));
       return;
+    }
+
+    if (password!.toString().length < 8) {
+      toast.error(t(`registration.errors.password_length`));
     }
 
     const dataTo = {

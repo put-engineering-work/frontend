@@ -22,7 +22,8 @@
       "UNPROCESSABLE_ENTITY": "User already exist",
       "oops": "Oops something went wrong",
       "passwords": "Passwords are not the same",
-      "email": "Bad email format"
+      "email": "Bad email format",
+      "password_length": "Password must be consist of at least 8 symbols"
     }
   },
   "login": {

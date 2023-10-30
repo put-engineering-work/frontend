@@ -37,8 +37,17 @@ const SignUp = () => {
       return;
     }
 
+    console.log(password);
+    console.log(typeof password);
+    console.log(password!.toString().length);
+
     if (password !== repeat_password) {
       toast.error(t(`registration.errors.passwords`));
+      return;
+    }
+
+    if (password!.toString().length < 8) {
+      toast.error(t(`registration.errors.password_length`));
       return;
     }
 
