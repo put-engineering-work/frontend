@@ -16,7 +16,13 @@ import { useTranslation } from "react-i18next";
 import { useState } from "react";
 import { isValidEmail } from "../../utils/utlits";
 
+import { toast, ToastContainer } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
+import { useTheme } from "@mui/material";
+
 const SignUp = () => {
+  const theme = useTheme();
+  console.log(theme);
   const navigate = useNavigate();
   const { t } = useTranslation();
 
@@ -29,13 +35,13 @@ const SignUp = () => {
     const password = data.get("password");
     const repeat_password = data.get("repeat_password");
 
-    if (password !== repeat_password) {
-      console.log("Passwords are not the same");
+    if (!isValidEmail(email)) {
+      toast.error("Bad email format");
       return;
     }
 
-    if (!isValidEmail(email)) {
-      console.log("Bad email format");
+    if (password !== repeat_password) {
+      toast.error("Passwords are not the same");
       return;
     }
 
@@ -61,10 +67,11 @@ const SignUp = () => {
       if (responseData.code === "ACCEPTED") {
         console.log("Registered");
         navigate("/login");
+      } else {
+        toast.error(t(`registration.errors.${responseData.code}`));
       }
-
-      // Обработка ответа от сервера
     } catch (error) {
+      toast.error("An error occurred");
       console.error(error);
     }
   };
@@ -74,7 +81,6 @@ const SignUp = () => {
       <CssBaseline />
       <Box
         sx={{
-          marginTop: 8,
           display: "flex",
           flexDirection: "column",
           alignItems: "center",
@@ -167,6 +173,14 @@ const SignUp = () => {
           </Grid>
         </Box>
       </Box>
+      <ToastContainer
+        position="bottom-left"
+        autoClose={3000}
+        hideProgressBar={false}
+        closeOnClick
+        pauseOnHover
+        theme={theme.palette.mode}
+      />
     </Container>
   );
 };

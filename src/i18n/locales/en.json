@@ -17,6 +17,9 @@
     "repeat_password": "Repeat Password",
     "checkbox_text": "Accept private policy and terms",
     "register": "Register ",
-    "back_tp_login": "Already have an account? Sign in"
+    "back_tp_login": "Already have an account? Sign in",
+    "errors": {
+      "UNPROCESSABLE_ENTITY": "User already exist"
+    }
   }
 }

@@ -16,6 +16,9 @@
     "repeat_password": "Powtórz hasło",
     "checkbox_text": "Zaakceptuj politykę prywatności i warunki",
     "register": "Rejestr",
-    "back_tp_login": "Posiadasz już konto? \nZaloguj się"
+    "back_tp_login": "Posiadasz już konto? \nZaloguj się",
+    "errors": {
+      "UNPROCESSABLE_ENTITY": "Użytkownik już istnieje"
+    }
   }
 }
