@@ -12,21 +12,36 @@ import LockOutlinedIcon from "@mui/icons-material/LockOutlined";
 import Typography from "@mui/material/Typography";
 import Container from "@mui/material/Container";
 import { useNavigate } from "react-router-dom";
+import { useTranslation } from "react-i18next";
+import { useState } from "react";
+import { isValidEmail } from "../../utils/utlits";
 
-export default function SignUp() {
+const SignUp = () => {
   const navigate = useNavigate();
+  const { t } = useTranslation();
+
+  const [isSubmitButtonDisable, setisSubmitButtonDisable] = useState(true);
 
   const handleSubmit = async (event: React.FormEvent<HTMLFormElement>) => {
     event.preventDefault();
     const data = new FormData(event.currentTarget);
-    console.log({
-      email: data.get("email"),
-      password: data.get("password"),
-    });
+    const email = data.get("email");
+    const password = data.get("password");
+    const repeat_password = data.get("repeat_password");
+
+    if (password !== repeat_password) {
+      console.log("Passwords are not the same");
+      return;
+    }
+
+    if (!isValidEmail(email)) {
+      console.log("Bad email format");
+      return;
+    }
 
     const dataTo = {
-      email: data.get("email"),
-      password: data.get("password"),
+      email,
+      password,
     };
 
     try {
@@ -37,7 +52,7 @@ export default function SignUp() {
           "Access-Control-Allow-Origin": "*",
         },
         body: JSON.stringify(dataTo),
-        mode: 'cors'
+        mode: "cors",
       });
 
       const responseData = await response.json();
@@ -69,9 +84,9 @@ export default function SignUp() {
           <LockOutlinedIcon />
         </Avatar>
         <Typography component="h1" variant="h5">
-          Sign up
+          {t("registration.sign_up")}
         </Typography>
-        <Box component="form" noValidate onSubmit={handleSubmit} sx={{ mt: 3 }}>
+        <Box component="form" onSubmit={handleSubmit} sx={{ mt: 3 }}>
           <Grid container spacing={2}>
             <Grid item xs={12} sm={6}>
               <TextField
@@ -80,7 +95,7 @@ export default function SignUp() {
                 required
                 fullWidth
                 id="firstName"
-                label="First Name"
+                label={t("registration.first_name")}
                 autoFocus
               />
             </Grid>
@@ -90,7 +105,7 @@ export default function SignUp() {
                 fullWidth
                 id="lastName"
                 label="Last Name"
-                name="lastName"
+                name={t("registration.last_name")}
                 autoComplete="family-name"
               />
             </Grid>
@@ -99,7 +114,7 @@ export default function SignUp() {
                 required
                 fullWidth
                 id="email"
-                label="Email Address"
+                label={t("registration.email_address")}
                 name="email"
                 autoComplete="email"
               />
@@ -109,16 +124,28 @@ export default function SignUp() {
                 required
                 fullWidth
                 name="password"
-                label="Password"
+                label={t("registration.password")}
                 type="password"
                 id="password"
                 autoComplete="new-password"
               />
             </Grid>
             <Grid item xs={12}>
+              <TextField
+                required
+                fullWidth
+                name="repeat_password"
+                label={t("registration.repeat_password")}
+                type="password"
+                id="repeat_password"
+                autoComplete="new-password"
+              />
+            </Grid>
+            <Grid item xs={12}>
               <FormControlLabel
                 control={<Checkbox value="allowExtraEmails" color="primary" />}
-                label="I want to receive inspiration, marketing promotions and updates via email."
+                label={t("registration.checkbox_text")}
+                onChange={() => setisSubmitButtonDisable((prev) => !prev)}
               />
             </Grid>
           </Grid>
@@ -126,14 +153,15 @@ export default function SignUp() {
             type="submit"
             fullWidth
             variant="contained"
+            disabled={isSubmitButtonDisable}
             sx={{ mt: 3, mb: 2 }}
           >
-            Sign Up
+            {t("registration.register")}
           </Button>
           <Grid container justifyContent="flex-end">
             <Grid item>
               <Link href="/login" variant="body2">
-                Already have an account? Sign in
+                {t("registration.back_tp_login")}
               </Link>
             </Grid>
           </Grid>
@@ -141,4 +169,6 @@ export default function SignUp() {
       </Box>
     </Container>
   );
-}
+};
+
+export default SignUp;

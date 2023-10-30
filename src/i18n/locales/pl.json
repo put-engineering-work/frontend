@@ -7,5 +7,15 @@
   },
   "navBar": {
     "language": "Język"
+  },
+  "registration": {
+    "sign_up": "Stwórz konto",
+    "first_name": "Imię",
+    "email_address": "Adres e-mail",
+    "password": "Hasło",
+    "repeat_password": "Powtórz hasło",
+    "checkbox_text": "Zaakceptuj politykę prywatności i warunki",
+    "register": "Rejestr",
+    "back_tp_login": "Posiadasz już konto? \nZaloguj się"
   }
 }

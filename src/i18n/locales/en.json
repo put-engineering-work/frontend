@@ -7,5 +7,16 @@
   },
   "navBar": {
     "language": "Language"
+  },
+  "registration": {
+    "sign_up": "Create an Account",
+    "first_name": "First Name",
+    "last_name": "Last Name",
+    "email_address": "Email Address",
+    "password": "Password",
+    "repeat_password": "Repeat Password",
+    "checkbox_text": "Accept private policy and terms",
+    "register": "Register ",
+    "back_tp_login": "Already have an account? Sign in"
   }
 }
