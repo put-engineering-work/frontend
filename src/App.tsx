@@ -12,6 +12,7 @@ import LoginForm from "./components/login/LoginForm";
 import NavBar from "./components/navBar/NavBar";
 import "react-toastify/dist/ReactToastify.css";
 import "./App.css";
+import { pink } from "@mui/material/colors";
 
 const ColorModeContext = React.createContext({ toggleColorMode: () => {} });
 
@@ -82,6 +83,10 @@ export default function ToggleColorMode() {
       createTheme({
         palette: {
           mode,
+          primary: {
+            main: "#42a5f5",
+          },
+          secondary: pink,
         },
       }),
     [mode]
