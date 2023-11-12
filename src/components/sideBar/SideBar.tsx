@@ -1,4 +1,3 @@
-import React, { useState } from "react";
 import Divider from "@mui/material/Divider";
 import ListItem from "@mui/material/ListItem";
 import ListItemButton from "@mui/material/ListItemButton";
@@ -9,49 +8,28 @@ import HomeIcon from "@mui/icons-material/Home";
 import MapIcon from "@mui/icons-material/Map";
 import StarsIcon from "@mui/icons-material/Stars";
 import RecommendIcon from "@mui/icons-material/Recommend";
-import { Drawer, Toolbar, IconButton } from "@mui/material";
-import ArrowForwardIcon from "@mui/icons-material/ArrowForward";
-import ArrowBackIcon from "@mui/icons-material/ArrowBack";
+import { Drawer, Toolbar } from "@mui/material";
 import { drawerWidth } from "../../utils/Constants";
 import { useTranslation } from "react-i18next";
-import "./SideBar.css";
-import MenuIcon from "@mui/icons-material/Menu";
 
-const SideBar = ({
-  onItemClick,
-  onToggleSidebar,
-}: {
-  onItemClick: (item: string) => void;
-  onToggleSidebar: () => void;
-}) => {
+const SideBar = ({ onItemClick }: { onItemClick: (item: string) => void }) => {
   const { t } = useTranslation();
-  const [open, setOpen] = useState(true);
-
-  const toggleSidebar = () => {
-    setOpen(!open);
-    onToggleSidebar();
-  };
 
   return (
     <>
       <Drawer
         sx={{
-          width: open ? drawerWidth : 60,
+          width: drawerWidth,
           flexShrink: 0,
           "& .MuiDrawer-paper": {
-            width: open ? drawerWidth : 60,
+            width: drawerWidth,
             boxSizing: "border-box",
-            overflowX: "hidden",
           },
         }}
         variant="permanent"
         anchor="left"
       >
-        <Toolbar className="custom-toolbar ">
-          <IconButton sx={{ padding: "16px" }} onClick={toggleSidebar}>
-            {open ? <ArrowBackIcon /> : <ArrowForwardIcon />}
-          </IconButton>
-        </Toolbar>
+        <Toolbar />
         <Divider />
         <List>
           <ListItem key={t("sideBar.home")} disablePadding>

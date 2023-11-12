@@ -17,7 +17,6 @@ const App = () => {
   const theme = useTheme();
   const colorMode = React.useContext(ColorModeContext);
   const [isLogged, setIsLogged] = useState(false);
-  const [isSidebarOpen, setIsSidebarOpen] = useState(true);
 
   useEffect(() => {
     const language = localStorage.getItem("language");
@@ -30,10 +29,6 @@ const App = () => {
     setIsLogged((prev) => !prev);
   };
 
-  const handleSidebarToggle = () => {
-    setIsSidebarOpen((prev) => !prev);
-  };
-
   return (
     <I18nextProvider i18n={i18n}>
       <CssBaseline />
@@ -42,7 +37,6 @@ const App = () => {
         theme={theme}
         isLogged={isLogged}
         handleLogged={handleLogged}
-        isSidebarOpen={isSidebarOpen}
       />
       <Routes>
         <Route path="/" element={<LoginForm />} />
@@ -50,15 +44,7 @@ const App = () => {
           path="/login"
           element={<LoginForm handleLogged={handleLogged} />}
         />
-        <Route
-          path="/home"
-          element={
-            <Home
-              isSidebarOpen={isSidebarOpen}
-              onSidebarToggle={handleSidebarToggle}
-            />
-          }
-        />
+        <Route path="/home" element={<Home />} />
         <Route path="/register" element={<RegisterForm />} />
       </Routes>
     </I18nextProvider>
