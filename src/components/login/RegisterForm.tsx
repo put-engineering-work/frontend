@@ -31,15 +31,13 @@ const SignUp = () => {
     const email = data.get("email");
     const password = data.get("password");
     const repeat_password = data.get("repeat_password");
+    const name = data.get("name");
+    const lastname = data.get("lastname");
 
     if (!isValidEmail(email)) {
       toast.error(t(`registration.errors.email`));
       return;
     }
-
-    console.log(password);
-    console.log(typeof password);
-    console.log(password!.toString().length);
 
     if (password !== repeat_password) {
       toast.error(t(`registration.errors.passwords`));
@@ -54,6 +52,8 @@ const SignUp = () => {
     const dataTo = {
       email,
       password,
+      name,
+      lastname,
     };
 
     try {
@@ -100,22 +100,22 @@ const SignUp = () => {
             <Grid item xs={12} sm={6}>
               <TextField
                 autoComplete="given-name"
-                name="firstName"
+                name="name"
                 required
                 fullWidth
-                id="firstName"
+                id="name"
                 label={t("registration.first_name")}
                 autoFocus
               />
             </Grid>
             <Grid item xs={12} sm={6}>
               <TextField
+                autoComplete="family-name"
                 required
                 fullWidth
-                id="lastName"
-                label="Last Name"
-                name={t("registration.last_name")}
-                autoComplete="family-name"
+                id="lastname"
+                name="lastname"
+                label={t("registration.last_name")}
               />
             </Grid>
             <Grid item xs={12}>
