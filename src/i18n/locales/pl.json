@@ -36,6 +36,7 @@
     }
   },
   "map": {
-    "add_event": "Dodaj wydarzenie"
+    "add_event": "Dodaj wydarzenie",
+    "filters": "Filtry"
   }
 }

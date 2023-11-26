@@ -37,6 +37,7 @@
     "button": "Login"
   },
   "map": {
-    "add_event": "Add event"
+    "add_event": "Add event",
+    "filters": "Filters"
   }
 }
