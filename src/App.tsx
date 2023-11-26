@@ -15,6 +15,7 @@ import "./App.css";
 import { pink } from "@mui/material/colors";
 import MapPage from "./components/pages/map/MapPage";
 import SideBar from "./components/sideBar/SideBar";
+import AddEventForm from "./components/events/AddEventForm";
 
 const ColorModeContext = React.createContext({ toggleColorMode: () => {} });
 
@@ -23,10 +24,6 @@ const App = () => {
   const colorMode = React.useContext(ColorModeContext);
   const [isLogged, setIsLogged] = useState(false);
   const navigate = useNavigate();
-
-  useEffect(() => {
-    console.log(isLogged);
-  }, [isLogged]);
 
   useEffect(() => {
     const language = localStorage.getItem("language");
@@ -66,6 +63,7 @@ const App = () => {
           <Route path="/home" element={<Home />} />
           <Route path="/register" element={<RegisterForm />} />
           <Route path="/map" element={<MapPage />} />
+          <Route path="/add_event" element={<AddEventForm />} />
         </Routes>
       </Box>
     </I18nextProvider>

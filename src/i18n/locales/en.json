@@ -35,5 +35,8 @@
     "signIn": "Sign in",
     "no_account": "Don't have an account? Create account",
     "button": "Login"
+  },
+  "map": {
+    "add_event": "Add event"
   }
 }
