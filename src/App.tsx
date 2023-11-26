@@ -55,7 +55,7 @@ const App = () => {
       <SideBar isLogged={isLogged} />
       <Box sx={{ ml: isLogged ? "250px" : "0" }}>
         <Routes>
-          <Route path="/" element={<LoginForm />} />
+          <Route path="/" element={<Home />} />
           <Route
             path="/login"
             element={<LoginForm handleLogged={handleLogged} />}
