@@ -1,3 +1,4 @@
+import React, { useState } from "react";
 import Divider from "@mui/material/Divider";
 import ListItem from "@mui/material/ListItem";
 import ListItemButton from "@mui/material/ListItemButton";
@@ -8,30 +9,67 @@ import HomeIcon from "@mui/icons-material/Home";
 import MapIcon from "@mui/icons-material/Map";
 import StarsIcon from "@mui/icons-material/Stars";
 import RecommendIcon from "@mui/icons-material/Recommend";
-import { Drawer, Toolbar } from "@mui/material";
+import { Drawer, Toolbar, IconButton } from "@mui/material";
+import ArrowForwardIcon from "@mui/icons-material/ArrowForward";
+import ArrowBackIcon from "@mui/icons-material/ArrowBack";
 import { drawerWidth } from "../../utils/Constants";
 import { useTranslation } from "react-i18next";
+import "./SideBar.css";
 
 const SideBar = ({ onItemClick }: { onItemClick: (item: string) => void }) => {
   const { t } = useTranslation();
+  const [open, setOpen] = useState(true);
+
+  const toggleSidebar = () => {
+    setOpen(!open);
+  };
 
   return (
     <>
       <Drawer
         sx={{
-          width: drawerWidth,
+          width: open ? drawerWidth : 60,
           flexShrink: 0,
           "& .MuiDrawer-paper": {
-            width: drawerWidth,
+            width: open ? drawerWidth : 60,
             boxSizing: "border-box",
+            overflowX: "hidden",
+            "@media (max-width: 768px)": {
+              height: open ? "100%" : 64,
+              width: open ? "100%" : 60,
+              border: 0,
+            },
           },
         }}
         variant="permanent"
         anchor="left"
       >
-        <Toolbar />
-        <Divider />
-        <List>
+        <Toolbar
+          className="custom-toolbar "
+          sx={{
+            display: "flex",
+            justifyContent: "space-between",
+          }}
+        >
+          <IconButton sx={{ padding: "16px" }} onClick={toggleSidebar}>
+            {open ? <ArrowBackIcon /> : <ArrowForwardIcon />}
+          </IconButton>
+        </Toolbar>
+        <Divider
+          sx={{
+            "@media (max-width: 768px)": {
+              display: open ? "block" : "none",
+            },
+          }}
+        />
+        <List
+          className="side-bar-menu"
+          sx={{
+            "@media (max-width: 768px)": {
+              display: open ? "block" : "none",
+            },
+          }}
+        >
           <ListItem key={t("sideBar.home")} disablePadding>
             <ListItemButton onClick={() => onItemClick("home")}>
               <ListItemIcon>
@@ -57,8 +95,20 @@ const SideBar = ({ onItemClick }: { onItemClick: (item: string) => void }) => {
             </ListItemButton>
           </ListItem>
         </List>
-        <Divider />
-        <List>
+        <Divider
+          sx={{
+            "@media (max-width: 768px)": {
+              display: open ? "block" : "none",
+            },
+          }}
+        />
+        <List
+          sx={{
+            "@media (max-width: 768px)": {
+              display: open ? "block" : "none",
+            },
+          }}
+        >
           <ListItem key={t("sideBar.recommendation")} disablePadding>
             <ListItemButton onClick={() => onItemClick("recommendation")}>
               <ListItemIcon>

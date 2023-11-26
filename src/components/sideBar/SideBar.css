@@ -1,0 +1,9 @@
+.custom-toolbar {
+  padding-left: 0 !important;
+}
+
+@media (max-width: 768px) {
+  /* .MuiDrawer-paper {
+    width: 100%;
+  } */
+}

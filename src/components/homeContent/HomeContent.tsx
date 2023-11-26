@@ -1,15 +1,21 @@
 import Container from "@mui/material/Container";
 import Typography from "@mui/material/Typography";
 import EventCard from "../eventCard/EventCard";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { Box, FormControl, InputLabel, MenuItem, Select } from "@mui/material";
 import { useTranslation } from "react-i18next";
 
 const HomeContent: React.FC = () => {
   const { t } = useTranslation();
+
   const [selectedCategory, setSelectedCategory] = useState<string | undefined>(
     t("homeContent.allEvents")
   );
+
+  useEffect(() => {
+    setSelectedCategory(t("homeContent.allEvents"));
+  }, [t]);
+
   const [selectedDate, setSelectedDate] = useState<Date | null>(null);
 
   const events = [

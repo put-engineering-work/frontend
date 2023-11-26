@@ -1,6 +1,6 @@
 import { Box } from "@mui/material";
 import SideBar from "../sideBar/SideBar";
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import HomeContent from "../homeContent/HomeContent";
 
 // const Home = () => {
@@ -17,6 +17,9 @@ const Home = () => {
   const handleSidebarItemClick = (item: string) => {
     setSelectedItem(item);
   };
+  useEffect(() => {
+    setSelectedItem("home");
+  }, []);
 
   return (
     <Box>
