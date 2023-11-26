@@ -34,5 +34,9 @@
       "UNAUTHORIZED": "Nieprawidłowe hasło lub login",
       "email": "Zły format wiadomości e-mail"
     }
+  },
+  "map": {
+    "add_event": "Dodaj wydarzenie",
+    "filters": "Filtry"
   }
 }
