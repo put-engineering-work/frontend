@@ -1,6 +1,6 @@
 import * as React from "react";
 import { useTheme, ThemeProvider, createTheme } from "@mui/material/styles";
-import { CssBaseline } from "@mui/material";
+import { Box, CssBaseline } from "@mui/material";
 import { useEffect, useMemo, useState } from "react";
 import "./i18n/i18n";
 import i18n from "./i18n/i18n";
@@ -13,6 +13,8 @@ import NavBar from "./components/navBar/NavBar";
 import "react-toastify/dist/ReactToastify.css";
 import "./App.css";
 import { pink } from "@mui/material/colors";
+import MapPage from "./components/pages/map/MapPage";
+import SideBar from "./components/sideBar/SideBar";
 
 const ColorModeContext = React.createContext({ toggleColorMode: () => {} });
 
@@ -23,13 +25,20 @@ const App = () => {
   const navigate = useNavigate();
 
   useEffect(() => {
+    console.log(isLogged);
+  }, [isLogged]);
+
+  useEffect(() => {
     const language = localStorage.getItem("language");
+
     if (language) {
       i18n.changeLanguage(language);
     }
-    console.log(localStorage.getItem("user"));
+
     if (localStorage.getItem("user") === null) {
       navigate("/login");
+    } else {
+      setIsLogged(true);
     }
   }, []);
 
@@ -46,15 +55,19 @@ const App = () => {
         isLogged={isLogged}
         handleLogged={handleLogged}
       />
-      <Routes>
-        <Route path="/" element={<LoginForm />} />
-        <Route
-          path="/login"
-          element={<LoginForm handleLogged={handleLogged} />}
-        />
-        <Route path="/home" element={<Home />} />
-        <Route path="/register" element={<RegisterForm />} />
-      </Routes>
+      <SideBar isLogged={isLogged} />
+      <Box sx={{ ml: isLogged ? "250px" : "0" }}>
+        <Routes>
+          <Route path="/" element={<LoginForm />} />
+          <Route
+            path="/login"
+            element={<LoginForm handleLogged={handleLogged} />}
+          />
+          <Route path="/home" element={<Home />} />
+          <Route path="/register" element={<RegisterForm />} />
+          <Route path="/map" element={<MapPage />} />
+        </Routes>
+      </Box>
     </I18nextProvider>
   );
 };

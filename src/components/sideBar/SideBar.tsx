@@ -11,9 +11,11 @@ import RecommendIcon from "@mui/icons-material/Recommend";
 import { Drawer, Toolbar } from "@mui/material";
 import { drawerWidth } from "../../utils/Constants";
 import { useTranslation } from "react-i18next";
+import { useNavigate } from "react-router-dom";
 
-const SideBar = () => {
+const SideBar = ({ isLogged }: { isLogged: boolean }) => {
   const { t } = useTranslation();
+  const navigate = useNavigate();
 
   return (
     <>
@@ -25,6 +27,7 @@ const SideBar = () => {
             width: drawerWidth,
             boxSizing: "border-box",
           },
+          display: isLogged ? "flex" : "none",
         }}
         variant="permanent"
         anchor="left"
@@ -32,7 +35,13 @@ const SideBar = () => {
         <Toolbar />
         <Divider />
         <List>
-          <ListItem key={t("sideBar.home")} disablePadding>
+          <ListItem
+            key={t("sideBar.home")}
+            disablePadding
+            onClick={() => {
+              navigate("/home");
+            }}
+          >
             <ListItemButton>
               <ListItemIcon>
                 <HomeIcon />
@@ -40,7 +49,13 @@ const SideBar = () => {
               <ListItemText primary={t("sideBar.home")} />
             </ListItemButton>
           </ListItem>
-          <ListItem key={t("sideBar.map")} disablePadding>
+          <ListItem
+            key={t("sideBar.map")}
+            disablePadding
+            onClick={() => {
+              navigate("/map");
+            }}
+          >
             <ListItemButton>
               <ListItemIcon>
                 <MapIcon />
