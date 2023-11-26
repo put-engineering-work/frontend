@@ -1,15 +1,22 @@
 import * as React from "react";
 import { useTheme, ThemeProvider, createTheme } from "@mui/material/styles";
-import { CssBaseline } from "@mui/material";
+import { Box, CssBaseline } from "@mui/material";
 import { useEffect, useMemo, useState } from "react";
 import "./i18n/i18n";
 import i18n from "./i18n/i18n";
 import { I18nextProvider } from "react-i18next";
-import { Route, Routes } from "react-router-dom";
-import Home from "./components/home/Home";
+import { Route, Routes, useNavigate } from "react-router-dom";
+import Home from "./components/pages/home/Home";
 import RegisterForm from "./components/login/RegisterForm";
 import LoginForm from "./components/login/LoginForm";
 import NavBar from "./components/navBar/NavBar";
+import "react-toastify/dist/ReactToastify.css";
+import "./App.css";
+import { pink } from "@mui/material/colors";
+import MapPage from "./components/pages/map/MapPage";
+import SideBar from "./components/sideBar/SideBar";
+import AddEventForm from "./components/events/AddEventForm";
+import { t } from "i18next";
 
 const ColorModeContext = React.createContext({ toggleColorMode: () => {} });
 
@@ -17,16 +24,29 @@ const App = () => {
   const theme = useTheme();
   const colorMode = React.useContext(ColorModeContext);
   const [isLogged, setIsLogged] = useState(false);
+  const navigate = useNavigate();
 
   useEffect(() => {
     const language = localStorage.getItem("language");
+
     if (language) {
       i18n.changeLanguage(language);
+    }
+
+    if (localStorage.getItem("user") === null) {
+      navigate("/login");
+    } else {
+      setIsLogged(true);
     }
   }, []);
 
   const handleLogged = () => {
     setIsLogged((prev) => !prev);
+  };
+
+  const [isOpened, setIsOpened] = useState(true);
+  const handleOpened = () => {
+    setIsOpened((prev) => !prev);
   };
 
   return (
@@ -38,15 +58,23 @@ const App = () => {
         isLogged={isLogged}
         handleLogged={handleLogged}
       />
-      <Routes>
-        <Route path="/" element={<LoginForm />} />
-        <Route
-          path="/login"
-          element={<LoginForm handleLogged={handleLogged} />}
-        />
-        <Route path="/home" element={<Home />} />
-        <Route path="/register" element={<RegisterForm />} />
-      </Routes>
+      <SideBar
+        isLogged={isLogged}
+        isOpened={isOpened}
+        handleOpened={handleOpened}
+      />
+      <Box sx={{ ml: isLogged && isOpened ? "250px" : "0" }}>
+        <Routes>
+          <Route path="/" element={<Home />} />
+          <Route
+            path="/login"
+            element={<LoginForm handleLogged={handleLogged} />}
+          />
+          <Route path="/home" element={<Home />} />
+          <Route path="/register" element={<RegisterForm />} />
+          <Route path="/map" element={<MapPage />} />
+        </Routes>
+      </Box>
     </I18nextProvider>
   );
 };
@@ -80,6 +108,10 @@ export default function ToggleColorMode() {
       createTheme({
         palette: {
           mode,
+          primary: {
+            main: "#42a5f5",
+          },
+          secondary: pink,
         },
       }),
     [mode]

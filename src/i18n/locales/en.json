@@ -11,5 +11,37 @@
   "homeContent": {
     "find": "Find event",
     "allEvents": "All events"
+  },
+  "registration": {
+    "sign_up": "Create an Account",
+    "first_name": "First Name",
+    "last_name": "Last Name",
+    "email_address": "Email Address",
+    "password": "Password",
+    "repeat_password": "Repeat Password",
+    "checkbox_text": "Accept private policy and terms",
+    "register": "Register ",
+    "back_tp_login": "Already have an account? Sign in",
+    "errors": {
+      "UNPROCESSABLE_ENTITY": "User already exist",
+      "oops": "Oops something went wrong",
+      "passwords": "Passwords are not the same",
+      "email": "Bad email format",
+      "password_length": "Password must be consist of at least 8 symbols"
+    }
+  },
+  "login": {
+    "errors": {
+      "email": "Bad email format",
+      "UNAUTHORIZED": "Incorrect password or login"
+    },
+    "remember_me": "Remember me",
+    "signIn": "Sign in",
+    "no_account": "Don't have an account? Create account",
+    "button": "Login"
+  },
+  "map": {
+    "add_event": "Add event",
+    "filters": "Filters"
   }
 }

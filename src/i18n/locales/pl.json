@@ -11,5 +11,36 @@
   "homeContent": {
     "find": "Znaleź wydadarzenie",
     "allEvents": "Wszystkie wydarzenia"
+  },
+  "registration": {
+    "sign_up": "Stwórz konto",
+    "first_name": "Imię",
+    "email_address": "Adres e-mail",
+    "password": "Hasło",
+    "repeat_password": "Powtórz hasło",
+    "checkbox_text": "Zaakceptuj politykę prywatności i warunki",
+    "register": "Rejestr",
+    "back_tp_login": "Posiadasz już konto? \nZaloguj się",
+    "errors": {
+      "UNPROCESSABLE_ENTITY": "Użytkownik już istnieje",
+      "oops": "Ups! Coś poszło nie tak",
+      "passwords": "Hasła nie są takie same",
+      "email": "Zły format wiadomości e-mail",
+      "password_length": "Hasło musi składać się z co najmniej 8 znaków"
+    }
+  },
+  "login": {
+    "remember_me": "Zapamiętaj mnie",
+    "signIn": "Zalogować się",
+    "no_account": "Nie masz konta? \nUtwórz konto",
+    "button": "Zaloguj sie",
+    "errors": {
+      "UNAUTHORIZED": "Nieprawidłowe hasło lub login",
+      "email": "Zły format wiadomości e-mail"
+    }
+  },
+  "map": {
+    "add_event": "Dodaj wydarzenie",
+    "filters": "Filtry"
   }
 }

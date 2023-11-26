@@ -16,30 +16,42 @@ import { drawerWidth } from "../../utils/Constants";
 import { useTranslation } from "react-i18next";
 import "./SideBar.css";
 
-const SideBar = ({ onItemClick }: { onItemClick: (item: string) => void }) => {
+import { useNavigate } from "react-router-dom";
+
+const SideBar = ({
+  isLogged,
+  isOpened,
+  handleOpened,
+}: {
+  isLogged: boolean;
+  isOpened: boolean;
+  handleOpened: any;
+}) => {
   const { t } = useTranslation();
-  const [open, setOpen] = useState(true);
+  const navigate = useNavigate();
 
-  const toggleSidebar = () => {
-    setOpen(!open);
-  };
-
+  function handleMobile() {
+    if (window.innerWidth < 768) {
+      handleOpened();
+    }
+  }
   return (
     <>
       <Drawer
         sx={{
-          width: open ? drawerWidth : 60,
+          width: isOpened ? drawerWidth : 60,
           flexShrink: 0,
           "& .MuiDrawer-paper": {
-            width: open ? drawerWidth : 60,
+            width: isOpened ? drawerWidth : 60,
             boxSizing: "border-box",
             overflowX: "hidden",
             "@media (max-width: 768px)": {
-              height: open ? "100%" : 64,
-              width: open ? "100%" : 60,
+              height: isOpened ? "100%" : 64,
+              width: isOpened ? "100%" : 60,
               border: 0,
             },
           },
+          display: isLogged ? "flex" : "none",
         }}
         variant="permanent"
         anchor="left"
@@ -51,14 +63,14 @@ const SideBar = ({ onItemClick }: { onItemClick: (item: string) => void }) => {
             justifyContent: "space-between",
           }}
         >
-          <IconButton sx={{ padding: "16px" }} onClick={toggleSidebar}>
-            {open ? <ArrowBackIcon /> : <ArrowForwardIcon />}
+          <IconButton sx={{ padding: "16px" }} onClick={handleOpened}>
+            {isOpened ? <ArrowBackIcon /> : <ArrowForwardIcon />}
           </IconButton>
         </Toolbar>
         <Divider
           sx={{
             "@media (max-width: 768px)": {
-              display: open ? "block" : "none",
+              display: isOpened ? "block" : "none",
             },
           }}
         />
@@ -66,28 +78,49 @@ const SideBar = ({ onItemClick }: { onItemClick: (item: string) => void }) => {
           className="side-bar-menu"
           sx={{
             "@media (max-width: 768px)": {
-              display: open ? "block" : "none",
+              display: isOpened ? "block" : "none",
             },
           }}
         >
-          <ListItem key={t("sideBar.home")} disablePadding>
-            <ListItemButton onClick={() => onItemClick("home")}>
+          <ListItem
+            key={t("sideBar.home")}
+            disablePadding
+            onClick={() => {
+              navigate("/home");
+              handleMobile();
+            }}
+          >
+            <ListItemButton>
               <ListItemIcon>
                 <HomeIcon />
               </ListItemIcon>
               <ListItemText primary={t("sideBar.home")} />
             </ListItemButton>
           </ListItem>
-          <ListItem key={t("sideBar.map")} disablePadding>
-            <ListItemButton onClick={() => onItemClick("map")}>
+
+          <ListItem
+            key={t("sideBar.map")}
+            disablePadding
+            onClick={() => {
+              navigate("/map");
+              handleMobile();
+            }}
+          >
+            <ListItemButton>
               <ListItemIcon>
                 <MapIcon />
               </ListItemIcon>
               <ListItemText primary={t("sideBar.map")} />
             </ListItemButton>
           </ListItem>
-          <ListItem key={t("sideBar.ratings")} disablePadding>
-            <ListItemButton onClick={() => onItemClick("ratings")}>
+          <ListItem
+            key={t("sideBar.ratings")}
+            disablePadding
+            onClick={() => {
+              handleMobile();
+            }}
+          >
+            <ListItemButton>
               <ListItemIcon>
                 <StarsIcon />
               </ListItemIcon>
@@ -98,19 +131,19 @@ const SideBar = ({ onItemClick }: { onItemClick: (item: string) => void }) => {
         <Divider
           sx={{
             "@media (max-width: 768px)": {
-              display: open ? "block" : "none",
+              display: isOpened ? "block" : "none",
             },
           }}
         />
         <List
           sx={{
             "@media (max-width: 768px)": {
-              display: open ? "block" : "none",
+              display: isOpened ? "block" : "none",
             },
           }}
         >
           <ListItem key={t("sideBar.recommendation")} disablePadding>
-            <ListItemButton onClick={() => onItemClick("recommendation")}>
+            <ListItemButton>
               <ListItemIcon>
                 <RecommendIcon />
               </ListItemIcon>
