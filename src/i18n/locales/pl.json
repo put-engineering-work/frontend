@@ -9,8 +9,9 @@
     "language": "Język"
   },
   "homeContent": {
-    "find": "Znaleź wydadarzenie",
-    "allEvents": "Wszystkie wydarzenia"
+    "find": "Znaleź wydarzenie",
+    "allEvents": "Wszystkie wydarzenia",
+    "categories": "Kategorie"
   },
   "registration": {
     "sign_up": "Stwórz konto",

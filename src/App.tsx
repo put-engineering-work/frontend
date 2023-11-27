@@ -6,7 +6,7 @@ import "./i18n/i18n";
 import i18n from "./i18n/i18n";
 import { I18nextProvider } from "react-i18next";
 import { Route, Routes, useNavigate } from "react-router-dom";
-import Home from "./components/pages/home/Home";
+import Home from "./components/pages/home/HomePage";
 import RegisterForm from "./components/login/RegisterForm";
 import LoginForm from "./components/login/LoginForm";
 import NavBar from "./components/navBar/NavBar";
@@ -15,8 +15,6 @@ import "./App.css";
 import { pink } from "@mui/material/colors";
 import MapPage from "./components/pages/map/MapPage";
 import SideBar from "./components/sideBar/SideBar";
-import AddEventForm from "./components/events/AddEventForm";
-import { t } from "i18next";
 
 const ColorModeContext = React.createContext({ toggleColorMode: () => {} });
 
@@ -63,7 +61,14 @@ const App = () => {
         isOpened={isOpened}
         handleOpened={handleOpened}
       />
-      <Box sx={{ ml: isLogged && isOpened ? "250px" : "0" }}>
+      <Box
+        sx={{
+          ml: isLogged && isOpened ? "250px" : "70px",
+          "@media (max-width: 768px)": {
+            ml: 0,
+          },
+        }}
+      >
         <Routes>
           <Route path="/" element={<Home />} />
           <Route

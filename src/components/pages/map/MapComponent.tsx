@@ -1,4 +1,4 @@
-import React, { useEffect } from "react";
+import React from "react";
 import { GoogleMap, LoadScriptNext, Marker } from "@react-google-maps/api";
 
 interface Event {

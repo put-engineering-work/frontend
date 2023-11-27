@@ -10,7 +10,8 @@
   },
   "homeContent": {
     "find": "Find event",
-    "allEvents": "All events"
+    "allEvents": "All events",
+    "categories": "Categories"
   },
   "registration": {
     "sign_up": "Create an Account",

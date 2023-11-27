@@ -3,38 +3,53 @@ import Card from "@mui/material/Card";
 import CardContent from "@mui/material/CardContent";
 import Typography from "@mui/material/Typography";
 import { Link } from "@mui/material";
-import "./EventCard.css";
+import { useTranslation } from "react-i18next";
 
 interface EventCardProps {
-  title: string;
-  date: string;
+  id: string;
+  name: string;
   description: string;
+  startDate: string;
+  endDate: string;
+  address: string;
+  latitude: number;
+  longitude: number;
   category: string;
-  link: string;
 }
 
 const EventCard: React.FC<EventCardProps> = ({
-  title,
-  date,
+  name,
+  startDate,
   description,
   category,
-  link,
 }) => {
+  const { t } = useTranslation();
+
+  const startDateObject = new Date(startDate);
+  const formattedStartDate = startDateObject.toLocaleString("en-US", {
+    weekday: "long",
+    month: "long",
+    day: "numeric",
+    hour: "numeric",
+    minute: "numeric",
+  });
+
   return (
-    <Link href={link}>
+    <Link href={"/"} sx={{ border: "1px solid #ccc", textDecoration: "none" }}>
       <Card className="card">
         <CardContent>
+          <img src="" alt="image" />
           <Typography variant="h5" component="div">
-            {title}
+            {name}
+          </Typography>
+          <Typography variant="body2" color="text.primary">
+            {t("homeContent.categories")}: {category}
           </Typography>
           <Typography variant="body2" color="text.secondary">
-            {date}
+            {formattedStartDate}
           </Typography>
           <Typography variant="body2" color="text.primary">
             {description}
-          </Typography>
-          <Typography variant="body2" color="text.primary">
-            {category}
           </Typography>
         </CardContent>
       </Card>
