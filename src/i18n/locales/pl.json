@@ -8,6 +8,11 @@
   "navBar": {
     "language": "Język"
   },
+  "homeContent": {
+    "find": "Znaleź wydarzenie",
+    "allEvents": "Wszystkie wydarzenia",
+    "categories": "Kategorie"
+  },
   "registration": {
     "sign_up": "Stwórz konto",
     "first_name": "Imię",

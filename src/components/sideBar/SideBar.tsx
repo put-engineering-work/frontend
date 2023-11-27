@@ -8,38 +8,85 @@ import HomeIcon from "@mui/icons-material/Home";
 import MapIcon from "@mui/icons-material/Map";
 import StarsIcon from "@mui/icons-material/Stars";
 import RecommendIcon from "@mui/icons-material/Recommend";
-import { Drawer, Toolbar } from "@mui/material";
+import { Drawer, Toolbar, IconButton } from "@mui/material";
+import ArrowForwardIcon from "@mui/icons-material/ArrowForward";
+import ArrowBackIcon from "@mui/icons-material/ArrowBack";
 import { drawerWidth } from "../../utils/Constants";
 import { useTranslation } from "react-i18next";
+import "./SideBar.css";
+
 import { useNavigate } from "react-router-dom";
 
-const SideBar = ({ isLogged }: { isLogged: boolean }) => {
+const SideBar = ({
+  isLogged,
+  isOpened,
+  handleOpened,
+}: {
+  isLogged: boolean;
+  isOpened: boolean;
+  handleOpened: any;
+}) => {
   const { t } = useTranslation();
   const navigate = useNavigate();
 
+  function handleMobile() {
+    if (window.innerWidth < 768) {
+      handleOpened();
+    }
+  }
   return (
     <>
       <Drawer
         sx={{
-          width: drawerWidth,
+          width: isOpened ? drawerWidth : 60,
           flexShrink: 0,
           "& .MuiDrawer-paper": {
-            width: drawerWidth,
+            width: isOpened ? drawerWidth : 60,
             boxSizing: "border-box",
+            overflowX: "hidden",
+            "@media (max-width: 768px)": {
+              height: isOpened ? "100%" : 64,
+              width: isOpened ? "100%" : 60,
+              border: 0,
+            },
           },
           display: isLogged ? "flex" : "none",
         }}
         variant="permanent"
         anchor="left"
       >
-        <Toolbar />
-        <Divider />
-        <List>
+        <Toolbar
+          className="custom-toolbar "
+          sx={{
+            display: "flex",
+            justifyContent: "space-between",
+          }}
+        >
+          <IconButton sx={{ padding: "16px" }} onClick={handleOpened}>
+            {isOpened ? <ArrowBackIcon /> : <ArrowForwardIcon />}
+          </IconButton>
+        </Toolbar>
+        <Divider
+          sx={{
+            "@media (max-width: 768px)": {
+              display: isOpened ? "block" : "none",
+            },
+          }}
+        />
+        <List
+          className="side-bar-menu"
+          sx={{
+            "@media (max-width: 768px)": {
+              display: isOpened ? "block" : "none",
+            },
+          }}
+        >
           <ListItem
             key={t("sideBar.home")}
             disablePadding
             onClick={() => {
               navigate("/home");
+              handleMobile();
             }}
           >
             <ListItemButton>
@@ -49,11 +96,13 @@ const SideBar = ({ isLogged }: { isLogged: boolean }) => {
               <ListItemText primary={t("sideBar.home")} />
             </ListItemButton>
           </ListItem>
+
           <ListItem
             key={t("sideBar.map")}
             disablePadding
             onClick={() => {
               navigate("/map");
+              handleMobile();
             }}
           >
             <ListItemButton>
@@ -63,7 +112,13 @@ const SideBar = ({ isLogged }: { isLogged: boolean }) => {
               <ListItemText primary={t("sideBar.map")} />
             </ListItemButton>
           </ListItem>
-          <ListItem key={t("sideBar.ratings")} disablePadding>
+          <ListItem
+            key={t("sideBar.ratings")}
+            disablePadding
+            onClick={() => {
+              handleMobile();
+            }}
+          >
             <ListItemButton>
               <ListItemIcon>
                 <StarsIcon />
@@ -72,8 +127,20 @@ const SideBar = ({ isLogged }: { isLogged: boolean }) => {
             </ListItemButton>
           </ListItem>
         </List>
-        <Divider />
-        <List>
+        <Divider
+          sx={{
+            "@media (max-width: 768px)": {
+              display: isOpened ? "block" : "none",
+            },
+          }}
+        />
+        <List
+          sx={{
+            "@media (max-width: 768px)": {
+              display: isOpened ? "block" : "none",
+            },
+          }}
+        >
           <ListItem key={t("sideBar.recommendation")} disablePadding>
             <ListItemButton>
               <ListItemIcon>
