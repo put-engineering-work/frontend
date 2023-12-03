@@ -1,5 +1,8 @@
-import React from "react";
+import React, { useState } from "react";
 import { GoogleMap, LoadScriptNext, Marker } from "@react-google-maps/api";
+import { API_KEY } from "../../../constants/keys";
+import { mapOptions } from "../../../constants/mapOptions";
+import InfoWindowComponent from "./InfoWindowComponent";
 
 interface Event {
   id: string;
@@ -22,8 +25,18 @@ const MapComponent: React.FC<MapComponentProps> = ({ events }) => {
     height: "600px",
   };
 
+  const [openInfoWindowId, setOpenInfoWindowId] = useState<string | null>(null);
+
+  const toggleOpen = (eventId: string) => {
+    setOpenInfoWindowId(eventId);
+  };
+
+  const toggleClose = () => {
+    setOpenInfoWindowId(null);
+  };
+
   return (
-    <LoadScriptNext googleMapsApiKey="AIzaSyBdSUQXo7J7AQGX5mHFiayXBTwAvHo02B8">
+    <LoadScriptNext googleMapsApiKey={API_KEY}>
       <GoogleMap
         mapContainerStyle={mapContainerStyle}
         center={
@@ -32,13 +45,24 @@ const MapComponent: React.FC<MapComponentProps> = ({ events }) => {
             : { lat: 52.409538, lng: 16.931992 }
         }
         zoom={15}
+        options={mapOptions}
       >
         {events.map((event) => (
           <Marker
             key={event.id}
             position={{ lat: event.latitude, lng: event.longitude }}
             title={event.name}
-          />
+            onClick={() => toggleOpen(event.id)}
+          >
+            {openInfoWindowId === event.id && (
+              <InfoWindowComponent
+                position={{ lat: event.latitude, lng: event.longitude }}
+                events={events}
+                toggleClose={toggleClose}
+                openInfoWindowId={openInfoWindowId}
+              />
+            )}
+          </Marker>
         ))}
       </GoogleMap>
     </LoadScriptNext>

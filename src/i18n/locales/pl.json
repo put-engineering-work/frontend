@@ -42,6 +42,15 @@
   },
   "map": {
     "add_event": "Dodaj wydarzenie",
-    "filters": "Filtry"
+    "filters": "Filtry",
+    "view_details": "Pokaż szczegóły"
+  },
+  "event": {
+    "date_time": "Data i godzina",
+    "start": "Początek",
+    "end": "Koniec",
+    "address": "Adres",
+    "category": "Kategoria",
+    "description": "Opis"
   }
 }

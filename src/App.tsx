@@ -15,6 +15,7 @@ import "./App.css";
 import { pink } from "@mui/material/colors";
 import MapPage from "./components/pages/map/MapPage";
 import SideBar from "./components/sideBar/SideBar";
+import EventDetail from "./components/events/EventDetail";
 
 const ColorModeContext = React.createContext({ toggleColorMode: () => {} });
 
@@ -78,6 +79,7 @@ const App = () => {
           <Route path="/home" element={<Home />} />
           <Route path="/register" element={<RegisterForm />} />
           <Route path="/map" element={<MapPage />} />
+          <Route path="/events/:eventId" element={<EventDetail />} />
         </Routes>
       </Box>
     </I18nextProvider>

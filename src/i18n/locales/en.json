@@ -43,6 +43,15 @@
   },
   "map": {
     "add_event": "Add event",
-    "filters": "Filters"
+    "filters": "Filters",
+    "view_details": "View Details"
+  },
+  "event": {
+    "date_time": "Date and Time",
+    "start": "Start",
+    "end": "End",
+    "address": "Address",
+    "category": "Category",
+    "description": "Description"
   }
 }

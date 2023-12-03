@@ -8,7 +8,7 @@ export const coordinates = [
     longitude: 16.9252,
     name: "Local Art Exhibition",
     startDate: "2023-12-02T10:00:00+01:00",
-    category: "Art"
+    category: "Art",
   },
   {
     address: "8 Park Avenue, Poznan",
@@ -19,7 +19,7 @@ export const coordinates = [
     longitude: 16.9335,
     name: "Poznan Food Fest",
     startDate: "2023-12-05T16:00:00+01:00",
-    category: "Food"
+    category: "Food",
   },
   {
     address: "42 Theater Street, Poznan",
@@ -30,7 +30,7 @@ export const coordinates = [
     longitude: 16.9345,
     name: "Local Theater Night",
     startDate: "2023-12-10T19:00:00+01:00",
-    category: "Theater"
+    category: "Theater",
   },
   {
     address: "27 Market Square, Poznan",
@@ -41,7 +41,7 @@ export const coordinates = [
     longitude: 16.9336,
     name: "Poznan Christmas Market",
     startDate: "2023-12-01T12:00:00+01:00",
-    category: "Holiday"
+    category: "Holiday",
   },
   {
     address: "5 Jazz Lane, Poznan",
@@ -52,7 +52,7 @@ export const coordinates = [
     longitude: 16.9351,
     name: "International Jazz Night",
     startDate: "2023-12-08T19:30:00+01:00",
-    category: "Music"
+    category: "Music",
   },
   {
     address: "18 Science Street, Poznan",
@@ -63,7 +63,7 @@ export const coordinates = [
     longitude: 16.9355,
     name: "Tech Expo Poznan",
     startDate: "2023-12-12T10:00:00+01:00",
-    category: "Technology"
+    category: "Technology",
   },
   {
     address: "33 Comedy Avenue, Poznan",
@@ -74,7 +74,7 @@ export const coordinates = [
     longitude: 16.9274,
     name: "Laugh Out Loud Comedy Night",
     startDate: "2023-12-20T19:00:00+01:00",
-    category: "Comedy"
+    category: "Comedy",
   },
   {
     address: "22 Film Street, Poznan",
@@ -85,7 +85,7 @@ export const coordinates = [
     longitude: 16.9257,
     name: "Documentary Film Festival",
     startDate: "2023-12-25T18:30:00+01:00",
-    category: "Movie"
+    category: "Movie",
   },
   {
     address: "10 Fashion Boulevard, Poznan",
@@ -96,7 +96,7 @@ export const coordinates = [
     longitude: 16.9314,
     name: "Poznan Fashion Week",
     startDate: "2023-12-28T19:00:00+01:00",
-    category: "Fashion"
+    category: "Fashion",
   },
   {
     address: "7 Technology Square, Poznan",
@@ -107,6 +107,6 @@ export const coordinates = [
     longitude: 16.9348,
     name: "Tech Hack Poznan",
     startDate: "2023-12-30T10:00:00+01:00",
-    category: "Technology"
+    category: "Technology",
   },
 ];
