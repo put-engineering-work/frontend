@@ -64,6 +64,7 @@ const App = () => {
       <Box
         sx={{
           ml: isLogged && isOpened ? "250px" : "70px",
+          transition: "margin-left 0.3s ease-in-out",
           "@media (max-width: 768px)": {
             ml: 0,
           },

@@ -42,11 +42,16 @@ const SideBar = ({
           flexShrink: 0,
           "& .MuiDrawer-paper": {
             width: isOpened ? drawerWidth : 60,
+            transition: "width 0.3s ease-in-out",
             boxSizing: "border-box",
             overflowX: "hidden",
             "@media (max-width: 768px)": {
               height: isOpened ? "100%" : 64,
               width: isOpened ? "100%" : 60,
+              overflow: "hidden",
+              transition: isOpened
+                ? "width 0.3s ease-in-out"
+                : "height 0.00001ms 0.15s, width 0.3s ease-in-out",
               border: 0,
             },
           },
@@ -69,7 +74,9 @@ const SideBar = ({
         <Divider
           sx={{
             "@media (max-width: 768px)": {
-              display: isOpened ? "block" : "none",
+              transition: "transform 0.2s",
+              transform: isOpened ? "translateX(0)" : "translateX(-150%)",
+              // display: isOpened ? "block" : "none",
             },
           }}
         />
@@ -77,7 +84,9 @@ const SideBar = ({
           className="side-bar-menu"
           sx={{
             "@media (max-width: 768px)": {
-              display: isOpened ? "block" : "none",
+              transition: "transform 0.2s",
+              transform: isOpened ? "translateX(0)" : "translateX(-150%)",
+              // display: isOpened ? "block" : "none",
             },
           }}
         >
@@ -130,14 +139,18 @@ const SideBar = ({
         <Divider
           sx={{
             "@media (max-width: 768px)": {
-              display: isOpened ? "block" : "none",
+              transition: "transform 0.2s",
+              transform: isOpened ? "translateX(0)" : "translateX(-150%)",
+              // display: isOpened ? "block" : "none",
             },
           }}
         />
         <List
           sx={{
             "@media (max-width: 768px)": {
-              display: isOpened ? "block" : "none",
+              transition: "transform 0.2s",
+              transform: isOpened ? "translateX(0)" : "translateX(-150%)",
+              // display: isOpened ? "block" : "none",
             },
           }}
         >
