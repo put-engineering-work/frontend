@@ -11,6 +11,7 @@ import React, { useState, useEffect } from "react";
 import { useTranslation } from "react-i18next";
 import EventCard from "../../eventCard/EventCard";
 import { coordinates as events } from "../../../constants/coordinates";
+import "./HomePage.css";
 
 const Home = () => {
   const { t } = useTranslation();
@@ -72,6 +73,8 @@ const Home = () => {
         </FormControl>
       </Box>
       <Box
+        className="scrollbar"
+        id="scrollbar"
         sx={{
           marginBlock: "10px",
           overflowX: "auto",
@@ -82,7 +85,6 @@ const Home = () => {
         <Box
           sx={{
             display: "flex",
-
             gap: "10px",
           }}
         >
