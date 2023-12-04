@@ -21,14 +21,17 @@ interface MapComponentProps {
 
 const MapComponent: React.FC<MapComponentProps> = ({ events }) => {
   const mapContainerStyle = {
-    width: "75%",
+    width: "100%",
     height: "600px",
   };
 
   const [openInfoWindowId, setOpenInfoWindowId] = useState<string | null>(null);
+  const [infoWindowPosition, setInfoWindowPosition] =
+    useState<google.maps.LatLngLiteral | null>(null);
 
-  const toggleOpen = (eventId: string) => {
+  const toggleOpen = (eventId: string, position: google.maps.LatLngLiteral) => {
     setOpenInfoWindowId(eventId);
+    setInfoWindowPosition(position);
   };
 
   const toggleClose = () => {
@@ -45,25 +48,33 @@ const MapComponent: React.FC<MapComponentProps> = ({ events }) => {
             : { lat: 52.409538, lng: 16.931992 }
         }
         zoom={15}
-        options={mapOptions}
+        options={{
+          ...mapOptions,
+          streetViewControl: false,
+        }}
       >
         {events.map((event) => (
           <Marker
             key={event.id}
             position={{ lat: event.latitude, lng: event.longitude }}
             title={event.name}
-            onClick={() => toggleOpen(event.id)}
-          >
-            {openInfoWindowId === event.id && (
-              <InfoWindowComponent
-                position={{ lat: event.latitude, lng: event.longitude }}
-                events={events}
-                toggleClose={toggleClose}
-                openInfoWindowId={openInfoWindowId}
-              />
-            )}
-          </Marker>
+            onClick={() =>
+              toggleOpen(event.id, {
+                lat: event.latitude,
+                lng: event.longitude,
+              })
+            }
+          />
         ))}
+
+        {openInfoWindowId !== null && infoWindowPosition !== null && (
+          <InfoWindowComponent
+            position={infoWindowPosition}
+            events={events}
+            toggleClose={toggleClose}
+            openInfoWindowId={openInfoWindowId}
+          />
+        )}
       </GoogleMap>
     </LoadScriptNext>
   );

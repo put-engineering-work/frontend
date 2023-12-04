@@ -22,7 +22,6 @@ const AddEventForm: React.FC = () => {
 
   const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault();
-    // Здесь вы можете добавить логику для обработки данных формы
     console.log("Submitted data:", formData);
   };
 

@@ -1,38 +1,57 @@
-import { Box, FormControl, InputLabel, MenuItem, Select } from "@mui/material";
-import React, { useState } from "react";
+import { Box, Fade, IconButton, Menu, MenuItem } from "@mui/material";
+import React, { useEffect, useState } from "react";
 import { useTranslation } from "react-i18next";
 import { getInitialLanguage } from "../utils/utlits";
+import { languages } from "../constants/languages";
 
 const LanguageSwitcher: React.FC = () => {
-  const { i18n, t } = useTranslation();
+  const { i18n } = useTranslation();
 
-  const [language, setlanguage] = useState(getInitialLanguage());
+  const [language, setLanguage] = useState(getInitialLanguage());
 
-  const changeLanguage = (lng: any) => {
-    setlanguage(lng.target.value);
-    i18n.changeLanguage(lng.target.value);
-    saveLanguageToLocalStorage(lng.target.value);
+  const [anchorEl, setAnchorEl] = useState<HTMLElement | null>(null);
+
+  const handleLanguageOptionClick = (value: string) => {
+    setAnchorEl(null);
+    if (value !== language) {
+      setLanguage(value);
+    }
   };
 
-  const saveLanguageToLocalStorage = (language: any) => {
-    localStorage.setItem("language", language);
-  };
+  useEffect(() => {
+    if (language && i18n.language !== language) {
+      i18n.changeLanguage(language);
+    }
+  }, [language, i18n]);
 
   return (
-    <Box sx={{ minWidth: 120 }}>
-      <FormControl fullWidth>
-        <InputLabel id="language-label">{t("navBar.language")}</InputLabel>
-        <Select
-          labelId="language-label"
-          id="language-select"
-          value={language}
-          label="Language"
-          onChange={changeLanguage}
-        >
-          <MenuItem value="en">English</MenuItem>
-          <MenuItem value="pl">Polski</MenuItem>
-        </Select>
-      </FormControl>
+    <Box>
+      <IconButton onClick={(e) => setAnchorEl(e.currentTarget)}>
+        <Box
+          sx={{ width: 24 }}
+          className={languages.find((lang) => lang.value === language)?.flag}
+        />
+      </IconButton>
+      <Menu
+        anchorEl={anchorEl}
+        open={Boolean(anchorEl)}
+        onClose={() => setAnchorEl(null)}
+        TransitionComponent={Fade}
+        disableScrollLock={false}
+      >
+        {languages.map((lang) => {
+          return (
+            <MenuItem
+              key={lang.value}
+              value={lang.name}
+              onClick={() => handleLanguageOptionClick(lang.value)}
+            >
+              <Box className={lang.flag} style={{ marginRight: "8px" }} />
+              {lang.name} ({lang.value.toLocaleUpperCase()})
+            </MenuItem>
+          );
+        })}
+      </Menu>
     </Box>
   );
 };

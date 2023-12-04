@@ -95,7 +95,7 @@ const NavBar: FC<{
 
       <LanguageSwitcher />
       <IconButton
-        sx={{ ml: 1, mr: 2 }}
+        sx={{ ml: 1, mr: isLogged ? 2 : 0 }}
         onClick={colorMode.toggleColorMode}
         color="inherit"
       >
