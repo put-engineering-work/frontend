@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useEffect, useRef, useState } from "react";
 import { GoogleMap, LoadScriptNext, Marker } from "@react-google-maps/api";
 import { API_KEY } from "../../../constants/keys";
 import { mapOptions } from "../../../constants/mapOptions";
@@ -28,29 +28,47 @@ const MapComponent: React.FC<MapComponentProps> = ({ events }) => {
   const [openInfoWindowId, setOpenInfoWindowId] = useState<string | null>(null);
   const [infoWindowPosition, setInfoWindowPosition] =
     useState<google.maps.LatLngLiteral | null>(null);
+  const [mapCenter, setMapCenter] = useState<google.maps.LatLngLiteral | null>(
+    null
+  );
+
+  const mapRef = useRef<google.maps.Map | null>(null);
 
   const toggleOpen = (eventId: string, position: google.maps.LatLngLiteral) => {
     setOpenInfoWindowId(eventId);
     setInfoWindowPosition(position);
+    setMapCenter(position);
   };
 
   const toggleClose = () => {
     setOpenInfoWindowId(null);
   };
 
+  useEffect(() => {
+    // Перемещение карты при открытии информационного окна
+    if (mapRef.current && mapCenter !== null) {
+      mapRef.current.panTo(mapCenter);
+      // mapRef.current.setZoom(15); // Установите желаемый уровень зума
+    }
+  }, [mapCenter]);
+
   return (
     <LoadScriptNext googleMapsApiKey={API_KEY}>
       <GoogleMap
         mapContainerStyle={mapContainerStyle}
         center={
-          events[0]?.latitude && events[0]?.longitude
+          mapCenter || // Если установлен центр карты, используем его
+          (events[0]?.latitude && events[0]?.longitude
             ? { lat: events[0].latitude, lng: events[0].longitude }
-            : { lat: 52.409538, lng: 16.931992 }
+            : { lat: 52.409538, lng: 16.931992 })
         }
         zoom={15}
         options={{
           ...mapOptions,
           streetViewControl: false,
+        }}
+        onLoad={(map) => {
+          mapRef.current = map;
         }}
       >
         {events.map((event) => (
