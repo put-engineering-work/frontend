@@ -73,36 +73,28 @@ const Home = () => {
         </FormControl>
       </Box>
       <Box
-        className="scrollbar"
-        id="scrollbar"
         sx={{
-          marginBlock: "10px",
-          overflowX: "auto",
-          whiteSpace: "nowrap",
-          paddingBottom: "15px",
+          display: "flex",
+          flexDirection: "row",
+          flexWrap: "wrap",
+          gap: 5,
         }}
       >
-        <Box
-          sx={{
-            display: "flex",
-            gap: "10px",
-          }}
-        >
-          {filteredEvents.map((event, index) => (
-            <EventCard
-              key={index}
-              name={event.name}
-              startDate={event.startDate}
-              description={event.description}
-              category={event.category}
-              id={event.id}
-              endDate={event.endDate}
-              address={event.address}
-              latitude={event.latitude}
-              longitude={event.longitude} // link={event.link}
-            />
-          ))}
-        </Box>
+        {filteredEvents.map((event, index) => (
+          <EventCard
+            key={index}
+            name={event.name}
+            startDate={event.startDate}
+            description={event.description}
+            category={event.category}
+            id={event.id}
+            endDate={event.endDate}
+            address={event.address}
+            latitude={event.latitude}
+            longitude={event.longitude}
+            link={event.id}
+          />
+        ))}
       </Box>
     </Container>
   );
