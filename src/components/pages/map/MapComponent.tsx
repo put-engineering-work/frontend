@@ -28,9 +28,10 @@ const MapComponent: React.FC<MapComponentProps> = ({ events }) => {
   const [openInfoWindowId, setOpenInfoWindowId] = useState<string | null>(null);
   const [infoWindowPosition, setInfoWindowPosition] =
     useState<google.maps.LatLngLiteral | null>(null);
-  const [mapCenter, setMapCenter] = useState<google.maps.LatLngLiteral | null>(
-    null
-  );
+  const [mapCenter, setMapCenter] = useState<google.maps.LatLngLiteral | null>({
+    lat: 52.409538,
+    lng: 16.9191063,
+  });
 
   const mapRef = useRef<google.maps.Map | null>(null);
 
@@ -60,9 +61,9 @@ const MapComponent: React.FC<MapComponentProps> = ({ events }) => {
           mapCenter || // Если установлен центр карты, используем его
           (events[0]?.latitude && events[0]?.longitude
             ? { lat: events[0].latitude, lng: events[0].longitude }
-            : { lat: 52.409538, lng: 16.931992 })
+            : { lat: 52.409538, lng: 16.9191063 })
         }
-        zoom={15}
+        zoom={13}
         options={{
           ...mapOptions,
           streetViewControl: false,

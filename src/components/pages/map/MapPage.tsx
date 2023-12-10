@@ -1,7 +1,6 @@
 import React, { useEffect, useState } from "react";
 import MapComponent from "./MapComponent";
-import { coordinates } from "../../../constants/coordinates";
-import { Box, Container, IconButton, Typography } from "@mui/material";
+import { Box, IconButton, Typography } from "@mui/material";
 import AddIcon from "@mui/icons-material/Add";
 import { useTranslation } from "react-i18next";
 import { useNavigate } from "react-router-dom";
@@ -10,18 +9,27 @@ import { postData } from "../../../utils/fetchData";
 const MapPage: React.FC = () => {
   const { t } = useTranslation();
   const navigate = useNavigate();
-  const [events, setEvents] = useState();
+  const [events, setEvents] = useState([]);
 
   const handleAddButtonClick = () => {
     navigate("/add_event");
   };
 
   useEffect(() => {
-    const eve = postData("events/search", {
-      latitude: 52.2297,
-      longitude: 21.0122,
-      radius: 1000000,
-    });
+    const fetchData = async () => {
+      try {
+        const eve = await postData("events/search", {
+          latitude: 52.409538,
+          longitude: 16.9191063,
+          radius: 100000,
+        });
+        setEvents(eve);
+      } catch (error) {
+        console.error("Error fetching data:", error);
+      }
+    };
+
+    fetchData();
   }, []);
 
   return (
@@ -34,7 +42,7 @@ const MapPage: React.FC = () => {
           mx: 5,
         }}
       >
-        <MapComponent events={coordinates} />
+        <MapComponent events={events} />
         <Box sx={{ width: { xs: "100%", md: "30%" } }}>
           <IconButton
             sx={{
