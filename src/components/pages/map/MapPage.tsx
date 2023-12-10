@@ -1,18 +1,28 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 import MapComponent from "./MapComponent";
 import { coordinates } from "../../../constants/coordinates";
 import { Box, Container, IconButton, Typography } from "@mui/material";
 import AddIcon from "@mui/icons-material/Add";
 import { useTranslation } from "react-i18next";
 import { useNavigate } from "react-router-dom";
+import { postData } from "../../../utils/fetchData";
 
 const MapPage: React.FC = () => {
   const { t } = useTranslation();
   const navigate = useNavigate();
+  const [events, setEvents] = useState();
 
   const handleAddButtonClick = () => {
     navigate("/add_event");
   };
+
+  useEffect(() => {
+    const eve = postData("events/search", {
+      latitude: 52.2297,
+      longitude: 21.0122,
+      radius: 1000000,
+    });
+  }, []);
 
   return (
     <Box sx={{ width: "100%" }}>
