@@ -43,6 +43,7 @@ const EventDetail = () => {
   );
   const [joinEventText, setJoinEventText] = useState<string>("");
   const [userEventRole, setUserEventRole] = useState<string>("");
+  const [members, setMembers] = useState<Member[]>([]);
 
   useEffect(() => {
     const handleStepChange = (nextStep: number) => {
@@ -57,6 +58,7 @@ const EventDetail = () => {
       const userRole = await getDataText(`events/is-registered/${eventId}`);
 
       console.log(userRole);
+
       if (userRole === "ROLE_GUEST") {
         setJoinEventText("Leave event");
         setUserEventRole(userRole);
@@ -74,8 +76,56 @@ const EventDetail = () => {
   const fetchEventDetails = async () => {
     try {
       const event = await getDataJson(`events/event/${eventId}`);
+      
       console.log(event);
+
       setEvent(event);
+    } catch (error) {
+      console.error("Error fetching data:", error);
+    }
+  };
+
+  const fetchMembers = async () => {
+    try {
+      const members = await getDataJson(`events/event/${eventId}/members`);
+
+      console.log(members);
+      setMembers(members);
+    } catch (error) {
+      console.error("Error fetching data:", error);
+    }
+  };
+
+  const handleJoinEvent = async () => {
+    try {
+      console.log(userEventRole);
+      if (userEventRole !== "ROLE_GUEST") {
+        const addUser = await postData(`events/${eventId}/add-user`, {});
+
+        console.log(addUser);
+
+        if (addUser.code === "OK") {
+          setJoinEventText("Leave event");
+        } else {
+          setJoinEventText("Join event");
+        }
+
+        fetchIsRegisteredInfo();
+      } else {
+        const removeMe = await postData(`events/remove-me/${eventId}`, {});
+
+        console.log(removeMe);
+
+        if (removeMe.code === "OK") {
+          console.log(1);
+          setJoinEventText("Join event");
+        } else {
+          setJoinEventText("Leave event");
+        }
+      }
+
+      fetchEventDetails();
+      fetchMembers();
     } catch (error) {
       console.error("Error fetching data:", error);
     }
@@ -84,6 +134,7 @@ const EventDetail = () => {
   useEffect(() => {
     fetchEventDetails();
     fetchIsRegisteredInfo();
+    fetchMembers();
   }, [eventId]);
 
   if (!event) {
@@ -110,29 +161,6 @@ const EventDetail = () => {
 
   const handleBack = () => {
     setActiveStep((prevActiveStep) => prevActiveStep - 1);
-  };
-
-  const handleJoinEvent = async () => {
-    try {
-      if (userEventRole !== "ROLE_GUEST") {
-        const addUser = await postData(`events/${eventId}/add-user`, {});
-
-        console.log(addUser);
-
-        if (addUser.code === "OK") {
-          setJoinEventText("Leave event");
-        } else {
-          setJoinEventText("Join event");
-        }
-
-        fetchEventDetails();
-        fetchIsRegisteredInfo();
-      } else {
-        //logic to unsign user from event
-      }
-    } catch (error) {
-      console.error("Error fetching data:", error);
-    }
   };
 
   return (
