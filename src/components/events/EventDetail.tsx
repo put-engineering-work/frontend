@@ -2,7 +2,6 @@ import React, { useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
 import {
   Box,
-  Container,
   Grid,
   Typography,
   Card,
@@ -11,6 +10,9 @@ import {
   MobileStepper,
   Slide,
   IconButton,
+  Avatar,
+  Rating,
+  Button,
 } from "@mui/material";
 import {
   AccessTime as AccessTimeIcon,
@@ -23,21 +25,10 @@ import Image from "../../assets/event.jpg";
 import Image1 from "../../assets/event1.jpg";
 import Image2 from "../../assets/event2.jpg";
 
-import { coordinates } from "../../constants/coordinates";
 import { API_KEY } from "../../constants/keys";
 import { useTranslation } from "react-i18next";
-
-interface ApiResponse {
-  address: string;
-  description: string;
-  endDate: string;
-  id: string;
-  latitude: number;
-  longitude: number;
-  name: string;
-  startDate: string;
-  category: string;
-}
+import AvatarImage from "../../assets/1.png";
+import { getDataJson, getDataText, postData } from "../../utils/fetchData";
 
 const images = [Image, Image1, Image2];
 
@@ -45,11 +36,13 @@ const EventDetail = () => {
   const { t } = useTranslation();
 
   const { eventId } = useParams();
-  const [event, setEvent] = useState<ApiResponse | null>(null);
+  const [event, setEvent] = useState<EventDetails | null>(null);
   const [activeStep, setActiveStep] = useState(0);
   const [slideDirection, setSlideDirection] = useState<"left" | "right">(
     "left"
   );
+  const [joinEventText, setJoinEventText] = useState<string>("");
+  const [userEventRole, setUserEventRole] = useState<string>("");
 
   useEffect(() => {
     const handleStepChange = (nextStep: number) => {
@@ -59,9 +52,37 @@ const EventDetail = () => {
     handleStepChange(activeStep);
   }, [activeStep]);
 
-  //Fetch data
+  const fetchIsRegisteredInfo = async () => {
+    try {
+      const userRole = await getDataText(`events/is-registered/${eventId}`);
+
+      if (userRole === "ROLE_GUEST") {
+        setJoinEventText("Leave event");
+        setUserEventRole(userRole);
+      } else if (userRole === "ROLE_HOST") {
+        setUserEventRole(userRole);
+      } else {
+        setUserEventRole("");
+        setJoinEventText("Join event");
+      }
+    } catch (error) {
+      console.error("Error fetching data:", error);
+    }
+  };
+
+  const fetchEventDetails = async () => {
+    try {
+      const event = await getDataJson(`events/event/${eventId}`);
+      console.log(event);
+      setEvent(event);
+    } catch (error) {
+      console.error("Error fetching data:", error);
+    }
+  };
+
   useEffect(() => {
-    setEvent(coordinates[0]);
+    fetchIsRegisteredInfo();
+    fetchEventDetails();
   }, [eventId]);
 
   if (!event) {
@@ -77,7 +98,7 @@ const EventDetail = () => {
     longitude,
     name,
     startDate,
-    category,
+    host,
   } = event;
 
   const staticMapUrl = `https://maps.googleapis.com/maps/api/staticmap?center=${latitude},${longitude}&zoom=17&size=380x220&maptype=roadmap&markers=color:red%7C${latitude},${longitude}&key=${API_KEY}`;
@@ -90,9 +111,117 @@ const EventDetail = () => {
     setActiveStep((prevActiveStep) => prevActiveStep - 1);
   };
 
+  const handleJoinEvent = async () => {
+    try {
+      const addUser = await postData(`events/${eventId}/add-user`, {});
+
+      console.log(addUser);
+
+      if (addUser.code === "OK") {
+        setJoinEventText("Leave event");
+      } else {
+        setJoinEventText("Join event");
+      }
+    } catch (error) {
+      console.error("Error fetching data:", error);
+    }
+  };
+
   return (
-    <Container>
+    <Box mx={10}>
       <Box mt={3}>
+        <Box
+          sx={{
+            display: "flex",
+            flexDirection: "row",
+            mb: 5,
+            gap: 10,
+            justifyContent: "space-between",
+            alignItems: "center",
+          }}
+        >
+          <Box
+            sx={{
+              display: "flex",
+              flexDirection: "row",
+              gap: 10,
+            }}
+          >
+            <Box
+              sx={{
+                display: "flex",
+                flexDirection: "row",
+              }}
+            >
+              <Avatar
+                sx={{ width: 70, height: 70, marginRight: 2 }}
+                src={AvatarImage}
+                alt="image"
+              />
+              <Box
+                sx={{
+                  display: "flex",
+                  flexDirection: "column",
+                  alignContent: "center",
+                  justifyContent: "center",
+                }}
+              >
+                <Typography
+                  sx={{
+                    display: "flex",
+                    flexDirection: "row",
+                    alignItems: "center",
+                    gap: 1,
+                  }}
+                  variant="body2"
+                  color="text.secondary"
+                >
+                  Host of the event:
+                </Typography>
+                <Typography
+                  sx={{
+                    display: "flex",
+                    flexDirection: "row",
+                    alignItems: "center",
+                    gap: 1,
+                    mb: 1,
+                  }}
+                  variant="body1"
+                  color="text.main"
+                >
+                  {host.name} {host.lastname}
+                </Typography>
+              </Box>
+            </Box>
+            <Box
+              sx={{
+                display: "flex",
+                flexDirection: "row",
+                alignItems: "center",
+                gap: 2,
+              }}
+            >
+              <Typography variant="h6">Hosted events rating:</Typography>
+              <Rating name="simple-controlled" value={4} readOnly />
+            </Box>
+          </Box>
+          <Button
+            sx={{
+              display: userEventRole === "ROLE_HOST" ? "none" : "flex",
+              flexDirection: "row",
+              alignItems: "center",
+              justifyContent: "center",
+              borderRadius: "15px",
+              padding: "8px 35px",
+              fontSize: 14,
+              color: "white",
+            }}
+            variant="contained"
+            onClick={handleJoinEvent}
+          >
+            {joinEventText}
+          </Button>
+        </Box>
         <Typography variant="h4" sx={{ mb: 2 }}>
           {name}
         </Typography>
@@ -141,7 +270,7 @@ const EventDetail = () => {
               />
             </Card>
           </Grid>
-          <Grid item xs={12} sm={4}>
+          <Grid item xs={12} sm={3}>
             <Card sx={{ display: "flex", flexDirection: "column" }}>
               <CardContent>
                 <Box sx={{ p: 1 }}>
@@ -202,7 +331,7 @@ const EventDetail = () => {
                   >
                     <CategoryIcon /> {t("event.category")}
                   </Typography>
-                  <Typography variant="body2">{category}</Typography>
+                  <Typography variant="body2"></Typography>
                 </Box>
               </CardContent>
             </Card>
@@ -217,7 +346,7 @@ const EventDetail = () => {
           </Box>
         </Box>
       </Box>
-    </Container>
+    </Box>
   );
 };
 

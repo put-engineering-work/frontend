@@ -29,8 +29,8 @@ const MapComponent: React.FC<MapComponentProps> = ({ events }) => {
   const [infoWindowPosition, setInfoWindowPosition] =
     useState<google.maps.LatLngLiteral | null>(null);
   const [mapCenter, setMapCenter] = useState<google.maps.LatLngLiteral | null>({
-    lat: 52.409538,
-    lng: 16.9191063,
+    lat: 52.2297,
+    lng: 21.0122,
   });
 
   const mapRef = useRef<google.maps.Map | null>(null);

@@ -21,7 +21,7 @@ const MapPage: React.FC = () => {
         const eve = await postData("events/search", {
           latitude: 52.409538,
           longitude: 16.9191063,
-          radius: 100000,
+          radius: 10000000,
         });
         setEvents(eve);
       } catch (error) {
