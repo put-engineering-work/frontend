@@ -11,7 +11,13 @@
   "homeContent": {
     "find": "Znaleź wydarzenie",
     "allEvents": "Wszystkie wydarzenia",
-    "categories": "Kategorie"
+    "categories": "Kategorie",
+    "welcome": {
+      "greetings": "Witaj w LeisureLink!",
+      "message": "Ciesz się życiem pełnym wyjątkowych wydarzeń za sprawą naszej nowoczesnej aplikacji do wyszukiwania i zarządzania wydarzeniami społecznymi. LeisureLink to innowacyjne narzędzie, które umożliwia łatwe planowanie, rezerwowanie i uczestnictwo w różnorodnych wydarzeniach, dostosowanych do Twoich zainteresowań i harmonogramu",
+      "find": "Wyszukaj wydarzenie"
+    },
+    "nearest": "Najbliższe wydarzenia w:"
   },
   "registration": {
     "sign_up": "Stwórz konto",
