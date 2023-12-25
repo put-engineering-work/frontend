@@ -22,31 +22,7 @@ export const postData = async (endpoint: string, data: any) => {
 
     const responseData = await response.json();
 
-    console.log(responseData);
-
     return responseData;
-  } catch (error) {
-    console.error("Error:", error);
-  }
-};
-
-export const getDataText = async (endpoint: string) => {
-  try {
-    const response = await fetch(`${BASE_URL}/${endpoint}`, {
-      method: "GET",
-      headers: {
-        accept: "*/*",
-        Authorization: `Bearer ${getToken()}`,
-      },
-    });
-
-    if (!response.ok) {
-      throw new Error(`HTTP error! Status: ${response.status}`);
-    }
-
-    const responseText = await response.text();
-
-    return responseText;
   } catch (error) {
     console.error("Error:", error);
   }

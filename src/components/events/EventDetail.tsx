@@ -28,7 +28,7 @@ import Image2 from "../../assets/event2.jpg";
 import { API_KEY } from "../../constants/keys";
 import { useTranslation } from "react-i18next";
 import AvatarImage from "../../assets/1.png";
-import { getDataJson, getDataText, postData } from "../../utils/fetchData";
+import { getDataJson, postData } from "../../utils/fetchData";
 
 const images = [Image, Image1, Image2];
 
@@ -41,8 +41,8 @@ const EventDetail = () => {
   const [slideDirection, setSlideDirection] = useState<"left" | "right">(
     "left"
   );
-  const [joinEventText, setJoinEventText] = useState<string>("");
-  const [userEventRole, setUserEventRole] = useState<string>("");
+  const [joinEventText, setJoinEventText] = useState<string>("Join event");
+  const [userEventRole, setUserEventRole] = useState<string>("NULL");
   const [members, setMembers] = useState<Member[]>([]);
 
   useEffect(() => {
@@ -53,19 +53,23 @@ const EventDetail = () => {
     handleStepChange(activeStep);
   }, [activeStep]);
 
+  useEffect(() => {
+    console.log(userEventRole);
+  }, [userEventRole]);
+
   const fetchIsRegisteredInfo = async () => {
     try {
-      const userRole = await getDataText(`events/is-registered/${eventId}`);
+      const userRole = await getDataJson(`events/is-registered/${eventId}`);
 
       console.log(userRole);
 
-      if (userRole === "ROLE_GUEST") {
+      if (userRole.message === "ROLE_GUEST") {
         setJoinEventText("Leave event");
-        setUserEventRole(userRole);
-      } else if (userRole === "ROLE_HOST") {
-        setUserEventRole(userRole);
+        setUserEventRole(userRole.message);
+      } else if (userRole.message === "ROLE_HOST") {
+        setUserEventRole(userRole.message);
       } else {
-        setUserEventRole("");
+        setUserEventRole("NULL");
         setJoinEventText("Join event");
       }
     } catch (error) {
@@ -76,7 +80,7 @@ const EventDetail = () => {
   const fetchEventDetails = async () => {
     try {
       const event = await getDataJson(`events/event/${eventId}`);
-      
+
       console.log(event);
 
       setEvent(event);
@@ -106,8 +110,10 @@ const EventDetail = () => {
 
         if (addUser.code === "OK") {
           setJoinEventText("Leave event");
+          setUserEventRole("ROLE_GUEST");
         } else {
           setJoinEventText("Join event");
+          setUserEventRole("NULL");
         }
 
         fetchIsRegisteredInfo();
@@ -119,8 +125,10 @@ const EventDetail = () => {
         if (removeMe.code === "OK") {
           console.log(1);
           setJoinEventText("Join event");
+          setUserEventRole("NULL");
         } else {
           setJoinEventText("Leave event");
+          setUserEventRole("ROLE_GUEST");
         }
       }
 
