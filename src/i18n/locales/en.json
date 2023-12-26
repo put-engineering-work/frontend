@@ -58,6 +58,12 @@
     "end": "End",
     "address": "Address",
     "category": "Category",
-    "description": "Description"
+    "description": "Description",
+    "members": "Members",
+    "roles": {
+      "ROLE_GUEST": "Guest",
+      "And": "And"
+    },
+    "more_guests": "More guests"
   }
 }

@@ -16,7 +16,7 @@ interface Event {
 }
 
 const InfoWindowComponent: React.FC<{
-  position: google.maps.LatLngLiteral;
+  position: any;
   events: Event[];
   toggleClose: any;
   openInfoWindowId: any;

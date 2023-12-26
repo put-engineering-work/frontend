@@ -28,7 +28,8 @@ import Image2 from "../../assets/event2.jpg";
 import { API_KEY } from "../../constants/keys";
 import { useTranslation } from "react-i18next";
 import AvatarImage from "../../assets/1.png";
-import { getDataJson, getDataText, postData } from "../../utils/fetchData";
+import { getDataJson, postData } from "../../utils/fetchData";
+import EventDetailsMembers from "./members/EventDetailsMembers";
 
 const images = [Image, Image1, Image2];
 
@@ -41,8 +42,8 @@ const EventDetail = () => {
   const [slideDirection, setSlideDirection] = useState<"left" | "right">(
     "left"
   );
-  const [joinEventText, setJoinEventText] = useState<string>("");
-  const [userEventRole, setUserEventRole] = useState<string>("");
+  const [joinEventText, setJoinEventText] = useState<string>("Join event");
+  const [userEventRole, setUserEventRole] = useState<string>("NULL");
   const [members, setMembers] = useState<Member[]>([]);
 
   useEffect(() => {
@@ -53,19 +54,23 @@ const EventDetail = () => {
     handleStepChange(activeStep);
   }, [activeStep]);
 
+  useEffect(() => {
+    console.log(userEventRole);
+  }, [userEventRole]);
+
   const fetchIsRegisteredInfo = async () => {
     try {
-      const userRole = await getDataText(`events/is-registered/${eventId}`);
+      const userRole = await getDataJson(`events/is-registered/${eventId}`);
 
       console.log(userRole);
 
-      if (userRole === "ROLE_GUEST") {
+      if (userRole.message === "ROLE_GUEST") {
         setJoinEventText("Leave event");
-        setUserEventRole(userRole);
-      } else if (userRole === "ROLE_HOST") {
-        setUserEventRole(userRole);
+        setUserEventRole(userRole.message);
+      } else if (userRole.message === "ROLE_HOST") {
+        setUserEventRole(userRole.message);
       } else {
-        setUserEventRole("");
+        setUserEventRole("NULL");
         setJoinEventText("Join event");
       }
     } catch (error) {
@@ -76,7 +81,7 @@ const EventDetail = () => {
   const fetchEventDetails = async () => {
     try {
       const event = await getDataJson(`events/event/${eventId}`);
-      
+
       console.log(event);
 
       setEvent(event);
@@ -106,8 +111,10 @@ const EventDetail = () => {
 
         if (addUser.code === "OK") {
           setJoinEventText("Leave event");
+          setUserEventRole("ROLE_GUEST");
         } else {
           setJoinEventText("Join event");
+          setUserEventRole("NULL");
         }
 
         fetchIsRegisteredInfo();
@@ -119,8 +126,10 @@ const EventDetail = () => {
         if (removeMe.code === "OK") {
           console.log(1);
           setJoinEventText("Join event");
+          setUserEventRole("NULL");
         } else {
           setJoinEventText("Leave event");
+          setUserEventRole("ROLE_GUEST");
         }
       }
 
@@ -164,224 +173,223 @@ const EventDetail = () => {
   };
 
   return (
-    <Box mx={10}>
-      <Box mt={3}>
+    <Box sx={{ mx: 10, mt: 3, maxWidth: "1600px" }}>
+      <Box
+        sx={{
+          display: "flex",
+          flexDirection: "row",
+          mb: 5,
+          gap: 10,
+          justifyContent: "space-between",
+          alignItems: "center",
+        }}
+      >
         <Box
           sx={{
             display: "flex",
             flexDirection: "row",
-            mb: 5,
             gap: 10,
-            justifyContent: "space-between",
-            alignItems: "center",
           }}
         >
           <Box
             sx={{
               display: "flex",
               flexDirection: "row",
-              gap: 10,
             }}
           >
+            <Avatar
+              sx={{ width: 70, height: 70, marginRight: 2 }}
+              src={AvatarImage}
+              alt="image"
+            />
             <Box
               sx={{
                 display: "flex",
-                flexDirection: "row",
+                flexDirection: "column",
+                alignContent: "center",
+                justifyContent: "center",
               }}
             >
-              <Avatar
-                sx={{ width: 70, height: 70, marginRight: 2 }}
-                src={AvatarImage}
-                alt="image"
-              />
-              <Box
+              <Typography
                 sx={{
                   display: "flex",
-                  flexDirection: "column",
-                  alignContent: "center",
-                  justifyContent: "center",
+                  flexDirection: "row",
+                  alignItems: "center",
+                  gap: 1,
                 }}
+                variant="body2"
+                color="text.secondary"
               >
-                <Typography
-                  sx={{
-                    display: "flex",
-                    flexDirection: "row",
-                    alignItems: "center",
-                    gap: 1,
-                  }}
-                  variant="body2"
-                  color="text.secondary"
+                Host of the event:
+              </Typography>
+              <Typography
+                sx={{
+                  display: "flex",
+                  flexDirection: "row",
+                  alignItems: "center",
+                  gap: 1,
+                  mb: 1,
+                }}
+                variant="body1"
+                color="text.main"
+              >
+                {host.name} {host.lastname}
+              </Typography>
+            </Box>
+          </Box>
+          <Box
+            sx={{
+              display: "flex",
+              flexDirection: "row",
+              alignItems: "center",
+              gap: 2,
+            }}
+          >
+            <Typography variant="h6">Hosted events rating:</Typography>
+            <Rating name="simple-controlled" value={4} readOnly />
+          </Box>
+        </Box>
+        <Button
+          sx={{
+            display: userEventRole === "ROLE_HOST" ? "none" : "flex",
+            flexDirection: "row",
+            alignItems: "center",
+            justifyContent: "center",
+            borderRadius: "15px",
+            padding: "8px 35px",
+            fontSize: 14,
+            color: "white",
+          }}
+          variant="contained"
+          onClick={handleJoinEvent}
+        >
+          {joinEventText}
+        </Button>
+      </Box>
+      <Typography variant="h4" sx={{ mb: 2 }}>
+        {name}
+      </Typography>
+      <Grid container spacing={3}>
+        <Grid item xs={12} lg={8}>
+          <Card sx={{ display: "flex", flexDirection: "column", mb: 4 }}>
+            <Slide
+              direction={slideDirection}
+              in={true}
+              timeout={{ enter: 500, exit: 500 }}
+            >
+              <CardMedia
+                component="img"
+                alt="Event Image"
+                height="450"
+                image={images[activeStep]}
+                sx={{
+                  width: "100%",
+                  transition: "transform 0.5s ease-in-out",
+                }}
+              />
+            </Slide>
+            <MobileStepper
+              steps={images.length}
+              position="static"
+              variant="dots"
+              activeStep={activeStep}
+              nextButton={
+                <IconButton
+                  size="small"
+                  onClick={handleNext}
+                  disabled={activeStep === images.length - 1}
                 >
-                  Host of the event:
-                </Typography>
+                  <NavigateNextIcon />
+                </IconButton>
+              }
+              backButton={
+                <IconButton
+                  size="small"
+                  onClick={handleBack}
+                  disabled={activeStep === 0}
+                >
+                  <NavigateBeforeIcon />
+                </IconButton>
+              }
+            />
+          </Card>
+        </Grid>
+        <Grid item xs={12} lg={3}>
+          <Card sx={{ display: "flex", flexDirection: "column" }}>
+            <CardContent>
+              <Box sx={{ p: 1 }}>
                 <Typography
                   sx={{
                     display: "flex",
                     flexDirection: "row",
-                    alignItems: "center",
                     gap: 1,
                     mb: 1,
                   }}
-                  variant="body1"
-                  color="text.main"
+                  variant="subtitle1"
                 >
-                  {host.name} {host.lastname}
+                  <AccessTimeIcon /> {t("event.date_time")}
+                </Typography>
+                <Typography variant="body2">
+                  {t("event.start")}: {new Date(startDate).toLocaleString()}
+                </Typography>
+                <Typography variant="body2">
+                  {t("event.end")}: {new Date(endDate).toLocaleString()}
                 </Typography>
               </Box>
-            </Box>
-            <Box
-              sx={{
-                display: "flex",
-                flexDirection: "row",
-                alignItems: "center",
-                gap: 2,
-              }}
-            >
-              <Typography variant="h6">Hosted events rating:</Typography>
-              <Rating name="simple-controlled" value={4} readOnly />
-            </Box>
-          </Box>
-          <Button
-            sx={{
-              display: userEventRole === "ROLE_HOST" ? "none" : "flex",
-              flexDirection: "row",
-              alignItems: "center",
-              justifyContent: "center",
-              borderRadius: "15px",
-              padding: "8px 35px",
-              fontSize: 14,
-              color: "white",
-            }}
-            variant="contained"
-            onClick={handleJoinEvent}
-          >
-            {joinEventText}
-          </Button>
-        </Box>
-        <Typography variant="h4" sx={{ mb: 2 }}>
-          {name}
-        </Typography>
-        <Grid container spacing={3}>
-          <Grid item xs={12} sm={8}>
-            <Card sx={{ display: "flex", flexDirection: "column", mb: 4 }}>
-              <Slide
-                direction={slideDirection}
-                in={true}
-                timeout={{ enter: 500, exit: 500 }}
-              >
-                <CardMedia
-                  component="img"
-                  alt="Event Image"
-                  height="450"
-                  image={images[activeStep]}
+              <Box sx={{ mb: 2 }}>
+                <Typography
                   sx={{
-                    width: "100%",
-                    transition: "transform 0.5s ease-in-out",
+                    display: "flex",
+                    flexDirection: "row",
+                    gap: 1,
+                    mb: 1,
                   }}
-                />
-              </Slide>
-              <MobileStepper
-                steps={images.length}
-                position="static"
-                variant="dots"
-                activeStep={activeStep}
-                nextButton={
-                  <IconButton
-                    size="small"
-                    onClick={handleNext}
-                    disabled={activeStep === images.length - 1}
-                  >
-                    <NavigateNextIcon />
-                  </IconButton>
-                }
-                backButton={
-                  <IconButton
-                    size="small"
-                    onClick={handleBack}
-                    disabled={activeStep === 0}
-                  >
-                    <NavigateBeforeIcon />
-                  </IconButton>
-                }
-              />
-            </Card>
-          </Grid>
-          <Grid item xs={12} sm={3}>
-            <Card sx={{ display: "flex", flexDirection: "column" }}>
-              <CardContent>
-                <Box sx={{ p: 1 }}>
-                  <Typography
-                    sx={{
-                      display: "flex",
-                      flexDirection: "row",
-                      gap: 1,
-                      mb: 1,
-                    }}
-                    variant="subtitle1"
-                  >
-                    <AccessTimeIcon /> {t("event.date_time")}
-                  </Typography>
-                  <Typography variant="body2">
-                    {t("event.start")}: {new Date(startDate).toLocaleString()}
-                  </Typography>
-                  <Typography variant="body2">
-                    {t("event.end")}: {new Date(endDate).toLocaleString()}
-                  </Typography>
-                </Box>
-                <Box sx={{ mb: 2 }}>
-                  <Typography
-                    sx={{
-                      display: "flex",
-                      flexDirection: "row",
-                      gap: 1,
-                      mb: 1,
-                    }}
-                    variant="subtitle1"
-                  >
-                    <RoomIcon /> {t("event.address")}
-                  </Typography>
-                  <Typography sx={{ mb: 2 }} variant="body2">
-                    {address}
-                  </Typography>
-                  <a
-                    href={`https://www.google.com/maps/search/?api=1&query=${latitude},${longitude}`}
-                    target="_blank"
-                    rel="noopener noreferrer"
-                  >
-                    <img
-                      src={staticMapUrl}
-                      alt="Static Map"
-                      style={{ width: "100%" }}
-                    />
-                  </a>
-                </Box>
-                <Box sx={{ mb: 2 }}>
-                  <Typography
-                    sx={{
-                      display: "flex",
-                      flexDirection: "row",
-                      gap: 1,
-                      mb: 1,
-                    }}
-                    variant="subtitle1"
-                  >
-                    <CategoryIcon /> {t("event.category")}
-                  </Typography>
-                  <Typography variant="body2"></Typography>
-                </Box>
-              </CardContent>
-            </Card>
-          </Grid>
+                  variant="subtitle1"
+                >
+                  <RoomIcon /> {t("event.address")}
+                </Typography>
+                <Typography sx={{ mb: 2 }} variant="body2">
+                  {address}
+                </Typography>
+                <a
+                  href={`https://www.google.com/maps/search/?api=1&query=${latitude},${longitude}`}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                >
+                  <img
+                    src={staticMapUrl}
+                    alt="Static Map"
+                    style={{ width: "100%" }}
+                  />
+                </a>
+              </Box>
+              <Box sx={{ mb: 2 }}>
+                <Typography
+                  sx={{
+                    display: "flex",
+                    flexDirection: "row",
+                    gap: 1,
+                    mb: 1,
+                  }}
+                  variant="subtitle1"
+                >
+                  <CategoryIcon /> {t("event.category")}
+                </Typography>
+                <Typography variant="body2"></Typography>
+              </Box>
+            </CardContent>
+          </Card>
         </Grid>
-        <Box>
-          <Box sx={{ display: "flex", flexDirection: "column" }}>
-            <Typography variant="h6">{t("event.description")}</Typography>
-            <Typography variant="body2" color="textSecondary">
-              {description}
-            </Typography>
-          </Box>
+      </Grid>
+      <Box sx={{ mb: 10 }}>
+        <Box sx={{ display: "flex", flexDirection: "column" }}>
+          <Typography variant="h6">{t("event.description")}</Typography>
+          <Typography variant="body2" color="textSecondary">
+            {description}
+          </Typography>
         </Box>
       </Box>
+      <EventDetailsMembers members={members} />
     </Box>
   );
 };

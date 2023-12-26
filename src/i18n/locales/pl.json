@@ -57,6 +57,12 @@
     "end": "Koniec",
     "address": "Adres",
     "category": "Kategoria",
-    "description": "Opis"
+    "description": "Opis",
+    "members": "Uczestnicy",
+    "roles": {
+      "ROLE_GUEST": "Gość",
+      "And": "I"
+    },
+    "more_guests": "Więcej gości"
   }
 }

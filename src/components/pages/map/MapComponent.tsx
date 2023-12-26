@@ -26,16 +26,15 @@ const MapComponent: React.FC<MapComponentProps> = ({ events }) => {
   };
 
   const [openInfoWindowId, setOpenInfoWindowId] = useState<string | null>(null);
-  const [infoWindowPosition, setInfoWindowPosition] =
-    useState<google.maps.LatLngLiteral | null>(null);
-  const [mapCenter, setMapCenter] = useState<google.maps.LatLngLiteral | null>({
+  const [infoWindowPosition, setInfoWindowPosition] = useState<any>(null);
+  const [mapCenter, setMapCenter] = useState<any | null>({
     lat: 52.2297,
     lng: 21.0122,
   });
 
-  const mapRef = useRef<google.maps.Map | null>(null);
+  const mapRef = useRef<any | null>(null);
 
-  const toggleOpen = (eventId: string, position: google.maps.LatLngLiteral) => {
+  const toggleOpen = (eventId: string, position: any) => {
     setOpenInfoWindowId(eventId);
     setInfoWindowPosition(position);
     setMapCenter(position);
@@ -69,22 +68,25 @@ const MapComponent: React.FC<MapComponentProps> = ({ events }) => {
           streetViewControl: false,
         }}
         onLoad={(map) => {
-          mapRef.current = map;
+          if (map) {
+            mapRef.current = map;
+          }
         }}
       >
-        {events.map((event) => (
-          <Marker
-            key={event.id}
-            position={{ lat: event.latitude, lng: event.longitude }}
-            title={event.name}
-            onClick={() =>
-              toggleOpen(event.id, {
-                lat: event.latitude,
-                lng: event.longitude,
-              })
-            }
-          />
-        ))}
+        {events &&
+          events.map((event) => (
+            <Marker
+              key={event.id}
+              position={{ lat: event.latitude, lng: event.longitude }}
+              title={event.name}
+              onClick={() =>
+                toggleOpen(event.id, {
+                  lat: event.latitude,
+                  lng: event.longitude,
+                })
+              }
+            />
+          ))}
 
         {openInfoWindowId !== null && infoWindowPosition !== null && (
           <InfoWindowComponent

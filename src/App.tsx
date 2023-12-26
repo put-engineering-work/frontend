@@ -70,6 +70,9 @@ const App = () => {
           "@media (max-width: 768px)": {
             ml: 0,
           },
+          display: "flex",
+          flexDirection: "column",
+          alignItems: "center",
         }}
       >
         <Routes>
