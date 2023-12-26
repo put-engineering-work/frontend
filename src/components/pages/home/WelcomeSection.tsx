@@ -1,9 +1,11 @@
 import { Box, Button, Typography } from "@mui/material";
 import { useTranslation } from "react-i18next";
 import Image from "../../../assets/welcome.png";
+import { useNavigate } from "react-router-dom";
 
 const WelcomeSection = () => {
   const { t } = useTranslation();
+  const navigate = useNavigate();
   return (
     <Box
       sx={{
@@ -38,7 +40,9 @@ const WelcomeSection = () => {
             padding: "1% 3%",
             borderRadius: "13px",
           }}
-        >
+          onClick={() => {
+            navigate("/map");
+          }}>
           {t("homeContent.welcome.find")}
         </Button>
       </Box>

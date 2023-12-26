@@ -53,6 +53,7 @@ const SideBar = ({
                 ? "width 0.3s ease-in-out"
                 : "height 0.00001ms 0.15s, width 0.3s ease-in-out",
               border: 0,
+              backgroundColor: isOpened ? "" : "transparent",
             },
           },
           display: isLogged ? "flex" : "none",
@@ -65,6 +66,7 @@ const SideBar = ({
           sx={{
             display: "flex",
             justifyContent: "space-between",
+            
           }}
         >
           <IconButton sx={{ padding: "16px" }} onClick={handleOpened}>
