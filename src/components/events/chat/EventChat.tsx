@@ -1,18 +1,23 @@
-import { useEffect, useState, useCallback } from "react";
+import { useEffect, useState, useCallback, useRef } from "react";
 import { getToken } from "../../../utils/getToken";
 import { Client } from "@stomp/stompjs";
 import { useLocation } from "react-router-dom";
 import {
   Avatar,
   Box,
+  Button,
   IconButton,
   List,
   ListItem,
   Paper,
   TextField,
   Typography,
+  useTheme,
 } from "@mui/material";
+
+import KeyboardArrowDownIcon from "@mui/icons-material/KeyboardArrowDown";
 import SendIcon from "@mui/icons-material/Send";
+
 import { useTranslation } from "react-i18next";
 import { smallScrollbarStyle } from "../../../constants/styles/scroll";
 
@@ -21,27 +26,62 @@ import { getFormatedDate } from "../../../utils/utlits";
 import { getDataJson } from "../../../utils/fetchData";
 
 const EventChat = () => {
+  const theme = useTheme();
   const {
     state: { eventId, eventName },
   } = useLocation();
   const { t } = useTranslation();
+
+  const listRef = useRef<HTMLDivElement | null>(null);
+
+  const [showScrollToBottomButton, setShowScrollToBottomButton] =
+    useState(false);
 
   const [messages, setMessages] = useState<any>([]);
   const [newMessage, setNewMessage] = useState<string>("");
   const [stompClient, setStompClient] = useState<Client | null>(null);
   const [currentUserId, setCurrentUserId] = useState<string>("");
 
-  useEffect(() => {
-    console.log(messages);
-  }, [messages]);
-
-  useEffect(() => {
-    console.log(currentUserId);
-  }, [currentUserId]);
-
   const getCurrentUserId = async () => {
     const result = await getDataJson("user/user-id");
     setCurrentUserId(result.id);
+  };
+
+  useEffect(() => {
+    // Attach the event listener on mount
+    if (listRef.current) {
+      listRef.current.addEventListener("scroll", handleScroll);
+    }
+
+    // Clean up the event listener on component unmount
+    return () => {
+      if (listRef.current) {
+        listRef.current.removeEventListener("scroll", handleScroll);
+      }
+    };
+  }, []);
+
+  useEffect(() => {
+    // Scroll to the bottom when messages change
+    scrollToBottom();
+  }, [messages]);
+
+  const handleScroll = () => {
+    if (listRef.current) {
+      const isAtBottom =
+        listRef.current.scrollHeight - listRef.current.scrollTop <=
+        listRef.current.clientHeight + 50; // Adjust the threshold as needed
+      setShowScrollToBottomButton(!isAtBottom);
+    }
+  };
+
+  const scrollToBottom = () => {
+    if (listRef.current) {
+      listRef.current.scrollTo({
+        top: listRef.current.scrollHeight,
+        behavior: "smooth", // Add smooth scrolling behavior
+      });
+    }
   };
 
   useEffect(() => {
@@ -129,11 +169,17 @@ const EventChat = () => {
             {`${eventName} ${t("chat.room")}`}
           </Typography>
           <List
+            ref={(node) => {
+              if (node !== null) {
+                listRef.current = node as unknown as HTMLDivElement;
+              }
+            }}
             sx={{
               maxHeight: "75vh",
               overflowY: "auto",
               display: "flex",
               flexDirection: "column",
+              position: "relative",
               ...smallScrollbarStyle,
             }}
           >
@@ -199,6 +245,24 @@ const EventChat = () => {
               </ListItem>
             ))}
           </List>
+          {showScrollToBottomButton && (
+            <IconButton
+              sx={{
+                backgroundColor: theme.palette.grey[700],
+                position: "absolute",
+                bottom: "100px",
+                right: "50px",
+              }}
+              onClick={scrollToBottom}
+            >
+              <KeyboardArrowDownIcon
+                sx={{
+                  width: "30px",
+                  height: "30px",
+                }}
+              />
+            </IconButton>
+          )}
         </Box>
         <Box
           sx={{
