@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from "react";
-import { useParams } from "react-router-dom";
+import { useNavigate, useParams } from "react-router-dom";
 import {
   Box,
   Grid,
@@ -35,6 +35,7 @@ const images = [Image, Image1, Image2];
 
 const EventDetail = () => {
   const { t } = useTranslation();
+  const navigate = useNavigate();
 
   const { eventId } = useParams();
   const [event, setEvent] = useState<EventDetails | null>(null);
@@ -124,7 +125,6 @@ const EventDetail = () => {
         console.log(removeMe);
 
         if (removeMe.code === "OK") {
-          console.log(1);
           setJoinEventText("Join event");
           setUserEventRole("NULL");
         } else {
@@ -150,6 +150,10 @@ const EventDetail = () => {
     // Add loading state or error handling if needed
     return <div>Loading...</div>;
   }
+
+  const handleChatButton = () => {
+    navigate(`chat`, { state: { eventId: eventId } });
+  };
 
   const {
     address,
@@ -315,7 +319,7 @@ const EventDetail = () => {
           </Card>
         </Grid>
         <Grid item xs={12} lg={3}>
-          <Card sx={{ display: "flex", flexDirection: "column" }}>
+          <Card sx={{ display: "flex", flexDirection: "column", mb: 2 }}>
             <CardContent>
               <Box sx={{ p: 1 }}>
                 <Typography
@@ -379,6 +383,11 @@ const EventDetail = () => {
               </Box>
             </CardContent>
           </Card>
+          {userEventRole !== "NULL" && (
+            <Button variant="contained" onClick={handleChatButton}>
+              Open Chat
+            </Button>
+          )}
         </Grid>
       </Grid>
       <Box sx={{ mb: 10 }}>

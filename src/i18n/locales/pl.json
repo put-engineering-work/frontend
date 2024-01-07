@@ -58,5 +58,8 @@
       "And": "I"
     },
     "more_guests": "Więcej gości"
+  },
+  "chat": {
+    "send": "Wysłać"
   }
 }

@@ -17,6 +17,7 @@ import MapPage from "./components/pages/map/MapPage";
 import SideBar from "./components/sideBar/SideBar";
 import EventDetail from "./components/events/EventDetail";
 import AddEventForm from "./components/events/AddEventForm";
+import EventChat from "./components/events/chat/EventChat";
 
 const ColorModeContext = React.createContext({ toggleColorMode: () => {} });
 
@@ -86,6 +87,7 @@ const App = () => {
           <Route path="/map" element={<MapPage />} />
           <Route path="/add_event" element={<AddEventForm />} />
           <Route path="/events/:eventId" element={<EventDetail />} />
+          <Route path="/events/:eventId/chat" element={<EventChat />} />
         </Routes>
       </Box>
     </I18nextProvider>
