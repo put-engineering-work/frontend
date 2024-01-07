@@ -13,9 +13,15 @@ import {
 } from "@mui/material";
 import SendIcon from "@mui/icons-material/Send";
 import { useTranslation } from "react-i18next";
+import { smallScrollbarStyle } from "../../../constants/styles/scroll";
+
+import { useTheme } from "@mui/material/styles";
 
 const EventChat = () => {
-  let location = useLocation();
+  const theme = useTheme();
+  const {
+    state: { eventId, eventName },
+  } = useLocation();
   const { t } = useTranslation();
 
   const [messages, setMessages] = useState<any>([]);
@@ -27,15 +33,27 @@ const EventChat = () => {
       brokerURL: `ws://localhost:8085/chat?token=${getToken()}`,
       onConnect: () => {
         console.log("Connected!");
-        // Подписка на получение сообщений
-        client.subscribe(
-          `/topic/messages/${location.state.eventId}`,
-          (message) => {
-            // Обработка полученного сообщения
-            console.log(message.body);
-            setMessages((prevMessages: any) => [...prevMessages, message.body]);
-          }
-        );
+        // Подписка на получение истории сообщений
+        client.publish({
+          destination: `/app/history/${eventId}`,
+        });
+
+        client.subscribe(`/topic/history/${eventId}`, (historyMessage) => {
+          const messages = JSON.parse(historyMessage.body);
+          console.log("History message:", messages);
+
+          setMessages(messages);
+        });
+
+        // Подписка на получение текущих сообщений
+        client.subscribe(`/topic/messages/${eventId}`, (currentMessage) => {
+          const messages = JSON.parse(currentMessage.body);
+          console.log("Current message:", messages);
+          setMessages((prevMessages: any) => [
+            ...prevMessages,
+            JSON.parse(currentMessage.body),
+          ]);
+        });
       },
       onDisconnect: () => {
         console.log("Disconnected");
@@ -53,7 +71,7 @@ const EventChat = () => {
         setStompClient(null);
       }
     };
-  }, [location.state.eventId]);
+  }, [eventId]);
 
   const sendMessage = () => {
     if (stompClient) {
@@ -62,7 +80,7 @@ const EventChat = () => {
       };
 
       stompClient.publish({
-        destination: `/app/send/${location.state.eventId}`,
+        destination: `/app/send/${eventId}`,
         body: JSON.stringify(messageTest),
       });
 
@@ -86,24 +104,43 @@ const EventChat = () => {
           p: 2,
           mt: 2,
           width: "100%",
-          height: "89vh",
         }}
       >
         <Box sx={{ display: "flex", flexDirection: "column" }}>
           <Typography variant="h5" gutterBottom>
-            {`${location.state.eventName} ${t("chat.room")}`}
+            {`${eventName} ${t("chat.room")}`}
           </Typography>
-          <List style={{ maxHeight: "300px", overflowY: "auto" }}>
-            {messages.map((message: any, index: number) => (
+          <List
+            sx={{
+              maxHeight: "75vh",
+              overflowY: "auto",
+              display: "flex",
+              flexDirection: "column",
+              ...smallScrollbarStyle,
+            }}
+          >
+            {messages.map((item: any, index: any) => (
               <ListItem
                 key={index}
-                style={{
-                  marginBottom: "10px",
-                  padding: "15px",
-                  border: "1px solid #ddd",
+                sx={{
+                  py: 0,
+                  pt: 1,
+                  justifyContent: "flex-end",
                 }}
               >
-                {message}
+                <Typography
+                  sx={{
+                    flexDirection: "row",
+                    alignItems: "center",
+                    justifyContent: "center",
+                    borderRadius: 1,
+                    padding: "8px 35px",
+                    fontSize: 15,
+                    bgcolor: "primary.main",
+                  }}
+                >
+                  {item.message}
+                </Typography>
               </ListItem>
             ))}
           </List>
@@ -119,8 +156,9 @@ const EventChat = () => {
           }}
         >
           <TextField
-            label="Type your message"
+            label={t("chat.write")}
             variant="outlined"
+            autoComplete="off"
             fullWidth
             value={newMessage}
             onChange={(e) => setNewMessage(e.target.value)}

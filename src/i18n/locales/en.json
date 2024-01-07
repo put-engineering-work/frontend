@@ -62,6 +62,7 @@
   },
   "chat": {
     "send": "Send",
-    "room": "Chat "
+    "room": "Chat ",
+    "write": "Write a message ..."
   }
 }
