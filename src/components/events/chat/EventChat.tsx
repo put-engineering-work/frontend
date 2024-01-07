@@ -17,6 +17,8 @@ import { useTranslation } from "react-i18next";
 import { smallScrollbarStyle } from "../../../constants/styles/scroll";
 
 import AvatarImage from "../../../assets/userImage.png";
+import { getFormatedDate } from "../../../utils/utlits";
+import { getDataJson } from "../../../utils/fetchData";
 
 const EventChat = () => {
   const {
@@ -27,13 +29,24 @@ const EventChat = () => {
   const [messages, setMessages] = useState<any>([]);
   const [newMessage, setNewMessage] = useState<string>("");
   const [stompClient, setStompClient] = useState<Client | null>(null);
+  const [currentUserId, setCurrentUserId] = useState<string>("");
 
   useEffect(() => {
     console.log(messages);
   }, [messages]);
 
   useEffect(() => {
-    console.log(eventId);
+    console.log(currentUserId);
+  }, [currentUserId]);
+
+  const getCurrentUserId = async () => {
+    const result = await getDataJson("user/user-id");
+    setCurrentUserId(result.id);
+  };
+
+  useEffect(() => {
+    getCurrentUserId();
+
     const client = new Client({
       brokerURL: `ws://localhost:8085/chat?token=${getToken()}`,
       onConnect: () => {
@@ -130,10 +143,14 @@ const EventChat = () => {
                 sx={{
                   py: 0,
                   pt: 1,
-                  justifyContent: item.isOwner ? "flex-end" : "flex-start",
+                  justifyContent:
+                    item.sender.senderId === currentUserId
+                      ? "flex-end"
+                      : "flex-start",
+                  alignItems: "flex-end",
                 }}
               >
-                {!item.isOwner && (
+                {item.sender.senderId !== currentUserId && (
                   <Avatar
                     sx={{ width: 40, height: 40, marginRight: 1 }}
                     src={AvatarImage}
@@ -141,23 +158,43 @@ const EventChat = () => {
                   />
                 )}
 
-                <Box sx={{ display: "flex", flexDirection: "column" }}>
-                  <Typography fontSize={10}>
-                    {item.sender.name} {item.sender.lastname}
-                  </Typography>
-                  <Typography
+                <Box
+                  sx={{
+                    display: "flex",
+                    flexDirection: "column",
+                    mr: 1,
+                  }}
+                >
+                  {item.sender.senderId !== currentUserId && (
+                    <Typography fontSize={10}>
+                      {item.sender.name} {item.sender.lastname}
+                    </Typography>
+                  )}
+
+                  <Box
                     sx={{
+                      display: "flex",
                       flexDirection: "row",
-                      alignItems: "center",
-                      justifyContent: "center",
+                      gap: 3,
+                      alignItems: "flex-end",
+                      justifyContent: "flex-end",
                       borderRadius: 1,
-                      padding: "8px 35px",
-                      fontSize: 15,
                       bgcolor: "primary.main",
+                      padding: "6px 10px",
                     }}
                   >
-                    {item.message}
-                  </Typography>
+                    <Typography
+                      variant="body2"
+                      sx={{
+                        fontSize: 15,
+                      }}
+                    >
+                      {item.message}
+                    </Typography>
+                    <Typography fontSize={10}>
+                      {getFormatedDate(item.createdDate)}
+                    </Typography>
+                  </Box>
                 </Box>
               </ListItem>
             ))}
