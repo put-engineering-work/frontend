@@ -60,6 +60,7 @@
     "more_guests": "Więcej gości"
   },
   "chat": {
-    "send": "Wysłać"
+    "send": "Wysłać",
+    "room": "Chat "
   }
 }

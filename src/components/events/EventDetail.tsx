@@ -152,7 +152,7 @@ const EventDetail = () => {
   }
 
   const handleChatButton = () => {
-    navigate(`chat`, { state: { eventId: eventId } });
+    navigate(`chat`, { state: { eventId: eventId, eventName: event.name } });
   };
 
   const {
