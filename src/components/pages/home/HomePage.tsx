@@ -2,6 +2,7 @@ import { Container } from "@mui/material";
 import "./HomePage.css";
 import WelcomeSection from "./WelcomeSection";
 import NearestEvents from "./NearestEvents";
+import CategoriesSection from "./CategoriesSection";
 
 const Home = () => {
   return (
@@ -14,6 +15,7 @@ const Home = () => {
     >
       <WelcomeSection />
       <NearestEvents />
+      <CategoriesSection />
     </Container>
   );
 };

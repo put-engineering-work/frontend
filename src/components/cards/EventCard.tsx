@@ -49,9 +49,12 @@ const EventCard: React.FC<EventCardProps> = ({
         border: "1px solid #ccc",
         textDecoration: "none",
         borderRadius: 2,
-        width: 350,
+        width: 300,
         display: "flex",
         justifyContent: "center",
+        "@media (max-width: 628px)":{
+          width: "65%"
+        },
       }}
     >
       <CardContent
@@ -60,9 +63,9 @@ const EventCard: React.FC<EventCardProps> = ({
         }}
       >
         <Link style={{ textDecoration: "none" }} to={`/events/${link}`}>
-          <img width={330} src={Image} alt="image" />
+          <img width="100%" height="150px" src={Image} alt="image" className="event-card"/>
           <Typography
-            sx={{ mt: 1, ml: 2, color: "white", height: 70 }}
+            sx={{ mt: 1,  color: "text.primary" }}
             variant="h5"
             component="div"
           >
@@ -120,6 +123,7 @@ const EventCard: React.FC<EventCardProps> = ({
               sx={{
                 display: "flex",
                 flexDirection: "row",
+                alignItems: "center",
               }}
             >
               <Avatar

@@ -42,7 +42,8 @@ const WelcomeSection = () => {
           }}
           onClick={() => {
             navigate("/map");
-          }}>
+          }}
+        >
           {t("homeContent.welcome.find")}
         </Button>
       </Box>

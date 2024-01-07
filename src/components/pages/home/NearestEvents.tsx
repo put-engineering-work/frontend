@@ -1,12 +1,14 @@
-import { Box, Typography } from "@mui/material";
+import { Box, Button, Typography } from "@mui/material";
 import { useState, useEffect } from "react";
 import { useTranslation } from "react-i18next";
-import EventCard from "../../eventCard/EventCard";
+import EventCard from "../../cards/EventCard";
 import "./HomePage.css";
 import { postData } from "../../../utils/fetchData";
+import { useNavigate } from "react-router-dom";
 
 const NearestEvents = () => {
   const { t } = useTranslation();
+  const navigate = useNavigate();
   const [cardEvents, setCardEvents] = useState<EventCard[]>([]);
 
   useEffect(() => {
@@ -36,7 +38,10 @@ const NearestEvents = () => {
           display: "flex",
           flexDirection: "row",
           flexWrap: "wrap",
-          gap: 5,
+          gap: 1,
+          rowGap: 5,
+          justifyContent: "space-evenly",
+          marginBlock: 5,
         }}
       >
         {cardEvents.map((event, index) => (
@@ -54,6 +59,25 @@ const NearestEvents = () => {
             link={event.id}
           />
         ))}
+      </Box>
+      <Box
+        sx={{
+          textAlign: "center",
+          marginTop: 2,
+        }}
+      >
+        <Button
+          variant="outlined"
+          onClick={() => {
+            navigate("/map");
+          }}
+          className="see-more-btn"
+          sx={{
+            color: "text.primary",
+          }}
+        >
+          {t("homeContent.seeMore")}
+        </Button>
       </Box>
     </Box>
   );
