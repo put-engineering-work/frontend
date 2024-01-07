@@ -3,6 +3,7 @@ import { getToken } from "../../../utils/getToken";
 import { Client } from "@stomp/stompjs";
 import { useLocation } from "react-router-dom";
 import {
+  Avatar,
   Box,
   IconButton,
   List,
@@ -15,10 +16,9 @@ import SendIcon from "@mui/icons-material/Send";
 import { useTranslation } from "react-i18next";
 import { smallScrollbarStyle } from "../../../constants/styles/scroll";
 
-import { useTheme } from "@mui/material/styles";
+import AvatarImage from "../../../assets/userImage.png";
 
 const EventChat = () => {
-  const theme = useTheme();
   const {
     state: { eventId, eventName },
   } = useLocation();
@@ -29,6 +29,11 @@ const EventChat = () => {
   const [stompClient, setStompClient] = useState<Client | null>(null);
 
   useEffect(() => {
+    console.log(messages);
+  }, [messages]);
+
+  useEffect(() => {
+    console.log(eventId);
     const client = new Client({
       brokerURL: `ws://localhost:8085/chat?token=${getToken()}`,
       onConnect: () => {
@@ -125,22 +130,35 @@ const EventChat = () => {
                 sx={{
                   py: 0,
                   pt: 1,
-                  justifyContent: "flex-end",
+                  justifyContent: item.isOwner ? "flex-end" : "flex-start",
                 }}
               >
-                <Typography
-                  sx={{
-                    flexDirection: "row",
-                    alignItems: "center",
-                    justifyContent: "center",
-                    borderRadius: 1,
-                    padding: "8px 35px",
-                    fontSize: 15,
-                    bgcolor: "primary.main",
-                  }}
-                >
-                  {item.message}
-                </Typography>
+                {!item.isOwner && (
+                  <Avatar
+                    sx={{ width: 40, height: 40, marginRight: 1 }}
+                    src={AvatarImage}
+                    alt="image"
+                  />
+                )}
+
+                <Box sx={{ display: "flex", flexDirection: "column" }}>
+                  <Typography fontSize={10}>
+                    {item.sender.name} {item.sender.lastname}
+                  </Typography>
+                  <Typography
+                    sx={{
+                      flexDirection: "row",
+                      alignItems: "center",
+                      justifyContent: "center",
+                      borderRadius: 1,
+                      padding: "8px 35px",
+                      fontSize: 15,
+                      bgcolor: "primary.main",
+                    }}
+                  >
+                    {item.message}
+                  </Typography>
+                </Box>
               </ListItem>
             ))}
           </List>
