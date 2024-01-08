@@ -15,26 +15,30 @@ import { drawerWidth } from "../../utils/Constants";
 import { useTranslation } from "react-i18next";
 import "./SideBar.css";
 
-import { useNavigate } from "react-router-dom";
+import { useLocation, useNavigate } from "react-router-dom";
 import EmojiEventsIcon from "@mui/icons-material/EmojiEvents";
 
 const SideBar = ({
-  isLogged,
+  isSideBarShow,
   isOpened,
   handleOpened,
 }: {
-  isLogged: boolean;
+  isSideBarShow: boolean;
   isOpened: boolean;
   handleOpened: any;
 }) => {
   const { t } = useTranslation();
   const navigate = useNavigate();
+  const location = useLocation();
+
+  console.log(location);
 
   function handleMobile() {
     if (window.innerWidth < 768) {
       handleOpened();
     }
   }
+
   return (
     <>
       <Drawer
@@ -56,7 +60,7 @@ const SideBar = ({
               border: 0,
             },
           },
-          display: isLogged ? "flex" : "none",
+          display: isSideBarShow ? "flex" : "none",
         }}
         variant="permanent"
         anchor="left"

@@ -82,6 +82,7 @@
   "my_event": {
     "title": "Moje wydarzenia",
     "no_events": "Aktualnie nie jesteś zarejestrowany na żadne wydarzenie",
-    "find_event": "Znajdź wydarzenie"
+    "find_event": "Zaloguj sie",
+    "no_register": "Nie jesteś zalogowany do aplikacji"
   }
 }

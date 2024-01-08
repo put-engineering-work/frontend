@@ -83,6 +83,7 @@
   "my_event": {
     "title": "My events",
     "no_events": "You are not currently registered for any event",
-    "find_event": "Find event"
+    "find_event": "login",
+    "no_register": "You are not login to applicaton"
   }
 }

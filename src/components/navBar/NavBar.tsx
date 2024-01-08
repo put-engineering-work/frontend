@@ -87,7 +87,9 @@ const NavBar: FC<{
           component="div"
           sx={{
             flexGrow: 1,
+            cursor: "pointer",
           }}
+          onClick={() => navigate("/")}
         >
           LeisureLink
         </Typography>

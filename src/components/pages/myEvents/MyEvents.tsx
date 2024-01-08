@@ -42,7 +42,33 @@ const MyEvents = () => {
           gap: 5,
         }}
       >
-        {cardEvents.length > 0 ? (
+        {!cardEvents ? (
+          <Box
+            sx={{
+              display: "flex",
+              flexDirection: "column",
+              alignItems: "flex-start",
+            }}
+          >
+            <Typography sx={{ my: 2 }}>{t("my_event.no_register")}!</Typography>
+            <Button
+              sx={{
+                display: "flex",
+                flexDirection: "row",
+                alignItems: "center",
+                justifyContent: "center",
+                borderRadius: "10px",
+                padding: "8px 35px",
+                fontSize: 15,
+                color: "white",
+              }}
+              variant="contained"
+              onClick={() => navigate("../login")}
+            >
+              {t("my_event.find_event")}
+            </Button>
+          </Box>
+        ) : cardEvents.length > 0 ? (
           cardEvents.map((event, index) => (
             <EventCard
               key={index}
@@ -85,6 +111,7 @@ const MyEvents = () => {
             </Button>
           </Box>
         )}
+        {}
       </Box>
     </Container>
   );
