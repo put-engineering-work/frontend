@@ -5,7 +5,6 @@ import { useLocation } from "react-router-dom";
 import {
   Avatar,
   Box,
-  Button,
   IconButton,
   List,
   ListItem,
@@ -150,21 +149,27 @@ const EventChat = () => {
   return (
     <Box
       sx={{
+        height: "90vh",
         width: "100%",
-        px: 2,
+        overflowY: "hidden",
       }}
     >
       <Paper
         sx={{
           display: "flex",
           flexDirection: "column",
-          justifyContent: "space-between",
           p: 2,
-          mt: 2,
           width: "100%",
         }}
       >
-        <Box sx={{ display: "flex", flexDirection: "column" }}>
+        <Box
+          sx={{
+            display: "flex",
+            flexDirection: "column",
+            height: "100%",
+            position: "relative",
+          }}
+        >
           <Typography variant="h5" gutterBottom>
             {`${eventName} ${t("chat.room")}`}
           </Typography>
@@ -175,11 +180,10 @@ const EventChat = () => {
               }
             }}
             sx={{
-              maxHeight: "75vh",
+              height: "72vh",
               overflowY: "auto",
               display: "flex",
               flexDirection: "column",
-              position: "relative",
               ...smallScrollbarStyle,
             }}
           >
@@ -250,8 +254,8 @@ const EventChat = () => {
               sx={{
                 backgroundColor: theme.palette.grey[700],
                 position: "absolute",
-                bottom: "100px",
-                right: "50px",
+                bottom: "2%",
+                right: "1%",
               }}
               onClick={scrollToBottom}
             >
@@ -271,7 +275,7 @@ const EventChat = () => {
             alignItems: "center",
             justifyContent: "center",
             gap: 4,
-            mt: 2,
+            mt: { xs: 1, sm: 2 },
           }}
         >
           <TextField
