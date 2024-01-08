@@ -3,7 +3,8 @@
     "home": "Home",
     "map": "Map",
     "ratings": "Ratings",
-    "recommendation": "Recommendation"
+    "recommendation": "Recommendation",
+    "my_event": "My events"
   },
   "navBar": {
     "language": "Language"
@@ -78,5 +79,10 @@
     "October": "October",
     "November": "November",
     "December": "December"
+  },
+  "my_event": {
+    "title": "My events",
+    "no_events": "You are not currently registered for any event",
+    "find_event": "Find event"
   }
 }

@@ -18,6 +18,7 @@ import SideBar from "./components/sideBar/SideBar";
 import EventDetail from "./components/events/EventDetail";
 import AddEventForm from "./components/events/AddEventForm";
 import EventChat from "./components/events/chat/EventChat";
+import MyEvents from "./components/pages/myEvents/MyEvents";
 
 const ColorModeContext = React.createContext({ toggleColorMode: () => {} });
 
@@ -82,6 +83,7 @@ const App = () => {
             path="/login"
             element={<LoginForm handleLogged={handleLogged} />}
           />
+          <Route path="/my_events" element={<MyEvents />} />
           <Route path="/home" element={<Home />} />
           <Route path="/register" element={<RegisterForm />} />
           <Route path="/map" element={<MapPage />} />

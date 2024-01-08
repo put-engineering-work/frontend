@@ -16,6 +16,7 @@ import { useTranslation } from "react-i18next";
 import "./SideBar.css";
 
 import { useNavigate } from "react-router-dom";
+import EmojiEventsIcon from "@mui/icons-material/EmojiEvents";
 
 const SideBar = ({
   isLogged,
@@ -145,6 +146,21 @@ const SideBar = ({
             },
           }}
         />
+        <ListItem
+          key={t("sideBar.home")}
+          disablePadding
+          onClick={() => {
+            navigate("/my_events");
+            handleMobile();
+          }}
+        >
+          <ListItemButton>
+            <ListItemIcon>
+              <EmojiEventsIcon />
+            </ListItemIcon>
+            <ListItemText primary={t("sideBar.my_event")} />
+          </ListItemButton>
+        </ListItem>
         <List
           sx={{
             "@media (max-width: 768px)": {

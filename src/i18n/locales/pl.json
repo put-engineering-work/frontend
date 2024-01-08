@@ -3,7 +3,8 @@
     "home": "Głowna",
     "map": "Mapa",
     "ratings": "Oceny",
-    "recommendation": "Rekomendacje"
+    "recommendation": "Rekomendacje",
+    "my_event": "Moje wydarzenia"
   },
   "navBar": {
     "language": "Język"
@@ -77,5 +78,10 @@
     "October": "Październik",
     "November": "Listopad",
     "December": "Grudzień"
+  },
+  "my_event": {
+    "title": "Moje wydarzenia",
+    "no_events": "Aktualnie nie jesteś zarejestrowany na żadne wydarzenie",
+    "find_event": "Znajdź wydarzenie"
   }
 }
