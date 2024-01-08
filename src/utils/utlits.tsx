@@ -1,4 +1,5 @@
 import { format } from "date-fns";
+import i18n from "../i18n/i18n";
 
 export const getInitialLanguage = () => {
   const storageData = localStorage.getItem("language");
@@ -11,5 +12,6 @@ export const isValidEmail = (email: any) => {
 };
 
 export const getFormatedDate = (createdDate: string) => {
-  return format(new Date(createdDate), "HH:mm");
+  const date = new Date(createdDate);
+  return format(date, "MMMM d HH:mm");
 };
