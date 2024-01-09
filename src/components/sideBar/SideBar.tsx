@@ -15,7 +15,7 @@ import { drawerWidth } from "../../utils/Constants";
 import { useTranslation } from "react-i18next";
 import "./SideBar.css";
 
-import { useLocation, useNavigate } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
 import EmojiEventsIcon from "@mui/icons-material/EmojiEvents";
 
 const SideBar = ({
@@ -29,9 +29,6 @@ const SideBar = ({
 }) => {
   const { t } = useTranslation();
   const navigate = useNavigate();
-  const location = useLocation();
-
-  console.log(location);
 
   function handleMobile() {
     if (window.innerWidth < 768) {

@@ -59,7 +59,15 @@
       "ROLE_GUEST": "Guest",
       "And": "And"
     },
-    "more_guests": "More guests"
+    "more_guests": "More guests",
+    "add_event": {
+      "start_date": "Start date",
+      "end_date": "End date",
+      "add_event": "Add event",
+      "name": "Name",
+      "address": "Address",
+      "description": "Description"
+    }
   },
   "chat": {
     "send": "Send",
@@ -85,5 +93,9 @@
     "no_events": "You are not currently registered for any event",
     "find_event": "login",
     "no_register": "You are not login to applicaton"
+  },
+  "general": {
+    "clear": "Clear",
+    "confirm": "Confirm"
   }
 }

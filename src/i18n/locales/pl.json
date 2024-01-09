@@ -58,7 +58,15 @@
       "ROLE_GUEST": "Gość",
       "And": "I"
     },
-    "more_guests": "Więcej gości"
+    "more_guests": "Więcej gości",
+    "add_event": {
+      "start_date": "Data rozpoczęcia",
+      "end_date": "Data końcowa",
+      "add_event": "Dodaj wydarzenie",
+      "name": "Nazwa",
+      "address": "Adres",
+      "description": "Opis"
+    }
   },
   "chat": {
     "send": "Wysłać",
@@ -84,5 +92,9 @@
     "no_events": "Aktualnie nie jesteś zarejestrowany na żadne wydarzenie",
     "find_event": "Zaloguj sie",
     "no_register": "Nie jesteś zalogowany do aplikacji"
+  },
+  "general": {
+    "clear": "Wyczyść",
+    "confirm": "Potwierdź"
   }
 }

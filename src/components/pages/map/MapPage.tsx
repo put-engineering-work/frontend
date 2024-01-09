@@ -23,6 +23,7 @@ const MapPage: React.FC = () => {
           longitude: 16.9191063,
           radius: 10000000000,
         });
+        console.log(eve);
         setEvents(eve);
       } catch (error) {
         console.error("Error fetching data:", error);
