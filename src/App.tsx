@@ -42,14 +42,6 @@ const App = () => {
     // }
   }, []);
 
-  useEffect(() => {
-    if (location.pathname === "/login" || location.pathname === "/register") {
-      setIsSideBarShow(false);
-    } else {
-      setIsSideBarShow(true);
-    }
-  }, [location]);
-
   const handleLogged = () => {
     setIsLogged((prev) => !prev);
   };
@@ -60,6 +52,15 @@ const App = () => {
   const handleOpened = () => {
     setIsOpened((prev) => !prev);
   };
+
+  useEffect(() => {
+    if (location.pathname === "/login" || location.pathname === "/register") {
+      setIsSideBarShow(false);
+      setIsOpened(false);
+    } else {
+      setIsSideBarShow(true);
+    }
+  }, [location]);
 
   // const isSideBarShow = () => {
   //   if (location.pathname === "/login" || location.pathname === "/register") {
@@ -83,7 +84,7 @@ const App = () => {
       />
       <Box
         sx={{
-          ml: isSideBarShow && isOpened ? "250px" : "70px",
+          ml: isSideBarShow ? (isOpened ? "250px" : "70px") : "0px",
           transition: "margin-left 0.3s ease-in-out",
           "@media (max-width: 768px)": {
             ml: 0,

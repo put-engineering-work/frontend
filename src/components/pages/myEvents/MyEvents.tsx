@@ -30,7 +30,7 @@ const MyEvents = () => {
       component="main"
       sx={{ maxWidth: "unset!important", padding: "10px!important" }}
     >
-      <Typography component="h1" variant="h5">
+      <Typography component="h1" variant="h5" sx={{ mb: 2 }}>
         {t("my_event.title")}:
       </Typography>
 
