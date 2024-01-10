@@ -4,6 +4,7 @@ import { useNavigate } from "react-router-dom";
 import CategoryCard from "../../cards/CategoryCard";
 import { useState } from "react";
 import { coordinates } from "../../../constants/coordinates";
+import { categories } from "../../../constants/categories";
 
 const CategoriesSection = () => {
   const { t } = useTranslation();
@@ -11,7 +12,7 @@ const CategoriesSection = () => {
 
   const [cardCategories, setCardCategoriess] = useState<CategoryCard[]>([]);
 
-  const slicedCategories = coordinates.slice(0, 8);
+  const slicedCategories = categories.slice(0, 6);
   // setCardCategoriess(slicedCategories);
   return (
     <Box

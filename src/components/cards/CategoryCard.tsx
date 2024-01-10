@@ -3,7 +3,7 @@ import Card from "@mui/material/Card";
 import CardContent from "@mui/material/CardContent";
 import Typography from "@mui/material/Typography";
 import { useTranslation } from "react-i18next";
-import Image from "../../assets/event.jpg";
+import Image from "../../assets/category-sample.png";
 import { Link } from "react-router-dom";
 
 interface CategoryCardProps {
@@ -33,16 +33,16 @@ const CategoryCard: React.FC<CategoryCardProps> = ({ name }) => {
           padding: 1,
         }}
       >
-        <Link style={{ textDecoration: "none" }} to={`/events/${name}`}>
+        <Link style={{ textDecoration: "none" }} to={`/map`}>
           <img
             width="100%"
-            height="100px"
+            height="auto"
             src={Image}
             alt="image"
             className="event-card"
           />
           <Typography
-            sx={{ color: "text.primary" }}
+            sx={{ color: "text.primary", textAlign: "center" }}
             variant="h6"
             component="div"
           >
