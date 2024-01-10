@@ -31,7 +31,7 @@ import AvatarImage from "../../assets/1.png";
 import { getDataJson, postData } from "../../utils/fetchData";
 import EventDetailsMembers from "./members/EventDetailsMembers";
 
-const images = [Image, Image1, Image2];
+// const images = [Image, Image1, Image2];
 
 const EventDetail = () => {
   const { t } = useTranslation();
@@ -46,6 +46,8 @@ const EventDetail = () => {
   const [joinEventText, setJoinEventText] = useState<string>("Join event");
   const [userEventRole, setUserEventRole] = useState<string>("NULL");
   const [members, setMembers] = useState<Member[]>([]);
+
+  const [images, setImages] = useState<any>([]);
 
   useEffect(() => {
     const handleStepChange = (nextStep: number) => {
@@ -79,11 +81,25 @@ const EventDetail = () => {
     }
   };
 
+  const getImages = (eventImages: any) => {
+    if (!Array.isArray(eventImages)) {
+      return [];
+    }
+
+    return eventImages.map(
+      (imageObj) => `data:image/png;base64,${imageObj.image}`
+    );
+  };
+
   const fetchEventDetails = async () => {
     try {
       const event = await getDataJson(`events/event/${eventId}`);
 
       console.log(event);
+
+      const images = getImages(event.eventImages);
+      console.log(images);
+      setImages(images);
 
       setEvent(event);
     } catch (error) {
@@ -186,6 +202,7 @@ const EventDetail = () => {
           gap: 10,
           justifyContent: "space-between",
           alignItems: "center",
+          width: "100%",
         }}
       >
         <Box
@@ -273,9 +290,21 @@ const EventDetail = () => {
       <Typography variant="h4" sx={{ mb: 2 }}>
         {name}
       </Typography>
-      <Grid container spacing={3}>
+      <Grid
+        container
+        spacing={3}
+        sx={{
+          width: "100vh",
+        }}
+      >
         <Grid item xs={12} lg={8}>
-          <Card sx={{ display: "flex", flexDirection: "column", mb: 4 }}>
+          <Card
+            sx={{
+              display: "flex",
+              flexDirection: "column",
+              mb: 4,
+            }}
+          >
             <Slide
               direction={slideDirection}
               in={true}
@@ -284,10 +313,12 @@ const EventDetail = () => {
               <CardMedia
                 component="img"
                 alt="Event Image"
-                height="450"
+                height="450" // Set a fixed height
                 image={images[activeStep]}
                 sx={{
                   width: "100%",
+                  objectFit: "cover", // Ensure the entire image is visible, covering the container
+                  minHeight: "450px", // Set a maximum height
                   transition: "transform 0.5s ease-in-out",
                 }}
               />

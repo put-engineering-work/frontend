@@ -14,6 +14,8 @@ import { coordinates as events } from "../../../constants/coordinates";
 import "./HomePage.css";
 import { postData } from "../../../utils/fetchData";
 
+import DefaultImage from "../../../assets/event.jpg";
+
 const Home = () => {
   const { t } = useTranslation();
 
@@ -28,6 +30,7 @@ const Home = () => {
           radius: 10000000,
         });
         const slicedEvents = events.slice(0, 8);
+        console.log(slicedEvents);
         setCardEvents(slicedEvents);
       } catch (error) {
         console.error("Error fetching data:", error);
@@ -67,6 +70,11 @@ const Home = () => {
             latitude={event.latitude}
             longitude={event.longitude}
             link={event.id}
+            photo={
+              event.eventImages && event.eventImages.length > 0
+                ? ` data:image/png;base64,${event.eventImages[0].image}`
+                : DefaultImage
+            }
           />
         ))}
       </Box>

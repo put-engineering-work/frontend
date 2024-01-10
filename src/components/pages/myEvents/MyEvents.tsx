@@ -5,6 +5,8 @@ import { Box, Button, Container, Typography } from "@mui/material";
 import EventCard from "../../eventCard/EventCard";
 import { useNavigate } from "react-router-dom";
 
+import DefaultImage from "../../../assets/event.jpg";
+
 const MyEvents = () => {
   const { t } = useTranslation();
   const navigate = useNavigate();
@@ -82,6 +84,11 @@ const MyEvents = () => {
               latitude={event.latitude}
               longitude={event.longitude}
               link={event.id}
+              photo={
+                event.eventImages && event.eventImages.length > 0
+                  ? event.eventImages[0]
+                  : DefaultImage
+              }
             />
           ))
         ) : (
