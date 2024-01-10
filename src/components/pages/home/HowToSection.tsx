@@ -17,7 +17,7 @@ const HowToSection = () => {
       }}
     >
       <Typography component="h1" variant="h4">
-        {t("homeContent.welcome.greetings")}
+        {t("homeContent.howTo.how")}
       </Typography>
       <Box
         sx={{
@@ -26,8 +26,10 @@ const HowToSection = () => {
           flexDirection: "row",
           justifyContent: "space-around",
           gap: "2rem",
-
           paddingInline: 10,
+          "@media (max-width:768px)": {
+            flexDirection: "column",
+          },
         }}
       >
         <Box

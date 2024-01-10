@@ -17,6 +17,7 @@ import MapPage from "./components/pages/map/MapPage";
 import SideBar from "./components/sideBar/SideBar";
 import EventDetail from "./components/events/EventDetail";
 import AddEventForm from "./components/events/AddEventForm";
+import Footer from "./components/footer/Footer";
 
 const ColorModeContext = React.createContext({ toggleColorMode: () => {} });
 
@@ -63,6 +64,7 @@ const App = () => {
         isOpened={isOpened}
         handleOpened={handleOpened}
       />
+
       <Box
         sx={{
           ml: isLogged && isOpened ? "250px" : "70px",
@@ -87,6 +89,8 @@ const App = () => {
           <Route path="/add_event" element={<AddEventForm />} />
           <Route path="/events/:eventId" element={<EventDetail />} />
         </Routes>
+
+        <Footer />
       </Box>
     </I18nextProvider>
   );
