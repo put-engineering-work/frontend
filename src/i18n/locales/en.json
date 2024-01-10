@@ -72,7 +72,9 @@
       "STARTDATE_ERROR": "Enter start date!",
       "ENDDATE_ERROR": "Enter end date!",
       "LOCATION": "Select event location",
-      "DATE_ERROR": "The start date cannot be greater than the end date!"
+      "DATE_ERROR": "The start date cannot be greater than the end date!",
+      "selected": "selected",
+      "choose_files": "Choose Files"
     }
   },
   "chat": {

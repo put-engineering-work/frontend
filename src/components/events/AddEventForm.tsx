@@ -11,6 +11,7 @@ import { mapOptions } from "../../constants/mapOptions";
 import { postFormData } from "../../utils/fetchData";
 import { useNavigate } from "react-router-dom";
 import dayjs from "dayjs";
+import CustomFileInput from "./CustomFileInput";
 
 interface AddEventForm {
   address: string;
@@ -20,6 +21,7 @@ interface AddEventForm {
   longitude: number;
   name: string;
   startDate: string;
+  photos: FileList | null;
 }
 
 const AddEventForm: React.FC = () => {
@@ -43,6 +45,7 @@ const AddEventForm: React.FC = () => {
     longitude: 0,
     name: "",
     startDate: "",
+    photos: null,
   });
 
   const [errorForm, setErrorForm] = useState("");
@@ -82,6 +85,13 @@ const AddEventForm: React.FC = () => {
     setFormData((prevData) => ({
       ...prevData,
       [name]: value,
+    }));
+  };
+
+  const handleFileInputChange = (files: FileList | null) => {
+    setFormData((prevData) => ({
+      ...prevData,
+      photos: files,
     }));
   };
 
@@ -141,7 +151,11 @@ const AddEventForm: React.FC = () => {
     formDataToSend.append("latitude", String(formData.latitude));
     formDataToSend.append("longitude", String(formData.longitude));
 
-    console.log(formDataToSend);
+    if (formData.photos) {
+      for (let i = 0; i < formData.photos.length; i++) {
+        formDataToSend.append("photos", formData.photos[i]);
+      }
+    }
 
     const result = await postFormData("events/create", formDataToSend);
 
@@ -221,12 +235,13 @@ const AddEventForm: React.FC = () => {
         {t("event.add_event.add_event")}
       </Typography>
       <form onSubmit={handleSubmit}>
+        <CustomFileInput onChange={handleFileInputChange} />
         <TextField
           error={errorForm === "NAME_ERROR"}
           helperText={
             errorForm === "NAME_ERROR" && t(`event.add_event.NAME_ERROR`)
           }
-          sx={{ mb: 2 }}
+          sx={{ mt: 2, mb: 2 }}
           label={t("event.add_event.name")}
           name="name"
           value={formData.name}

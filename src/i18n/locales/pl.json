@@ -71,7 +71,9 @@
       "STARTDATE_ERROR": "Podaj datę rozpoczęcia!",
       "ENDDATE_ERROR": "Wprowadź datę końcową!",
       "LOCATION": "Wybierz lokalizację wydarzenia",
-      "DATE_ERROR": "Data początkowa nie może być późniejsza niż data końcowa!"
+      "DATE_ERROR": "Data początkowa nie może być późniejsza niż data końcowa!",
+      "selected": "wgrano",
+      "choose_files": "Wybierz pliki"
     }
   },
   "chat": {
