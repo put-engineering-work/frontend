@@ -3,6 +3,7 @@ import "./HomePage.css";
 import WelcomeSection from "./WelcomeSection";
 import NearestEvents from "./NearestEvents";
 import CategoriesSection from "./CategoriesSection";
+import HowToSection from "./HowToSection";
 
 const Home = () => {
   return (
@@ -16,6 +17,7 @@ const Home = () => {
       <WelcomeSection />
       <NearestEvents />
       <CategoriesSection />
+      <HowToSection />
     </Container>
   );
 };

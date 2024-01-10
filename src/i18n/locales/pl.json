@@ -18,7 +18,13 @@
       "find": "Wyszukaj wydarzenie"
     },
     "nearest": "Najbliższe wydarzenia w:",
-    "seeMore": "Zobacz więcej"
+    "seeMore": "Zobacz więcej",
+    "howTo": {
+      "explain": "Odnajdź wydarzenie harmonizujące z Twoim nastrojem, zweryfikuj datę i godzinę rozpoczęcia, sprawdź organizatora, a następnie zapisz się na uczestnictwo.",
+      "create": "Utwórz swoje wydarzenie",
+      "lorem": "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco",
+      "createBtn": "Utwórz wydarzenie"
+    }
   },
   "registration": {
     "sign_up": "Stwórz konto",
