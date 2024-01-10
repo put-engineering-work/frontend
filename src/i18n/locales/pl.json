@@ -65,7 +65,13 @@
       "add_event": "Dodaj wydarzenie",
       "name": "Nazwa",
       "address": "Adres",
-      "description": "Opis"
+      "description": "Opis",
+      "NAME_ERROR": "Wpisz poprawną nazwę wydarzenia!",
+      "ADDRESS_ERROR": "Podaj poprawny adres!",
+      "STARTDATE_ERROR": "Podaj datę rozpoczęcia!",
+      "ENDDATE_ERROR": "Wprowadź datę końcową!",
+      "LOCATION": "Wybierz lokalizację wydarzenia",
+      "DATE_ERROR": "Data początkowa nie może być późniejsza niż data końcowa!"
     }
   },
   "chat": {

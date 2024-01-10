@@ -9,8 +9,18 @@ import { GoogleMap, LoadScriptNext, Marker } from "@react-google-maps/api";
 import { API_KEY } from "../../constants/keys";
 import { mapOptions } from "../../constants/mapOptions";
 import { postFormData } from "../../utils/fetchData";
-import { error } from "console";
 import { useNavigate } from "react-router-dom";
+import dayjs from "dayjs";
+
+interface AddEventForm {
+  address: string;
+  description: string;
+  endDate: string;
+  latitude: number;
+  longitude: number;
+  name: string;
+  startDate: string;
+}
 
 const AddEventForm: React.FC = () => {
   const { t, i18n } = useTranslation();
@@ -25,7 +35,7 @@ const AddEventForm: React.FC = () => {
 
   const [markerPosition, setMarkerPosition] = useState<any>(null);
 
-  const [formData, setFormData] = useState({
+  const [formData, setFormData] = useState<AddEventForm>({
     address: "",
     description: "",
     endDate: "",
@@ -34,6 +44,8 @@ const AddEventForm: React.FC = () => {
     name: "",
     startDate: "",
   });
+
+  const [errorForm, setErrorForm] = useState("");
 
   useEffect(() => {
     console.log(formData);
@@ -73,9 +85,51 @@ const AddEventForm: React.FC = () => {
     }));
   };
 
+  const validateForm = (formData: AddEventForm) => {
+    if (!formData.name) {
+      setErrorForm("NAME_ERROR");
+      return false;
+    }
+
+    if (!formData.address) {
+      setErrorForm("ADDRESS_ERROR");
+      return false;
+    }
+
+    if (!formData.startDate) {
+      setErrorForm("STARTDATE_ERROR");
+      return false;
+    }
+
+    if (!formData.endDate) {
+      setErrorForm("ENDDATE_ERROR");
+      return false;
+    }
+
+    const startDate = new Date(formData.startDate);
+    const endDate = new Date(formData.endDate);
+
+    if (startDate > endDate) {
+      setErrorForm("DATE_ERROR");
+      return false;
+    }
+
+    if (!formData.latitude || !formData.longitude) {
+      setErrorForm("COORDINATES_ERROR");
+      return false;
+    }
+
+    setErrorForm("");
+    return true;
+  };
+
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
     console.log("Submitted data:", formData);
+
+    if (!validateForm(formData)) {
+      return;
+    }
 
     const formDataToSend = new FormData();
 
@@ -93,13 +147,13 @@ const AddEventForm: React.FC = () => {
 
     if (result.code === "CREATED") {
       console.log("created");
-      navigate('/my_events')
+      navigate("/my_events");
     } else {
       console.log("error");
     }
   };
 
-  const getCommonProps = (): any => ({
+  const startDateProps = (): any => ({
     sx: {
       width: "100%",
       mb: 2,
@@ -107,6 +161,24 @@ const AddEventForm: React.FC = () => {
     slotProps: {
       actionBar: {
         actions: ["clear", "accept"],
+      },
+      textField: {
+        error: errorForm === "STARTDATE_ERROR" || errorForm === "DATE_ERROR",
+      },
+    },
+  });
+
+  const endDateProps = (): any => ({
+    sx: {
+      width: "100%",
+      mb: 2,
+    },
+    slotProps: {
+      actionBar: {
+        actions: ["clear", "accept"],
+      },
+      textField: {
+        error: errorForm === "ENDDATE_ERROR" || errorForm === "DATE_ERROR",
       },
     },
   });
@@ -150,6 +222,10 @@ const AddEventForm: React.FC = () => {
       </Typography>
       <form onSubmit={handleSubmit}>
         <TextField
+          error={errorForm === "NAME_ERROR"}
+          helperText={
+            errorForm === "NAME_ERROR" && t(`event.add_event.NAME_ERROR`)
+          }
           sx={{ mb: 2 }}
           label={t("event.add_event.name")}
           name="name"
@@ -158,6 +234,10 @@ const AddEventForm: React.FC = () => {
           fullWidth
         />
         <TextField
+          error={errorForm === "ADDRESS_ERROR"}
+          helperText={
+            errorForm === "ADDRESS_ERROR" && t(`event.add_event.ADDRESS_ERROR`)
+          }
           sx={{ mb: 2 }}
           label={t("event.add_event.address")}
           name="address"
@@ -186,7 +266,12 @@ const AddEventForm: React.FC = () => {
             format={"DD-MM-YYYY HH:mm"}
             ampm={false}
             label={t("event.add_event.start_date")}
-            {...getCommonProps()}
+            minDate={dayjs()}
+            {...startDateProps()}
+            helperText={
+              errorForm === "STARTDATE_ERROR" &&
+              t("event.add_event.STARTDATE_ERROR")
+            }
           />
         </LocalizationProvider>
         <LocalizationProvider
@@ -202,10 +287,16 @@ const AddEventForm: React.FC = () => {
             name="endDate"
             format={"DD-MM-YYYY HH:mm"}
             ampm={false}
+            minDate={dayjs()}
             label={t("event.add_event.end_date")}
-            {...getCommonProps()}
+            {...endDateProps()}
           />
         </LocalizationProvider>
+        {errorForm === "DATE_ERROR" && (
+          <Typography color="error">
+            {t("event.add_event.DATE_ERROR")}
+          </Typography>
+        )}
         <LoadScriptNext googleMapsApiKey={API_KEY}>
           <GoogleMap
             mapContainerStyle={{ width: "100%", height: "700px" }}
@@ -225,32 +316,29 @@ const AddEventForm: React.FC = () => {
             {markerPosition && <Marker position={markerPosition} />}
           </GoogleMap>
         </LoadScriptNext>
-        {/*<TextField
-          label="Latitude"
-          name="latitude"
-          type="number"
-          value={formData.latitude}
-          onChange={handleChange}
-          fullWidth
-          margin="normal"
-        />
-        <TextField
-          label="Longitude"
-          name="longitude"
-          type="number"
-          value={formData.longitude}
-          onChange={handleChange}
-          fullWidth
-          margin="normal"
-        /> */}
-        <Button
-          type="submit"
-          variant="contained"
-          color="primary"
-          sx={{ mt: 2 }}
+        <Box
+          sx={{
+            display: "flex",
+            flexDirection: "row",
+            alignItems: "center",
+            gap: 4,
+            mb: 5,
+          }}
         >
-          Add Event
-        </Button>
+          <Button
+            type="submit"
+            variant="contained"
+            color="primary"
+            sx={{ mt: 2 }}
+          >
+            {t("event.add_event.add_event")}
+          </Button>
+          {errorForm === "COORDINATES_ERROR" && (
+            <Typography color="error">
+              {t("event.add_event.LOCATION")}
+            </Typography>
+          )}
+        </Box>
       </form>
     </Box>
   );
