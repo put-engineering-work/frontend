@@ -57,7 +57,8 @@
     "members": "Members",
     "roles": {
       "ROLE_GUEST": "Guest",
-      "And": "And"
+      "And": "And",
+      "ROLE_HOST": "Host"
     },
     "more_guests": "More guests",
     "add_event": {
@@ -75,7 +76,10 @@
       "DATE_ERROR": "The start date cannot be greater than the end date!",
       "selected": "selected",
       "choose_files": "Choose Files"
-    }
+    },
+    "rating": "Hosted events rating",
+    "host": "Host of the event",
+    "open_chat": "Open Chat"
   },
   "chat": {
     "send": "Send",
@@ -99,7 +103,7 @@
   "my_event": {
     "title": "My events",
     "no_events": "You are not currently registered for any event",
-    "find_event": "login",
+    "find_event": "Find Event",
     "no_register": "You are not login to applicaton"
   },
   "general": {

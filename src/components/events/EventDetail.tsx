@@ -98,8 +98,11 @@ const EventDetail = () => {
       console.log(event);
 
       const images = getImages(event.eventImages);
-      console.log(images);
-      setImages(images);
+      if (images.length === 0) {
+        setImages([Image]);
+      } else {
+        setImages(images);
+      }
 
       setEvent(event);
     } catch (error) {
@@ -241,7 +244,7 @@ const EventDetail = () => {
                 variant="body2"
                 color="text.secondary"
               >
-                Host of the event:
+                {t("event.host")} :
               </Typography>
               <Typography
                 sx={{
@@ -266,7 +269,7 @@ const EventDetail = () => {
               gap: 2,
             }}
           >
-            <Typography variant="h6">Hosted events rating:</Typography>
+            <Typography variant="h6">{t("event.rating")}:</Typography>
             <Rating name="simple-controlled" value={4} readOnly />
           </Box>
         </Box>
@@ -416,7 +419,7 @@ const EventDetail = () => {
           </Card>
           {userEventRole !== "NULL" && (
             <Button variant="contained" onClick={handleChatButton}>
-              Open Chat
+              {t("event.open_chat")}
             </Button>
           )}
         </Grid>
@@ -429,7 +432,7 @@ const EventDetail = () => {
           </Typography>
         </Box>
       </Box>
-      <EventDetailsMembers members={members} />
+      <EventDetailsMembers host={host} members={members} />
     </Box>
   );
 };

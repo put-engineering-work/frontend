@@ -56,7 +56,8 @@
     "members": "Uczestnicy",
     "roles": {
       "ROLE_GUEST": "Gość",
-      "And": "I"
+      "And": "I",
+      "ROLE_HOST": "Gospodarz"
     },
     "more_guests": "Więcej gości",
     "add_event": {
@@ -74,7 +75,10 @@
       "DATE_ERROR": "Data początkowa nie może być późniejsza niż data końcowa!",
       "selected": "wgrano",
       "choose_files": "Wybierz pliki"
-    }
+    },
+    "rating": "Ocena organizowanych wydarzeń",
+    "host": "Gospodarz wydarzenia",
+    "open_chat": "Otwórz czat"
   },
   "chat": {
     "send": "Wysłać",
@@ -98,7 +102,7 @@
   "my_event": {
     "title": "Moje wydarzenia",
     "no_events": "Aktualnie nie jesteś zarejestrowany na żadne wydarzenie",
-    "find_event": "Zaloguj sie",
+    "find_event": "Znajdź wydarzenie",
     "no_register": "Nie jesteś zalogowany do aplikacji"
   },
   "general": {
