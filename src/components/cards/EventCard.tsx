@@ -52,8 +52,8 @@ const EventCard: React.FC<EventCardProps> = ({
         width: 300,
         display: "flex",
         justifyContent: "center",
-        "@media (max-width: 628px)":{
-          width: "65%"
+        "@media (max-width: 628px)": {
+          width: "65%",
         },
       }}
     >
@@ -63,9 +63,15 @@ const EventCard: React.FC<EventCardProps> = ({
         }}
       >
         <Link style={{ textDecoration: "none" }} to={`/events/${link}`}>
-          <img width="100%" height="150px" src={Image} alt="image" className="event-card"/>
+          <img
+            width="100%"
+            height="150px"
+            src={Image}
+            alt="image"
+            className="event-card"
+          />
           <Typography
-            sx={{ mt: 1,  color: "text.primary" }}
+            sx={{ mt: 1, color: "text.primary" }}
             variant="h5"
             component="div"
           >

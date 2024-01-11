@@ -42,6 +42,7 @@ const NearestEvents = () => {
           rowGap: 5,
           justifyContent: "space-evenly",
           marginBlock: 5,
+          alignItems: "flex-start",
         }}
       >
         {cardEvents.map((event, index) => (

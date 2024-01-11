@@ -41,25 +41,6 @@ const CategoriesSection = () => {
           <CategoryCard key={index} name={category.name} id={category.id} />
         ))}
       </Box>
-      <Box
-        sx={{
-          textAlign: "center",
-          marginTop: 2,
-        }}
-      >
-        <Button
-          variant="outlined"
-          onClick={() => {
-            navigate("/map");
-          }}
-          className="see-more-btn"
-          sx={{
-            color: "text.primary",
-          }}
-        >
-          {t("homeContent.seeMore")}
-        </Button>
-      </Box>
     </Box>
   );
 };
