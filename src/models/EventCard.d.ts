@@ -27,3 +27,12 @@ declare interface EventDetails {
     name: string;
   };
 }
+
+declare interface EventFilters {
+  latitude: number?;
+  longitude: number?;
+  radius: number;
+  startDate: string?;
+  selectedCategories: []?;
+  name?: string?;
+}

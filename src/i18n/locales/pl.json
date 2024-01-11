@@ -84,6 +84,11 @@
     "join_button": {
       "JOIN": "Dołącz do wydarzenia",
       "LEAVE": "Opuść wydarzenie"
+    },
+    "filters": {
+      "radius": "Promień",
+      "select_radius": "Wybierz promień",
+      "event_name": "Nazwa wydarzenia"
     }
   },
   "chat": {

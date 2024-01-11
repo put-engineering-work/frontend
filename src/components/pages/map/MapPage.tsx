@@ -5,6 +5,7 @@ import AddIcon from "@mui/icons-material/Add";
 import { useTranslation } from "react-i18next";
 import { useNavigate } from "react-router-dom";
 import { postData } from "../../../utils/fetchData";
+import MapFilters from "./MapFilters";
 
 const MapPage: React.FC = () => {
   const { t } = useTranslation();
@@ -15,36 +16,35 @@ const MapPage: React.FC = () => {
     navigate("/add_event");
   };
 
-  useEffect(() => {
-    const fetchData = async () => {
-      try {
-        const eve = await postData("events/search", {
-          latitude: 52.409538,
-          longitude: 16.9191063,
-          radius: 10000000000,
-        });
-        console.log(eve);
-        setEvents(eve);
-      } catch (error) {
-        console.error("Error fetching data:", error);
-      }
-    };
+  // useEffect(() => {
+  //   const fetchData = async () => {
+  //     try {
+  //       const eve = await postData("events/search", {
+  //         latitude: 52.409538,
+  //         longitude: 16.9191063,
+  //         radius: 10000000000,
+  //       });
+  //       console.log(eve);
+  //       setEvents(eve);
+  //     } catch (error) {
+  //       console.error("Error fetching data:", error);
+  //     }
+  //   };
 
-    fetchData();
-  }, []);
+  //   fetchData();
+  // }, []);
 
   return (
     <Box sx={{ width: "100%" }}>
       <Box
         sx={{
           display: "flex",
-          flexDirection: { xs: "column", md: "row" },
+          flexDirection: { xs: "column" },
           gap: 5,
           mx: 5,
         }}
       >
-        <MapComponent events={events} />
-        <Box sx={{ width: { xs: "100%", md: "30%" } }}>
+        <Box sx={{ width: "100%" }}>
           <IconButton
             sx={{
               width: "100%",
@@ -60,8 +60,13 @@ const MapPage: React.FC = () => {
             <AddIcon />
             {t("map.add_event")}
           </IconButton>
-          <Typography variant="h6"> {t("map.filters")}</Typography>
+          <Typography variant="h6" mb={2}>
+            {" "}
+            {t("map.filters")}
+          </Typography>
+          <MapFilters />
         </Box>
+        {/* <MapComponent events={events} /> */}
       </Box>
     </Box>
   );

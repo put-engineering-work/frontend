@@ -85,6 +85,11 @@
     "join_button": {
       "JOIN": "Join event",
       "LEAVE": "Leave event"
+    },
+    "filters": {
+      "radius": "Radius",
+      "select_radius": "Select radius",
+      "event_name": "Event name"
     }
   },
   "chat": {
