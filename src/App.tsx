@@ -97,13 +97,13 @@ const App = () => {
         }}
       >
         <Routes>
-          <Route path="/" element={<Home />} />
+          <Route path="/" element={<Home isLogged={isLogged} />} />
           <Route
             path="/login"
             element={<LoginForm handleLogged={handleLogged} />}
           />
           <Route path="/my_events" element={<MyEvents />} />
-          <Route path="/home" element={<Home />} />
+          <Route path="/home" element={<Home isLogged={isLogged} />} />
           <Route path="/register" element={<RegisterForm />} />
           <Route path="/map" element={<MapPage />} />
           <Route path="/add_event" element={<AddEventForm />} />

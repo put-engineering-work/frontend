@@ -2,10 +2,12 @@ import { Box, Button, Typography } from "@mui/material";
 import { useTranslation } from "react-i18next";
 import Image from "../../../assets/welcome.png";
 import { useNavigate } from "react-router-dom";
+import { boolean } from "yargs";
 
-const WelcomeSection = () => {
+const WelcomeSection = ({ isLogged }: { isLogged: boolean }) => {
   const { t } = useTranslation();
   const navigate = useNavigate();
+
   return (
     <Box
       sx={{
@@ -41,10 +43,12 @@ const WelcomeSection = () => {
             borderRadius: "13px",
           }}
           onClick={() => {
-            navigate("/map");
+            {
+              isLogged ? navigate("/map") : navigate("/login");
+            }
           }}
         >
-          {t("homeContent.welcome.find")}
+          {isLogged ? t("homeContent.welcome.find") : t("login.signIn")}
         </Button>
       </Box>
       <Box
