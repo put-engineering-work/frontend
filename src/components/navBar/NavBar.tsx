@@ -37,7 +37,7 @@ const NavBar: FC<{
     setAnchorElUser(null);
     handleLogged();
     clearUserData();
-    // navigate("/login");
+    navigate("/");
   };
 
   const checkPermiisons = () => {

@@ -22,16 +22,12 @@ import {
   NavigateBefore as NavigateBeforeIcon,
 } from "@mui/icons-material";
 import Image from "../../assets/event.jpg";
-import Image1 from "../../assets/event1.jpg";
-import Image2 from "../../assets/event2.jpg";
 
 import { API_KEY } from "../../constants/keys";
 import { useTranslation } from "react-i18next";
 import AvatarImage from "../../assets/1.png";
 import { getDataJson, postData } from "../../utils/fetchData";
 import EventDetailsMembers from "./members/EventDetailsMembers";
-
-// const images = [Image, Image1, Image2];
 
 const EventDetail = () => {
   const { t } = useTranslation();
@@ -43,7 +39,7 @@ const EventDetail = () => {
   const [slideDirection, setSlideDirection] = useState<"left" | "right">(
     "left"
   );
-  const [joinEventText, setJoinEventText] = useState<string>("Join event");
+  const [joinEventText, setJoinEventText] = useState<string>("JOIN");
   const [userEventRole, setUserEventRole] = useState<string>("NULL");
   const [members, setMembers] = useState<Member[]>([]);
 
@@ -68,13 +64,13 @@ const EventDetail = () => {
       console.log(userRole);
 
       if (userRole.message === "ROLE_GUEST") {
-        setJoinEventText("Leave event");
+        setJoinEventText("LEAVE");
         setUserEventRole(userRole.message);
       } else if (userRole.message === "ROLE_HOST") {
         setUserEventRole(userRole.message);
       } else {
         setUserEventRole("NULL");
-        setJoinEventText("Join event");
+        setJoinEventText("JOIN");
       }
     } catch (error) {
       console.error("Error fetching data:", error);
@@ -130,10 +126,10 @@ const EventDetail = () => {
         console.log(addUser);
 
         if (addUser.code === "OK") {
-          setJoinEventText("Leave event");
+          setJoinEventText("LEAVE");
           setUserEventRole("ROLE_GUEST");
         } else {
-          setJoinEventText("Join event");
+          setJoinEventText("JOIN");
           setUserEventRole("NULL");
         }
 
@@ -144,10 +140,10 @@ const EventDetail = () => {
         console.log(removeMe);
 
         if (removeMe.code === "OK") {
-          setJoinEventText("Join event");
+          setJoinEventText("JOIN");
           setUserEventRole("NULL");
         } else {
-          setJoinEventText("Leave event");
+          setJoinEventText("LEAVE");
           setUserEventRole("ROLE_GUEST");
         }
       }
@@ -167,7 +163,7 @@ const EventDetail = () => {
 
   if (!event) {
     // Add loading state or error handling if needed
-    return <div>Loading...</div>;
+    return <div>{t("general.loading")}...</div>;
   }
 
   const handleChatButton = () => {
@@ -287,7 +283,7 @@ const EventDetail = () => {
           variant="contained"
           onClick={handleJoinEvent}
         >
-          {joinEventText}
+          {t(`event.join_button.${joinEventText}`)}
         </Button>
       </Box>
       <Typography variant="h4" sx={{ mb: 2 }}>

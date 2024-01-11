@@ -67,7 +67,7 @@ const MyEvents = () => {
               variant="contained"
               onClick={() => navigate("../login")}
             >
-              {t("my_event.find_event")}
+              {t("my_event.login")}
             </Button>
           </Box>
         ) : cardEvents.length > 0 ? (

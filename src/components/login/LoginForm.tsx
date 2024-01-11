@@ -16,13 +16,18 @@ import { toast, ToastContainer } from "react-toastify";
 import { useTheme } from "@mui/material";
 import { isValidEmail } from "../../utils/utlits";
 import { useTranslation } from "react-i18next";
+import Spinner from "../spinner/Spinner";
+import { useState } from "react";
 
 export default function SignIn(props: any) {
   const navigate = useNavigate();
   const { t } = useTranslation();
   const theme = useTheme();
 
+  const [loading, setLoading] = useState<boolean>(false);
+
   const handleSubmit = async (event: React.FormEvent<HTMLFormElement>) => {
+    setLoading(true);
     event.preventDefault();
     const data = new FormData(event.currentTarget);
 
@@ -31,11 +36,16 @@ export default function SignIn(props: any) {
 
     if (!isValidEmail(email)) {
       toast.error(t("login.errors.email"));
+      setLoading(false);
+
       return;
     }
 
     if (password!.toString().length < 8) {
       toast.error(t(`registration.errors.password_length`));
+      setLoading(false);
+
+      return;
     }
 
     const dataTo = {
@@ -61,10 +71,12 @@ export default function SignIn(props: any) {
         props.handleLogged();
         navigate("/home");
       } else {
-        toast.error(t(`login.errors.${responseData.code}`));
+        toast.error(t(`login.errors.${responseData.message}`));
       }
+      setLoading(false);
     } catch (error) {
       toast.error(t(`registration.errors.oops`));
+      setLoading(false);
     }
   };
 
@@ -137,6 +149,7 @@ export default function SignIn(props: any) {
         pauseOnHover
         theme={theme.palette.mode}
       />
+      <Spinner loading={loading} />
     </Container>
   );
 }

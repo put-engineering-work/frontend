@@ -35,7 +35,9 @@
   "login": {
     "errors": {
       "email": "Bad email format",
-      "UNAUTHORIZED": "Incorrect password or login"
+      "UNAUTHORIZED": "Incorrect password or login",
+      "USER_NOT_FOUND": "User not found",
+      "WRONG_DATA": "You entered incorrect data"
     },
     "remember_me": "Remember me",
     "signIn": "Sign in",
@@ -79,7 +81,11 @@
     },
     "rating": "Hosted events rating",
     "host": "Host of the event",
-    "open_chat": "Open Chat"
+    "open_chat": "Open Chat",
+    "join_button": {
+      "JOIN": "Join event",
+      "LEAVE": "Leave event"
+    }
   },
   "chat": {
     "send": "Send",
@@ -104,10 +110,12 @@
     "title": "My events",
     "no_events": "You are not currently registered for any event",
     "find_event": "Find Event",
-    "no_register": "You are not login to applicaton"
+    "no_register": "You are not login to applicaton",
+    "login": "Login"
   },
   "general": {
     "clear": "Clear",
-    "confirm": "Confirm"
+    "confirm": "Confirm",
+    "loading": "Loading"
   }
 }

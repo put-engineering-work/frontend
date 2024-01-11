@@ -38,7 +38,9 @@
     "button": "Zaloguj sie",
     "errors": {
       "UNAUTHORIZED": "Nieprawidłowe hasło lub login",
-      "email": "Zły format wiadomości e-mail"
+      "email": "Zły format e-mail",
+      "USER_NOT_FOUND": "Użytkownik nie znaleziony",
+      "WRONG_DATA": "Wpisałeś nieprawidłowe dane"
     }
   },
   "map": {
@@ -78,7 +80,11 @@
     },
     "rating": "Ocena organizowanych wydarzeń",
     "host": "Gospodarz wydarzenia",
-    "open_chat": "Otwórz czat"
+    "open_chat": "Otwórz czat",
+    "join_button": {
+      "JOIN": "Dołącz do wydarzenia",
+      "LEAVE": "Opuść wydarzenie"
+    }
   },
   "chat": {
     "send": "Wysłać",
@@ -103,10 +109,12 @@
     "title": "Moje wydarzenia",
     "no_events": "Aktualnie nie jesteś zarejestrowany na żadne wydarzenie",
     "find_event": "Znajdź wydarzenie",
-    "no_register": "Nie jesteś zalogowany do aplikacji"
+    "no_register": "Nie jesteś zalogowany do aplikacji",
+    "login": "Zaloguj sie"
   },
   "general": {
     "clear": "Wyczyść",
-    "confirm": "Potwierdź"
+    "confirm": "Potwierdź",
+    "loading": "Ładowanie"
   }
 }
