@@ -8,7 +8,6 @@ import LocationOnIcon from "@mui/icons-material/LocationOn";
 import { useTranslation } from "react-i18next";
 import CheckCircleIcon from "@mui/icons-material/CheckCircle";
 
-import Image from "../../assets/event.jpg";
 import Image1 from "../../assets/1.png";
 import { Link } from "react-router-dom";
 
@@ -23,6 +22,7 @@ interface EventCardProps {
   longitude: number;
   category: string;
   link: string;
+  photo?: any;
 }
 
 const EventCard: React.FC<EventCardProps> = ({
@@ -31,6 +31,7 @@ const EventCard: React.FC<EventCardProps> = ({
   category,
   address,
   link,
+  photo,
 }) => {
   const { t } = useTranslation();
 
@@ -49,12 +50,9 @@ const EventCard: React.FC<EventCardProps> = ({
         border: "1px solid #ccc",
         textDecoration: "none",
         borderRadius: 2,
-        width: 300,
+        width: 350,
         display: "flex",
         justifyContent: "center",
-        "@media (max-width: 628px)": {
-          width: "65%",
-        },
       }}
     >
       <CardContent
@@ -63,15 +61,9 @@ const EventCard: React.FC<EventCardProps> = ({
         }}
       >
         <Link style={{ textDecoration: "none" }} to={`/events/${link}`}>
-          <img
-            width="100%"
-            height="150px"
-            src={Image}
-            alt="image"
-            className="event-card"
-          />
+          <img width={330} src={photo} alt="image" />
           <Typography
-            sx={{ mt: 1, color: "text.primary" }}
+            sx={{ mt: 1, ml: 2, color: "text.primary", height: 70 }}
             variant="h5"
             component="div"
           >
@@ -129,7 +121,6 @@ const EventCard: React.FC<EventCardProps> = ({
               sx={{
                 display: "flex",
                 flexDirection: "row",
-                alignItems: "center",
               }}
             >
               <Avatar

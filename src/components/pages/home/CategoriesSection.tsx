@@ -26,14 +26,22 @@ const CategoriesSection = () => {
 
       <Box
         sx={{
+          // display: "flex",
+          // flexDirection: "row",
+          // flexWrap: "wrap",
+          // gap: 0.5,
+          // rowGap: 3,
+          // justifyContent: "space-evenly",
+          // marginBlock: 5,
+          // paddingInline: 5,
           display: "flex",
           flexDirection: "row",
           flexWrap: "wrap",
-          gap: 0.5,
-          rowGap: 3,
-          justifyContent: "space-evenly",
+          gap: 3,
+          rowGap: 5,
+          // justifyContent: "space-evenly",
           marginBlock: 5,
-          paddingInline: 5,
+          // alignItems: "flex-start",
         }}
       >
         {/* TODO: */}

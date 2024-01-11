@@ -7,6 +7,7 @@ declare interface EventCard {
   longitude: number;
   name: string;
   startDate: string;
+  eventImages: any;
 }
 
 declare interface EventDetails {

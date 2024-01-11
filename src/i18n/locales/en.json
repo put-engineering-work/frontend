@@ -3,7 +3,8 @@
     "home": "Home",
     "map": "Map",
     "ratings": "Ratings",
-    "recommendation": "Recommendation"
+    "recommendation": "Recommendation",
+    "my_event": "My events"
   },
   "navBar": {
     "language": "Language"
@@ -41,7 +42,9 @@
   "login": {
     "errors": {
       "email": "Bad email format",
-      "UNAUTHORIZED": "Incorrect password or login"
+      "UNAUTHORIZED": "Incorrect password or login",
+      "USER_NOT_FOUND": "User not found",
+      "WRONG_DATA": "You entered incorrect data"
     },
     "remember_me": "Remember me",
     "signIn": "Sign in",
@@ -63,8 +66,63 @@
     "members": "Members",
     "roles": {
       "ROLE_GUEST": "Guest",
-      "And": "And"
+      "And": "And",
+      "ROLE_HOST": "Host"
     },
-    "more_guests": "More guests"
+    "more_guests": "More guests",
+    "add_event": {
+      "start_date": "Start date",
+      "end_date": "End date",
+      "add_event": "Add event",
+      "name": "Name",
+      "address": "Address",
+      "description": "Description",
+      "NAME_ERROR": "Enter correct name of event!",
+      "ADDRESS_ERROR": "Enter correct address!",
+      "STARTDATE_ERROR": "Enter start date!",
+      "ENDDATE_ERROR": "Enter end date!",
+      "LOCATION": "Select event location",
+      "DATE_ERROR": "The start date cannot be greater than the end date!",
+      "selected": "selected",
+      "choose_files": "Choose Files"
+    },
+    "rating": "Hosted events rating",
+    "host": "Host of the event",
+    "open_chat": "Open Chat",
+    "join_button": {
+      "JOIN": "Join event",
+      "LEAVE": "Leave event"
+    }
+  },
+  "chat": {
+    "send": "Send",
+    "room": "Chat ",
+    "write": "Write a message ..."
+  },
+  "translation": {
+    "January": "January",
+    "February": "February",
+    "March": "March",
+    "April": "April",
+    "May": "May",
+    "June": "June",
+    "July": "July",
+    "August": "August",
+    "September": "September",
+    "October": "October",
+    "November": "November",
+    "December": "December"
+  },
+  "my_event": {
+    "title": "My events",
+    "no_events": "You are not currently registered for any event",
+    "find_event": "Find Event",
+    "no_register": "You are not login to applicaton",
+    "login": "Login"
+  },
+  "general": {
+    "clear": "Clear",
+    "confirm": "Confirm",
+    "loading": "Loading"
   }
 }

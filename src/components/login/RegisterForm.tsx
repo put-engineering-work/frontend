@@ -17,16 +17,22 @@ import { isValidEmail } from "../../utils/utlits";
 
 import { toast, ToastContainer } from "react-toastify";
 import { useTheme } from "@mui/material";
+import Spinner from "../spinner/Spinner";
 
 const SignUp = () => {
   const theme = useTheme();
   const navigate = useNavigate();
   const { t } = useTranslation();
 
+  const [loading, setLoading] = useState<boolean>(false);
+
   const [isSubmitButtonDisable, setisSubmitButtonDisable] = useState(true);
 
   const handleSubmit = async (event: React.FormEvent<HTMLFormElement>) => {
+    setLoading(true);
+
     event.preventDefault();
+
     const data = new FormData(event.currentTarget);
     const email = data.get("email");
     const password = data.get("password");
@@ -36,16 +42,22 @@ const SignUp = () => {
 
     if (!isValidEmail(email)) {
       toast.error(t(`registration.errors.email`));
+      setLoading(false);
+
       return;
     }
 
     if (password !== repeat_password) {
       toast.error(t(`registration.errors.passwords`));
+      setLoading(false);
+
       return;
     }
 
     if (password!.toString().length < 8) {
       toast.error(t(`registration.errors.password_length`));
+      setLoading(false);
+
       return;
     }
 
@@ -74,8 +86,11 @@ const SignUp = () => {
       } else {
         toast.error(t(`registration.errors.${responseData.code}`));
       }
+
+      setLoading(false);
     } catch (error) {
       toast.error(t(`registration.errors.oops`));
+      setLoading(false);
     }
   };
 
@@ -183,6 +198,7 @@ const SignUp = () => {
         closeOnClick
         theme={theme.palette.mode}
       />
+      <Spinner loading={loading} />
     </Container>
   );
 };

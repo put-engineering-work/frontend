@@ -40,11 +40,7 @@ const MemberCard = ({
       >
         {t(`event.roles.${role}`)}:
       </Typography>
-      <Avatar
-        sx={{ width: 100, height: 100, mr: 2, mb: 1 }}
-        src={image}
-        alt="image"
-      >
+      <Avatar sx={{ width: 100, height: 100, mb: 1 }} src={image} alt="image">
         {numberOfMembers}
       </Avatar>
       <Typography sx={{ fontSize: 20 }}>{`${name} ${lastName}`}</Typography>

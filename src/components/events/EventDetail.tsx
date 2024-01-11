@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from "react";
-import { useParams } from "react-router-dom";
+import { useNavigate, useParams } from "react-router-dom";
 import {
   Box,
   Grid,
@@ -22,8 +22,6 @@ import {
   NavigateBefore as NavigateBeforeIcon,
 } from "@mui/icons-material";
 import Image from "../../assets/event.jpg";
-import Image1 from "../../assets/event1.jpg";
-import Image2 from "../../assets/event2.jpg";
 
 import { API_KEY } from "../../constants/keys";
 import { useTranslation } from "react-i18next";
@@ -31,10 +29,9 @@ import AvatarImage from "../../assets/1.png";
 import { getDataJson, postData } from "../../utils/fetchData";
 import EventDetailsMembers from "./members/EventDetailsMembers";
 
-const images = [Image, Image1, Image2];
-
 const EventDetail = () => {
   const { t } = useTranslation();
+  const navigate = useNavigate();
 
   const { eventId } = useParams();
   const [event, setEvent] = useState<EventDetails | null>(null);
@@ -42,9 +39,11 @@ const EventDetail = () => {
   const [slideDirection, setSlideDirection] = useState<"left" | "right">(
     "left"
   );
-  const [joinEventText, setJoinEventText] = useState<string>("Join event");
+  const [joinEventText, setJoinEventText] = useState<string>("JOIN");
   const [userEventRole, setUserEventRole] = useState<string>("NULL");
   const [members, setMembers] = useState<Member[]>([]);
+
+  const [images, setImages] = useState<any>([]);
 
   useEffect(() => {
     const handleStepChange = (nextStep: number) => {
@@ -65,17 +64,27 @@ const EventDetail = () => {
       console.log(userRole);
 
       if (userRole.message === "ROLE_GUEST") {
-        setJoinEventText("Leave event");
+        setJoinEventText("LEAVE");
         setUserEventRole(userRole.message);
       } else if (userRole.message === "ROLE_HOST") {
         setUserEventRole(userRole.message);
       } else {
         setUserEventRole("NULL");
-        setJoinEventText("Join event");
+        setJoinEventText("JOIN");
       }
     } catch (error) {
       console.error("Error fetching data:", error);
     }
+  };
+
+  const getImages = (eventImages: any) => {
+    if (!Array.isArray(eventImages)) {
+      return [];
+    }
+
+    return eventImages.map(
+      (imageObj) => `data:image/png;base64,${imageObj.image}`
+    );
   };
 
   const fetchEventDetails = async () => {
@@ -83,6 +92,13 @@ const EventDetail = () => {
       const event = await getDataJson(`events/event/${eventId}`);
 
       console.log(event);
+
+      const images = getImages(event.eventImages);
+      if (images.length === 0) {
+        setImages([Image]);
+      } else {
+        setImages(images);
+      }
 
       setEvent(event);
     } catch (error) {
@@ -110,10 +126,10 @@ const EventDetail = () => {
         console.log(addUser);
 
         if (addUser.code === "OK") {
-          setJoinEventText("Leave event");
+          setJoinEventText("LEAVE");
           setUserEventRole("ROLE_GUEST");
         } else {
-          setJoinEventText("Join event");
+          setJoinEventText("JOIN");
           setUserEventRole("NULL");
         }
 
@@ -124,11 +140,10 @@ const EventDetail = () => {
         console.log(removeMe);
 
         if (removeMe.code === "OK") {
-          console.log(1);
-          setJoinEventText("Join event");
+          setJoinEventText("JOIN");
           setUserEventRole("NULL");
         } else {
-          setJoinEventText("Leave event");
+          setJoinEventText("LEAVE");
           setUserEventRole("ROLE_GUEST");
         }
       }
@@ -148,8 +163,12 @@ const EventDetail = () => {
 
   if (!event) {
     // Add loading state or error handling if needed
-    return <div>Loading...</div>;
+    return <div>{t("general.loading")}...</div>;
   }
+
+  const handleChatButton = () => {
+    navigate(`chat`, { state: { eventId: eventId, eventName: event.name } });
+  };
 
   const {
     address,
@@ -182,6 +201,7 @@ const EventDetail = () => {
           gap: 10,
           justifyContent: "space-between",
           alignItems: "center",
+          width: "100%",
         }}
       >
         <Box
@@ -220,7 +240,7 @@ const EventDetail = () => {
                 variant="body2"
                 color="text.secondary"
               >
-                Host of the event:
+                {t("event.host")} :
               </Typography>
               <Typography
                 sx={{
@@ -245,7 +265,7 @@ const EventDetail = () => {
               gap: 2,
             }}
           >
-            <Typography variant="h6">Hosted events rating:</Typography>
+            <Typography variant="h6">{t("event.rating")}:</Typography>
             <Rating name="simple-controlled" value={4} readOnly />
           </Box>
         </Box>
@@ -263,15 +283,27 @@ const EventDetail = () => {
           variant="contained"
           onClick={handleJoinEvent}
         >
-          {joinEventText}
+          {t(`event.join_button.${joinEventText}`)}
         </Button>
       </Box>
       <Typography variant="h4" sx={{ mb: 2 }}>
         {name}
       </Typography>
-      <Grid container spacing={3}>
+      <Grid
+        container
+        spacing={3}
+        sx={{
+          width: "100vh",
+        }}
+      >
         <Grid item xs={12} lg={8}>
-          <Card sx={{ display: "flex", flexDirection: "column", mb: 4 }}>
+          <Card
+            sx={{
+              display: "flex",
+              flexDirection: "column",
+              mb: 4,
+            }}
+          >
             <Slide
               direction={slideDirection}
               in={true}
@@ -280,10 +312,12 @@ const EventDetail = () => {
               <CardMedia
                 component="img"
                 alt="Event Image"
-                height="450"
+                height="450" // Set a fixed height
                 image={images[activeStep]}
                 sx={{
                   width: "100%",
+                  objectFit: "cover", // Ensure the entire image is visible, covering the container
+                  minHeight: "450px", // Set a maximum height
                   transition: "transform 0.5s ease-in-out",
                 }}
               />
@@ -315,7 +349,7 @@ const EventDetail = () => {
           </Card>
         </Grid>
         <Grid item xs={12} lg={3}>
-          <Card sx={{ display: "flex", flexDirection: "column" }}>
+          <Card sx={{ display: "flex", flexDirection: "column", mb: 2 }}>
             <CardContent>
               <Box sx={{ p: 1 }}>
                 <Typography
@@ -379,6 +413,11 @@ const EventDetail = () => {
               </Box>
             </CardContent>
           </Card>
+          {userEventRole !== "NULL" && (
+            <Button variant="contained" onClick={handleChatButton}>
+              {t("event.open_chat")}
+            </Button>
+          )}
         </Grid>
       </Grid>
       <Box sx={{ mb: 10 }}>
@@ -389,7 +428,7 @@ const EventDetail = () => {
           </Typography>
         </Box>
       </Box>
-      <EventDetailsMembers members={members} />
+      <EventDetailsMembers host={host} members={members} />
     </Box>
   );
 };

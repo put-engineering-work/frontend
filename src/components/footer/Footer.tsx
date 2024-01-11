@@ -9,6 +9,12 @@ const Footer = () => {
 
   return (
     <>
+      <Divider
+        sx={{
+          backgroundColor: "text.primary",
+          width: "99%",
+        }}
+      ></Divider>
       <Box sx={{ display: "block", paddingInline: 2, mt: 10 }}>
         <Box
           sx={{

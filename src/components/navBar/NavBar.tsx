@@ -37,7 +37,7 @@ const NavBar: FC<{
     setAnchorElUser(null);
     handleLogged();
     clearUserData();
-    navigate("/login");
+    navigate("/");
   };
 
   const checkPermiisons = () => {
@@ -87,7 +87,9 @@ const NavBar: FC<{
           component="div"
           sx={{
             flexGrow: 1,
+            cursor: "pointer",
           }}
+          onClick={() => navigate("/")}
         >
           LeisureLink
         </Typography>
@@ -131,16 +133,8 @@ const NavBar: FC<{
             <MenuItem key="Profile" onClick={handleCloseUserMenu}>
               <Typography textAlign="center">Profile</Typography>
             </MenuItem>
-            <MenuItem key="Account" onClick={handleCloseUserMenu}>
-              <Typography textAlign="center">Account</Typography>
-            </MenuItem>
-            <MenuItem key="Dashboard" onClick={handleCloseUserMenu}>
-              <Typography textAlign="center">Dashboard</Typography>
-            </MenuItem>
             <MenuItem key="Logout" onClick={logoutUserMenu}>
-              <Link href="/login" underline="none">
-                <Typography textAlign="center">Logout</Typography>
-              </Link>
+              <Typography textAlign="center">Logout</Typography>
             </MenuItem>
           </Menu>
         </Box>

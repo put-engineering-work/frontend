@@ -16,13 +16,14 @@ import { useTranslation } from "react-i18next";
 import "./SideBar.css";
 
 import { useNavigate } from "react-router-dom";
+import EmojiEventsIcon from "@mui/icons-material/EmojiEvents";
 
 const SideBar = ({
-  isLogged,
+  isSideBarShow,
   isOpened,
   handleOpened,
 }: {
-  isLogged: boolean;
+  isSideBarShow: boolean;
   isOpened: boolean;
   handleOpened: any;
 }) => {
@@ -34,6 +35,7 @@ const SideBar = ({
       handleOpened();
     }
   }
+
   return (
     <>
       <Drawer
@@ -56,7 +58,7 @@ const SideBar = ({
               backgroundColor: isOpened ? "" : "transparent",
             },
           },
-          display: isLogged ? "flex" : "none",
+          display: isSideBarShow ? "flex" : "none",
         }}
         variant="permanent"
         anchor="left"
@@ -147,6 +149,21 @@ const SideBar = ({
             },
           }}
         />
+        <ListItem
+          key={t("sideBar.home")}
+          disablePadding
+          onClick={() => {
+            navigate("/my_events");
+            handleMobile();
+          }}
+        >
+          <ListItemButton>
+            <ListItemIcon>
+              <EmojiEventsIcon />
+            </ListItemIcon>
+            <ListItemText primary={t("sideBar.my_event")} />
+          </ListItemButton>
+        </ListItem>
         <List
           sx={{
             "@media (max-width: 768px)": {

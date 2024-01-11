@@ -20,6 +20,7 @@ const LanguageSwitcher: React.FC = () => {
 
   useEffect(() => {
     if (language && i18n.language !== language) {
+      localStorage.setItem("language", language);
       i18n.changeLanguage(language);
     }
   }, [language, i18n]);

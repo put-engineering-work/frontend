@@ -4,10 +4,11 @@ import MemberCard from "./MemberCard";
 import UserImage from "../../../assets/userImage.png";
 
 interface EventDetailsMembers {
+  host: Host;
   members: Member[];
 }
 
-const EventDetailsMembers = ({ members }: EventDetailsMembers) => {
+const EventDetailsMembers = ({ host, members }: EventDetailsMembers) => {
   const { t } = useTranslation();
 
   return (
@@ -23,6 +24,13 @@ const EventDetailsMembers = ({ members }: EventDetailsMembers) => {
           width: "100%",
         }}
       >
+        <MemberCard
+          key={host.id}
+          name={host.name}
+          lastName={host.lastname}
+          image={UserImage}
+          role={"ROLE_HOST"}
+        />
         {members &&
           members
             .slice(0, 4)

@@ -5,6 +5,7 @@ import EventCard from "../../cards/EventCard";
 import "./HomePage.css";
 import { postData } from "../../../utils/fetchData";
 import { useNavigate } from "react-router-dom";
+import DefaultImage from "../../../assets/event.jpg";
 
 const NearestEvents = () => {
   const { t } = useTranslation();
@@ -38,9 +39,9 @@ const NearestEvents = () => {
           display: "flex",
           flexDirection: "row",
           flexWrap: "wrap",
-          gap: 1,
+          gap: 3,
           rowGap: 5,
-          justifyContent: "space-evenly",
+          // justifyContent: "space-evenly",
           marginBlock: 5,
           alignItems: "flex-start",
         }}
@@ -58,6 +59,11 @@ const NearestEvents = () => {
             latitude={event.latitude}
             longitude={event.longitude}
             link={event.id}
+            photo={
+              event.eventImages && event.eventImages.length > 0
+                ? ` data:image/png;base64,${event.eventImages[0].image}`
+                : DefaultImage
+            }
           />
         ))}
       </Box>

@@ -1,8 +1,8 @@
 import { Box, Button, Typography } from "@mui/material";
 import { useTranslation } from "react-i18next";
-import Image from "../../../assets/search.png";
-import Image2 from "../../../assets/plus.png";
 import { useNavigate } from "react-router-dom";
+import SearchIcon from "@mui/icons-material/Search";
+import AddIcon from "@mui/icons-material/Add";
 
 const HowToSection = () => {
   const { t } = useTranslation();
@@ -44,7 +44,7 @@ const HowToSection = () => {
             alignItems: "center",
           }}
         >
-          <img src={Image} width="50px" height="50px" alt="" />
+          <SearchIcon sx={{ width: 70, height: "auto" }}></SearchIcon>
           <Box>
             <Typography component="p" sx={{ mb: 1 }}>
               {t("homeContent.find")}
@@ -57,7 +57,14 @@ const HowToSection = () => {
               onClick={() => {
                 navigate("/map");
               }}
-              sx={{ border: "unset", padding: "unset", marginTop: 2 }}
+              sx={{
+                border: "unset",
+                padding: "unset",
+                marginTop: 2,
+                "&:hover": {
+                  border: "unset",
+                },
+              }}
             >
               {t("homeContent.welcome.find")}
             </Button>
@@ -75,7 +82,7 @@ const HowToSection = () => {
             alignItems: "center",
           }}
         >
-          <img src={Image2} width="50px" height="50px" alt="" />
+          <AddIcon sx={{ width: 70, height: "auto" }}></AddIcon>
           <Box>
             <Typography component="p" sx={{ mb: 1 }}>
               {t("homeContent.howTo.create")}
@@ -88,7 +95,14 @@ const HowToSection = () => {
               onClick={() => {
                 navigate("/add_event");
               }}
-              sx={{ border: "unset", padding: "unset", marginTop: 2 }}
+              sx={{
+                border: "unset",
+                padding: "unset",
+                marginTop: 2,
+                "&:hover": {
+                  border: "unset",
+                },
+              }}
             >
               {t("homeContent.howTo.createBtn")}
             </Button>

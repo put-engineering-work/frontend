@@ -5,7 +5,7 @@ import { useEffect, useMemo, useState } from "react";
 import "./i18n/i18n";
 import i18n from "./i18n/i18n";
 import { I18nextProvider } from "react-i18next";
-import { Route, Routes, useNavigate } from "react-router-dom";
+import { Route, Routes, useLocation } from "react-router-dom";
 import Home from "./components/pages/home/HomePage";
 import RegisterForm from "./components/login/RegisterForm";
 import LoginForm from "./components/login/LoginForm";
@@ -18,6 +18,8 @@ import SideBar from "./components/sideBar/SideBar";
 import EventDetail from "./components/events/EventDetail";
 import AddEventForm from "./components/events/AddEventForm";
 import Footer from "./components/footer/Footer";
+import EventChat from "./components/events/chat/EventChat";
+import MyEvents from "./components/pages/myEvents/MyEvents";
 
 const ColorModeContext = React.createContext({ toggleColorMode: () => {} });
 
@@ -25,7 +27,7 @@ const App = () => {
   const theme = useTheme();
   const colorMode = React.useContext(ColorModeContext);
   const [isLogged, setIsLogged] = useState(false);
-  const navigate = useNavigate();
+  const location = useLocation();
 
   useEffect(() => {
     const language = localStorage.getItem("language");
@@ -34,11 +36,11 @@ const App = () => {
       i18n.changeLanguage(language);
     }
 
-    if (localStorage.getItem("user") === null) {
-      navigate("/login");
-    } else {
-      setIsLogged(true);
-    }
+    // if (localStorage.getItem("user") === null) {
+    //   navigate("/login");
+    // } else {
+    //   setIsLogged(true);
+    // }
   }, []);
 
   const handleLogged = () => {
@@ -46,9 +48,26 @@ const App = () => {
   };
 
   const [isOpened, setIsOpened] = useState(true);
+  const [isSideBarShow, setIsSideBarShow] = useState(true);
+
   const handleOpened = () => {
     setIsOpened((prev) => !prev);
   };
+
+  useEffect(() => {
+    if (location.pathname === "/login" || location.pathname === "/register") {
+      setIsSideBarShow(false);
+      setIsOpened(false);
+    } else {
+      setIsSideBarShow(true);
+    }
+  }, [location]);
+
+  // const isSideBarShow = () => {
+  //   if (location.pathname === "/login" || location.pathname === "/register") {
+  //     handleLogged();
+  //   }
+  // };
 
   return (
     <I18nextProvider i18n={i18n}>
@@ -60,14 +79,14 @@ const App = () => {
         handleLogged={handleLogged}
       />
       <SideBar
-        isLogged={isLogged}
+        isSideBarShow={isSideBarShow}
         isOpened={isOpened}
         handleOpened={handleOpened}
       />
 
       <Box
         sx={{
-          ml: isLogged && isOpened ? "250px" : "70px",
+          ml: isSideBarShow ? (isOpened ? "250px" : "70px") : "0px",
           transition: "margin-left 0.3s ease-in-out",
           "@media (max-width: 768px)": {
             ml: 0,
@@ -83,11 +102,13 @@ const App = () => {
             path="/login"
             element={<LoginForm handleLogged={handleLogged} />}
           />
+          <Route path="/my_events" element={<MyEvents />} />
           <Route path="/home" element={<Home />} />
           <Route path="/register" element={<RegisterForm />} />
           <Route path="/map" element={<MapPage />} />
           <Route path="/add_event" element={<AddEventForm />} />
           <Route path="/events/:eventId" element={<EventDetail />} />
+          <Route path="/events/:eventId/chat" element={<EventChat />} />
         </Routes>
 
         <Footer />

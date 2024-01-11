@@ -3,7 +3,8 @@
     "home": "Głowna",
     "map": "Mapa",
     "ratings": "Oceny",
-    "recommendation": "Rekomendacje"
+    "recommendation": "Rekomendacje",
+    "my_event": "Moje wydarzenia"
   },
   "navBar": {
     "language": "Język"
@@ -51,7 +52,9 @@
     "button": "Zaloguj sie",
     "errors": {
       "UNAUTHORIZED": "Nieprawidłowe hasło lub login",
-      "email": "Zły format wiadomości e-mail"
+      "email": "Zły format e-mail",
+      "USER_NOT_FOUND": "Użytkownik nie znaleziony",
+      "WRONG_DATA": "Wpisałeś nieprawidłowe dane"
     }
   },
   "map": {
@@ -69,8 +72,63 @@
     "members": "Uczestnicy",
     "roles": {
       "ROLE_GUEST": "Gość",
-      "And": "I"
+      "And": "I",
+      "ROLE_HOST": "Gospodarz"
     },
-    "more_guests": "Więcej gości"
+    "more_guests": "Więcej gości",
+    "add_event": {
+      "start_date": "Data rozpoczęcia",
+      "end_date": "Data końcowa",
+      "add_event": "Dodaj wydarzenie",
+      "name": "Nazwa",
+      "address": "Adres",
+      "description": "Opis",
+      "NAME_ERROR": "Wpisz poprawną nazwę wydarzenia!",
+      "ADDRESS_ERROR": "Podaj poprawny adres!",
+      "STARTDATE_ERROR": "Podaj datę rozpoczęcia!",
+      "ENDDATE_ERROR": "Wprowadź datę końcową!",
+      "LOCATION": "Wybierz lokalizację wydarzenia",
+      "DATE_ERROR": "Data początkowa nie może być późniejsza niż data końcowa!",
+      "selected": "wgrano",
+      "choose_files": "Wybierz pliki"
+    },
+    "rating": "Ocena organizowanych wydarzeń",
+    "host": "Gospodarz wydarzenia",
+    "open_chat": "Otwórz czat",
+    "join_button": {
+      "JOIN": "Dołącz do wydarzenia",
+      "LEAVE": "Opuść wydarzenie"
+    }
+  },
+  "chat": {
+    "send": "Wysłać",
+    "room": "Chat ",
+    "write": "Napisać wiadomość ..."
+  },
+  "translation": {
+    "January": "Styczeń",
+    "February": "Luty",
+    "March": "Marzec",
+    "April": "Kwiecień",
+    "May": "Maj",
+    "June": "Czerwiec",
+    "July": "Lipiec",
+    "August": "Sierpień",
+    "September": "Wrzesień",
+    "October": "Październik",
+    "November": "Listopad",
+    "December": "Grudzień"
+  },
+  "my_event": {
+    "title": "Moje wydarzenia",
+    "no_events": "Aktualnie nie jesteś zarejestrowany na żadne wydarzenie",
+    "find_event": "Znajdź wydarzenie",
+    "no_register": "Nie jesteś zalogowany do aplikacji",
+    "login": "Zaloguj sie"
+  },
+  "general": {
+    "clear": "Wyczyść",
+    "confirm": "Potwierdź",
+    "loading": "Ładowanie"
   }
 }
