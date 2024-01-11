@@ -63,7 +63,7 @@ const EventCard: React.FC<EventCardProps> = ({
         <Link style={{ textDecoration: "none" }} to={`/events/${link}`}>
           <img width={330} src={photo} alt="image" />
           <Typography
-            sx={{ mt: 1, ml: 2, color: "white", height: 70 }}
+            sx={{ mt: 1, ml: 2, color: "text.primary", height: 70 }}
             variant="h5"
             component="div"
           >

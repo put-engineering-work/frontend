@@ -17,6 +17,7 @@ import MapPage from "./components/pages/map/MapPage";
 import SideBar from "./components/sideBar/SideBar";
 import EventDetail from "./components/events/EventDetail";
 import AddEventForm from "./components/events/AddEventForm";
+import Footer from "./components/footer/Footer";
 import EventChat from "./components/events/chat/EventChat";
 import MyEvents from "./components/pages/myEvents/MyEvents";
 
@@ -82,6 +83,7 @@ const App = () => {
         isOpened={isOpened}
         handleOpened={handleOpened}
       />
+
       <Box
         sx={{
           ml: isSideBarShow ? (isOpened ? "250px" : "70px") : "0px",
@@ -95,19 +97,21 @@ const App = () => {
         }}
       >
         <Routes>
-          <Route path="/" element={<Home />} />
+          <Route path="/" element={<Home isLogged={isLogged} />} />
           <Route
             path="/login"
             element={<LoginForm handleLogged={handleLogged} />}
           />
           <Route path="/my_events" element={<MyEvents />} />
-          <Route path="/home" element={<Home />} />
+          <Route path="/home" element={<Home isLogged={isLogged} />} />
           <Route path="/register" element={<RegisterForm />} />
           <Route path="/map" element={<MapPage />} />
           <Route path="/add_event" element={<AddEventForm />} />
           <Route path="/events/:eventId" element={<EventDetail />} />
           <Route path="/events/:eventId/chat" element={<EventChat />} />
         </Routes>
+
+        <Footer />
       </Box>
     </I18nextProvider>
   );

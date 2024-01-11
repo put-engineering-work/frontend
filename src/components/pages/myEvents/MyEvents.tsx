@@ -2,10 +2,11 @@ import React, { useEffect, useState } from "react";
 import { useTranslation } from "react-i18next";
 import { getDataJson } from "../../../utils/fetchData";
 import { Box, Button, Container, Typography } from "@mui/material";
-import EventCard from "../../eventCard/EventCard";
+
 import { useNavigate } from "react-router-dom";
 
 import DefaultImage from "../../../assets/event.jpg";
+import EventCard from "../../cards/EventCard";
 
 const MyEvents = () => {
   const { t } = useTranslation();

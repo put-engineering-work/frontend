@@ -12,7 +12,14 @@
   "homeContent": {
     "find": "Find event",
     "allEvents": "All events",
-    "categories": "Categories"
+    "categories": "Categories",
+    "welcome": {
+      "greetings": "Welcome to LeisureLink!",
+      "message": "Enjoy a life full of exceptional events through our modern application for searching and managing social events. LeisureLink is an innovative tool that enables easy planning, booking, and participation in various events tailored to your interests and schedule",
+      "find": "Find event"
+    },
+    "nearest": "Nearest events in:",
+    "seeMore": "See more"
   },
   "registration": {
     "sign_up": "Create an Account",

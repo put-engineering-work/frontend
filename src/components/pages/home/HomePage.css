@@ -13,3 +13,27 @@
   border-radius: 15px;
   background-color: #424242;
 }
+
+.event-card {
+  object-fit: cover;
+  border-radius: 8px;
+}
+
+.see-more-btn {
+  width: 100%;
+  border-color: #ccc !important;
+  border-radius: 16px !important;
+  background-image: linear-gradient(
+    rgba(255, 255, 255, 0.05),
+    rgba(255, 255, 255, 0.05)
+  );
+  box-shadow: 0px 2px 1px -1px rgba(0, 0, 0, 0.2),
+    0px 1px 1px 0px rgba(0, 0, 0, 0.14), 0px 1px 3px 0px rgba(0, 0, 0, 0.12);
+}
+
+.gray-background {
+  background-image: linear-gradient(
+    rgba(255, 255, 255, 0.05),
+    rgba(255, 255, 255, 0.05)
+  );
+}
