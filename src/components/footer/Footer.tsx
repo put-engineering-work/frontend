@@ -9,7 +9,7 @@ const Footer = () => {
 
   return (
     <>
-      <Box sx={{ display: "block", paddingInline: 2 }}>
+      <Box sx={{ display: "block", paddingInline: 2, mt: 10 }}>
         <Box
           sx={{
             display: "grid",
