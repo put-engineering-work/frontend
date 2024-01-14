@@ -20,6 +20,13 @@
     },
     "nearest": "Nearest events in:",
     "seeMore": "See more",
+    "howTo": {
+      "how": "How does LeasureLink work?",
+      "explain": "Find an event that aligns with your mood, verify the date and start time, check the organizer, and then sign up to participate.",
+      "create": "Create your own event",
+      "lorem": "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco",
+      "createBtn": "Create event"
+    },
     "success_logout": "You have successfully logged out"
   },
   "registration": {
@@ -108,7 +115,7 @@
     "filters": {
       "radius": "Radius (m)",
       "select_radius": "Select radius",
-    "event_name": "Event name"
+      "event_name": "Event name"
     }
   },
   "chat": {
