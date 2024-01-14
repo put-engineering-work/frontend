@@ -1,4 +1,5 @@
 declare interface EventCard {
+  host: Host;
   address: string;
   description: string;
   endDate: string;
@@ -9,6 +10,7 @@ declare interface EventCard {
   startDate: string;
   eventImages: any;
   numberOfMembers: number;
+  categories: string[];
 }
 
 declare interface EventDetails {

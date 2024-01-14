@@ -97,7 +97,7 @@ const MyEvents = ({ isLogged }: { isLogged: boolean }) => {
                 name={event.name}
                 startDate={event.startDate}
                 description={event.description}
-                category={""}
+                categories={event.categories}
                 id={event.id}
                 endDate={event.endDate}
                 address={event.address}
@@ -105,6 +105,7 @@ const MyEvents = ({ isLogged }: { isLogged: boolean }) => {
                 longitude={event.longitude}
                 link={event.id}
                 numberOfMembers={event.numberOfMembers}
+                host={event.host}
                 photo={
                   event.eventImages && event.eventImages.length > 0
                     ? ` data:image/png;base64,${event.eventImages[0].image}`

@@ -2,7 +2,7 @@ import React from "react";
 import Card from "@mui/material/Card";
 import CardContent from "@mui/material/CardContent";
 import Typography from "@mui/material/Typography";
-import { Avatar, Box, Divider } from "@mui/material";
+import { Avatar, Box, Breadcrumbs, Divider } from "@mui/material";
 import EventIcon from "@mui/icons-material/Event";
 import LocationOnIcon from "@mui/icons-material/LocationOn";
 import { useTranslation } from "react-i18next";
@@ -10,6 +10,7 @@ import CheckCircleIcon from "@mui/icons-material/CheckCircle";
 
 import Image1 from "../../assets/1.png";
 import { Link } from "react-router-dom";
+import { StyledBreadcrumb } from "../../utils/StyledBreadcrumb";
 
 interface EventCardProps {
   id: string;
@@ -20,20 +21,22 @@ interface EventCardProps {
   address: string;
   latitude: number;
   longitude: number;
-  category: string;
+  categories: string[];
   link: string;
   photo?: any;
   numberOfMembers?: number;
+  host?: Host;
 }
 
 const EventCard: React.FC<EventCardProps> = ({
   name,
   startDate,
-  category,
+  categories,
   address,
   link,
   photo,
   numberOfMembers,
+  host,
 }) => {
   const { t } = useTranslation();
 
@@ -93,9 +96,30 @@ const EventCard: React.FC<EventCardProps> = ({
         <Box
           sx={{ display: "flex", flexDirection: "column", ml: 2, width: "90%" }}
         >
-          <Typography sx={{ mb: 1 }} variant="body2" color="text.primary">
-            {t("homeContent.categories")}: {category}
-          </Typography>
+          <Box
+            sx={{
+              display: "flex",
+              flexDirection: "row",
+              gap: 2,
+              mb: 2,
+            }}
+          >
+            <Typography sx={{ mb: 1 }} variant="body2" color="text.primary">
+              {t("homeContent.categories")}:
+            </Typography>
+            <Breadcrumbs aria-label="breadcrumb">
+              {categories.map((item: string, index: number) => {
+                return (
+                  <StyledBreadcrumb
+                    key={index}
+                    component="a"
+                    href="#"
+                    label={t(`event.add_event.cateoriess.${item}`)}
+                  />
+                );
+              })}
+            </Breadcrumbs>
+          </Box>
 
           <Typography
             sx={{
@@ -180,7 +204,7 @@ const EventCard: React.FC<EventCardProps> = ({
                   variant="body2"
                   color="text.main"
                 >
-                  Name Surname
+                  {host?.name} {host?.lastname}
                 </Typography>
               </Box>
             </Box>

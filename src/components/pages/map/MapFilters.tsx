@@ -39,7 +39,6 @@ const MapFilters = ({
       <RadiusFilter filters={filters} handleFilters={handleFilters} />
       <CategotyFilter filters={filters} setFilters={setFilters} />
       <DateFilter filters={filters} handleFilters={handleFilters} />
-      <CategoriesFilter filters={filters} handleFilters={handleFilters} />
       <Button variant="contained" onClick={fetchData}>
         {t("map.enter_filters")}
       </Button>
