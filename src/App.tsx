@@ -77,6 +77,8 @@ const App = () => {
         theme={theme}
         isLogged={isLogged}
         handleLogged={handleLogged}
+        isOpened={isOpened}
+        handleOpened={handleOpened}
       />
       <SideBar
         isSideBarShow={isSideBarShow}

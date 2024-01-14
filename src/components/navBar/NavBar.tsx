@@ -21,7 +21,9 @@ const NavBar: FC<{
   theme: Theme;
   isLogged: Boolean;
   handleLogged: any;
-}> = ({ colorMode, theme, isLogged, handleLogged }) => {
+  isOpened: Boolean;
+  handleOpened: any;
+}> = ({ colorMode, theme, isLogged, handleLogged, isOpened, handleOpened }) => {
   const [anchorElUser, setAnchorElUser] = useState<null | HTMLElement>(null);
   const navigate = useNavigate();
 
@@ -57,6 +59,12 @@ const NavBar: FC<{
     localStorage.removeItem("user");
   };
 
+  function handleMobile() {
+    if (window.innerWidth < 768) {
+      handleOpened();
+    }
+  }
+
   return (
     <Box
       sx={{
@@ -76,7 +84,11 @@ const NavBar: FC<{
           sx={{
             flexGrow: 1,
             width: `calc(100% - ${drawerWidth}px)`,
-            ml: `${drawerWidth}px`,
+            ml: isOpened ? `${drawerWidth}px` : 7,
+            transition: "all 0.3s ease-in-out",
+            "@media (max-width: 768px)": {
+              ml: 7,
+            },
           }}
         >
           LeisureLink

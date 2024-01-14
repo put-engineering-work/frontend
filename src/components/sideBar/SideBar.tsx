@@ -68,7 +68,6 @@ const SideBar = ({
           sx={{
             display: "flex",
             justifyContent: "space-between",
-            
           }}
         >
           <IconButton sx={{ padding: "16px" }} onClick={handleOpened}>
@@ -149,21 +148,6 @@ const SideBar = ({
             },
           }}
         />
-        <ListItem
-          key={t("sideBar.home")}
-          disablePadding
-          onClick={() => {
-            navigate("/my_events");
-            handleMobile();
-          }}
-        >
-          <ListItemButton>
-            <ListItemIcon>
-              <EmojiEventsIcon />
-            </ListItemIcon>
-            <ListItemText primary={t("sideBar.my_event")} />
-          </ListItemButton>
-        </ListItem>
         <List
           sx={{
             "@media (max-width: 768px)": {
@@ -173,6 +157,22 @@ const SideBar = ({
             },
           }}
         >
+          <ListItem
+            key={t("sideBar.home")}
+            disablePadding
+            onClick={() => {
+              navigate("/my_events");
+              handleMobile();
+            }}
+          >
+            <ListItemButton>
+              <ListItemIcon>
+                <EmojiEventsIcon />
+              </ListItemIcon>
+              <ListItemText primary={t("sideBar.my_event")} />
+            </ListItemButton>
+          </ListItem>
+
           <ListItem key={t("sideBar.recommendation")} disablePadding>
             <ListItemButton>
               <ListItemIcon>
