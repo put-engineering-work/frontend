@@ -8,6 +8,7 @@ declare interface EventCard {
   name: string;
   startDate: string;
   eventImages: any;
+  numberOfMembers: number;
 }
 
 declare interface EventDetails {

@@ -104,6 +104,7 @@ const MyEvents = ({ isLogged }: { isLogged: boolean }) => {
                 latitude={event.latitude}
                 longitude={event.longitude}
                 link={event.id}
+                numberOfMembers={event.numberOfMembers}
                 photo={
                   event.eventImages && event.eventImages.length > 0
                     ? ` data:image/png;base64,${event.eventImages[0].image}`

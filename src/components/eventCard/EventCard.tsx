@@ -23,6 +23,7 @@ interface EventCardProps {
   category: string;
   link: string;
   photo?: any;
+  numberOfMembers: Number;
 }
 
 const EventCard: React.FC<EventCardProps> = ({
@@ -30,6 +31,7 @@ const EventCard: React.FC<EventCardProps> = ({
   startDate,
   category,
   address,
+  numberOfMembers,
   link,
   photo,
 }) => {

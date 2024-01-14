@@ -23,6 +23,7 @@ interface EventCardProps {
   category: string;
   link: string;
   photo?: any;
+  numberOfMembers?: number;
 }
 
 const EventCard: React.FC<EventCardProps> = ({
@@ -32,6 +33,7 @@ const EventCard: React.FC<EventCardProps> = ({
   address,
   link,
   photo,
+  numberOfMembers,
 }) => {
   const { t } = useTranslation();
 
@@ -187,10 +189,11 @@ const EventCard: React.FC<EventCardProps> = ({
                 display: "flex",
                 flexDirection: "row",
                 alignItems: "center",
+                gap: 1,
               }}
             >
               <CheckCircleIcon />
-              <Typography>10 guests</Typography>
+              <Typography>{numberOfMembers} guests</Typography>
             </Box>
           </Box>
         </Box>

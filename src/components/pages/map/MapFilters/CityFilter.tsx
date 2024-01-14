@@ -15,7 +15,7 @@ const CityFilter = ({
   const [selectedCity, setSelectedCity] = useState(defaultCity);
 
   useEffect(() => {
-    if (input.length > 2) {
+    if (input.length > 1) {
       const fetchCities = async () => {
         const result = await getDataJson(`geodata/autocomplete/${input}`);
 
@@ -29,17 +29,20 @@ const CityFilter = ({
 
   useEffect(() => {
     console.log(selectedCity);
-    setFilters((old: EventFilters) => ({
-      ...old,
-      latitude: selectedCity.latitude,
-      longitude: selectedCity.longitude,
-    }));
+    if (selectedCity !== null) {
+      setFilters((old: EventFilters) => ({
+        ...old,
+        latitude: selectedCity.latitude,
+        longitude: selectedCity.longitude,
+      }));
 
-    if (mapRef.current) {
-      mapRef.current.panTo({
-        lat: selectedCity.latitude,
-        lng: selectedCity.longitude,
-      });
+      console.log(selectedCity);
+      if (mapRef.current) {
+        mapRef.current.panTo({
+          lat: selectedCity.latitude,
+          lng: selectedCity.longitude,
+        });
+      }
     }
   }, [selectedCity]);
 
