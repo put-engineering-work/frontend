@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import React, { useEffect, useRef, useState } from "react";
 import MapComponent from "./MapComponent";
 import { Box, IconButton, Typography } from "@mui/material";
 import AddIcon from "@mui/icons-material/Add";
@@ -9,6 +9,8 @@ import MapFilters from "./MapFilters";
 import { defaultFilters } from "./MapFilters/defaultFilters";
 
 const MapPage: React.FC = () => {
+  const mapRef = useRef<any | null>(null);
+
   const [filters, setFilters] = useState<EventFilters>(defaultFilters);
 
   const { t } = useTranslation();
@@ -21,10 +23,10 @@ const MapPage: React.FC = () => {
 
   const fetchData = async () => {
     try {
-      const eve = await postData("events/search", filters);
+      const events = await postData("events/search", filters);
 
-      console.log(eve);
-      setEvents(eve);
+      console.log(events);
+      setEvents(events);
     } catch (error) {
       console.error("Error fetching data:", error);
     }
@@ -68,9 +70,10 @@ const MapPage: React.FC = () => {
             filters={filters}
             setFilters={setFilters}
             fetchData={fetchData}
+            mapRef={mapRef}
           />
         </Box>
-        <MapComponent events={events} filters={filters} />
+        <MapComponent events={events} filters={filters} mapRef={mapRef} />
       </Box>
     </Box>
   );

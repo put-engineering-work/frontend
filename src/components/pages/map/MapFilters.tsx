@@ -11,10 +11,12 @@ const MapFilters = ({
   filters,
   setFilters,
   fetchData,
+  mapRef,
 }: {
   filters: EventFilters;
   setFilters: React.Dispatch<React.SetStateAction<EventFilters>>;
   fetchData: () => Promise<void>;
+  mapRef: React.MutableRefObject<any>;
 }) => {
   const { t } = useTranslation();
 
@@ -31,12 +33,14 @@ const MapFilters = ({
 
   return (
     <Box sx={{ display: "flex", flexDirection: "column", gap: 2 }}>
-      <CityFilter filters={filters} handleFilters={handleFilters} />
+      <CityFilter setFilters={setFilters} mapRef={mapRef} />
       <NameFilters filters={filters} handleFilters={handleFilters} />
       <RadiusFilter filters={filters} handleFilters={handleFilters} />
       <DateFilter filters={filters} handleFilters={handleFilters} />
       <CategoriesFilter filters={filters} handleFilters={handleFilters} />
-      <Button variant="contained" onClick={fetchData}>{t("map.enter_filters")}</Button>
+      <Button variant="contained" onClick={fetchData}>
+        {t("map.enter_filters")}
+      </Button>
     </Box>
   );
 };

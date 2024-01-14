@@ -1,17 +1,18 @@
 import { Autocomplete, TextField } from "@mui/material";
-import React, { useEffect, useState } from "react";
+import { Dispatch, SetStateAction, useEffect, useState } from "react";
 import { getDataJson } from "../../../../utils/fetchData";
+import { defaultCity } from "./defaultFilters";
 
 const CityFilter = ({
-  handleFilters,
-  filters,
+  mapRef,
+  setFilters,
 }: {
-  filters: EventFilters;
-  handleFilters: (name: string, value: any) => void;
+  mapRef: React.MutableRefObject<any>;
+  setFilters: Dispatch<SetStateAction<EventFilters>>;
 }) => {
   const [input, setInput] = useState("");
   const [cities, setCities] = useState<any>([]);
-  const [selectedCity, setSelectedCity] = useState([]);
+  const [selectedCity, setSelectedCity] = useState(defaultCity);
 
   useEffect(() => {
     if (input.length > 2) {
@@ -27,24 +28,51 @@ const CityFilter = ({
   }, [input]);
 
   useEffect(() => {
+    console.log(selectedCity);
+    setFilters((old: EventFilters) => ({
+      ...old,
+      latitude: selectedCity.latitude,
+      longitude: selectedCity.longitude,
+    }));
+
+    if (mapRef.current) {
+      mapRef.current.panTo({
+        lat: selectedCity.latitude,
+        lng: selectedCity.longitude,
+      });
+    }
+  }, [selectedCity]);
+
+  const handleOnChange = (event: any, values: any) => {
+    setSelectedCity(values);
+  };
+
+  useEffect(() => {
     console.log(input);
   }, [input]);
 
   return (
-    <Autocomplete
-      disablePortal
-      id="combo-box-demo"
-      getOptionLabel={(option: any) => option.description}
-      options={cities}
-      sx={{ width: 300 }}
-      renderInput={(params) => (
-        <TextField
-          {...params}
-          label="City"
-          onChange={(e) => setInput(e.target.value)}
-        />
-      )}
-    />
+    <>
+      <Autocomplete
+        disablePortal
+        id="combo-box-demo"
+        getOptionLabel={(option) => option.description}
+        options={cities}
+        onChange={handleOnChange}
+        value={selectedCity}
+        sx={{ width: 300 }}
+        isOptionEqualToValue={(option, value) => {
+          return value.place_id === option.place_id;
+        }}
+        renderInput={(params) => (
+          <TextField
+            {...params}
+            label="City"
+            onChange={(e) => setInput(e.target.value)}
+          />
+        )}
+      />
+    </>
   );
 };
 

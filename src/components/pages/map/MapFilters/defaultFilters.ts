@@ -8,3 +8,10 @@ export const defaultFilters: EventFilters = {
   startDate: dayjs().toISOString(),
   selectedCategories: [],
 };
+
+export const defaultCity = {
+  description: "Warszawa, Poland",
+  latitude: 52.2296756,
+  longitude: 21.0122287,
+  place_id: "ChIJAZ-GmmbMHkcR_NPqiCq-8HI",
+};
