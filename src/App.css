@@ -1,3 +1,16 @@
 .App {
   text-align: center;
 }
+
+html,
+body {
+  height: 100%;
+}
+
+#root {
+  height: 100%;
+}
+
+.MuiBox-root.css-8atqhb {
+  flex: 1 0 auto;
+}

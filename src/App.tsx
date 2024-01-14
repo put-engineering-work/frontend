@@ -81,6 +81,7 @@ const App = () => {
         isLogged={isLogged}
         isOpened={isOpened}
         handleLogged={handleLogged}
+        handleOpened={handleOpened}
       />
       <SideBar
         isSideBarShow={isSideBarShow}
@@ -98,6 +99,7 @@ const App = () => {
           display: "flex",
           flexDirection: "column",
           alignItems: "center",
+          height: "100%",
         }}
       >
         <Routes>
@@ -114,7 +116,6 @@ const App = () => {
           <Route path="/events/:eventId" element={<EventDetail />} />
           <Route path="/events/:eventId/chat" element={<EventChat />} />
         </Routes>
-
         <Footer />
       </Box>
     </I18nextProvider>

@@ -24,6 +24,7 @@ const NavBar: FC<{
   isLogged: boolean;
   isOpened: boolean;
   handleLogged: any;
+  handleOpened: any;
   isSideBarShow: boolean;
 }> = ({
   colorMode,
@@ -31,6 +32,7 @@ const NavBar: FC<{
   isLogged,
   isOpened,
   handleLogged,
+  handleOpened,
   isSideBarShow,
 }) => {
   const { t } = useTranslation();
@@ -71,6 +73,12 @@ const NavBar: FC<{
     localStorage.removeItem("user");
   };
 
+  function handleMobile() {
+    if (window.innerWidth < 768) {
+      handleOpened();
+    }
+  }
+
   return (
     <Box
       sx={{
@@ -91,7 +99,11 @@ const NavBar: FC<{
             flexGrow: 1,
             cursor: "pointer",
             width: `calc(100% - ${drawerWidth}px)`,
-            ml: isOpened ? `240px` : `60px`,
+            ml: isOpened ? `${drawerWidth}px` : 7,
+            transition: "all 0.3s ease-in-out",
+            "@media (max-width: 768px)": {
+              ml: 7,
+            },
           }}
           onClick={() => navigate("/")}
         >
