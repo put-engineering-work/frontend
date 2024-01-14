@@ -29,10 +29,10 @@ declare interface EventDetails {
 }
 
 declare interface EventFilters {
-  latitude: number?;
-  longitude: number?;
+  latitude: number;
+  longitude: number;
   radius: number;
   startDate: string?;
-  selectedCategories: []?;
-  name?: string?;
+  eventName: string?;
+  selectedCategories: string[]?;
 }

@@ -9,21 +9,34 @@ import {
 } from "@mui/material";
 import Brightness4Icon from "@mui/icons-material/Brightness4";
 import Brightness7Icon from "@mui/icons-material/Brightness7";
-import { FC, useEffect, useState } from "react";
+import { FC, useState } from "react";
 import { drawerWidth } from "../../utils/Constants";
 import LanguageSwitcher from "../LanguageSwitcher";
 import Tooltip from "@mui/material/Tooltip";
 import Avatar from "@mui/material/Avatar";
 import { useNavigate } from "react-router-dom";
+import { toast, ToastContainer } from "react-toastify";
+import { useTranslation } from "react-i18next";
 
 const NavBar: FC<{
   colorMode: any;
   theme: Theme;
-  isLogged: Boolean;
+  isLogged: boolean;
+  isOpened: boolean;
   handleLogged: any;
-  isOpened: Boolean;
   handleOpened: any;
-}> = ({ colorMode, theme, isLogged, handleLogged, isOpened, handleOpened }) => {
+  isSideBarShow: boolean;
+}> = ({
+  colorMode,
+  theme,
+  isLogged,
+  isOpened,
+  handleLogged,
+  handleOpened,
+  isSideBarShow,
+}) => {
+  const { t } = useTranslation();
+
   const [anchorElUser, setAnchorElUser] = useState<null | HTMLElement>(null);
   const navigate = useNavigate();
 
@@ -40,6 +53,7 @@ const NavBar: FC<{
     handleLogged();
     clearUserData();
     navigate("/");
+    toast.info(t(`homeContent.success_logout`));
   };
 
   const checkPermiisons = () => {
@@ -77,12 +91,13 @@ const NavBar: FC<{
         p: 3,
       }}
     >
-      {isLogged || checkPermiisons() ? (
+      {isSideBarShow || checkPermiisons() ? (
         <Typography
           variant="h4"
           component="div"
           sx={{
             flexGrow: 1,
+            cursor: "pointer",
             width: `calc(100% - ${drawerWidth}px)`,
             ml: isOpened ? `${drawerWidth}px` : 7,
             transition: "all 0.3s ease-in-out",
@@ -90,6 +105,7 @@ const NavBar: FC<{
               ml: 7,
             },
           }}
+          onClick={() => navigate("/")}
         >
           LeisureLink
         </Typography>
@@ -151,6 +167,14 @@ const NavBar: FC<{
           </Menu>
         </Box>
       )}
+      <ToastContainer
+        position="bottom-left"
+        autoClose={3000}
+        hideProgressBar={false}
+        closeOnClick
+        pauseOnHover
+        theme={theme.palette.mode}
+      />
     </Box>
   );
 };

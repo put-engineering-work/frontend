@@ -8,7 +8,7 @@ import { useNavigate } from "react-router-dom";
 import DefaultImage from "../../../assets/event.jpg";
 import EventCard from "../../cards/EventCard";
 
-const MyEvents = () => {
+const MyEvents = ({ isLogged }: { isLogged: boolean }) => {
   const { t } = useTranslation();
   const navigate = useNavigate();
 
@@ -45,7 +45,7 @@ const MyEvents = () => {
           gap: 5,
         }}
       >
-        {!cardEvents ? (
+        {!isLogged ? (
           <Box
             sx={{
               display: "flex",
@@ -71,7 +71,7 @@ const MyEvents = () => {
               {t("my_event.login")}
             </Button>
           </Box>
-        ) : cardEvents.length > 0 ? (
+        ) : cardEvents && cardEvents.length > 0 ? (
           cardEvents.map((event, index) => (
             <EventCard
               key={index}
@@ -87,7 +87,7 @@ const MyEvents = () => {
               link={event.id}
               photo={
                 event.eventImages && event.eventImages.length > 0
-                  ? event.eventImages[0]
+                  ? ` data:image/png;base64,${event.eventImages[0].image}`
                   : DefaultImage
               }
             />

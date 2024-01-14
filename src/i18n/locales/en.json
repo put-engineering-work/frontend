@@ -19,7 +19,8 @@
       "find": "Find event"
     },
     "nearest": "Nearest events in:",
-    "seeMore": "See more"
+    "seeMore": "See more",
+    "success_logout": "You have successfully logged out"
   },
   "registration": {
     "sign_up": "Create an Account",
@@ -49,12 +50,14 @@
     "remember_me": "Remember me",
     "signIn": "Sign in",
     "no_account": "Don't have an account? Create account",
-    "button": "Login"
+    "button": "Login",
+    "success_logout": "You have successfully logged "
   },
   "map": {
     "add_event": "Add event",
     "filters": "Filters",
-    "view_details": "View Details"
+    "view_details": "View Details",
+    "enter_filters": "Apply filters"
   },
   "event": {
     "date_time": "Date and Time",
@@ -94,7 +97,7 @@
       "LEAVE": "Leave event"
     },
     "filters": {
-      "radius": "Radius",
+      "radius": "Radius (m)",
       "select_radius": "Select radius",
       "event_name": "Event name"
     }

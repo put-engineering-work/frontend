@@ -17,9 +17,15 @@ interface Event {
 
 interface MapComponentProps {
   events: Event[];
+  filters: EventFilters;
+  mapRef: React.MutableRefObject<any>;
 }
 
-const MapComponent: React.FC<MapComponentProps> = ({ events }) => {
+const MapComponent: React.FC<MapComponentProps> = ({
+  events,
+  filters,
+  mapRef,
+}) => {
   const mapContainerStyle = {
     width: "100%",
     height: "600px",
@@ -31,8 +37,6 @@ const MapComponent: React.FC<MapComponentProps> = ({ events }) => {
     lat: 52.2297,
     lng: 21.0122,
   });
-
-  const mapRef = useRef<any | null>(null);
 
   const toggleOpen = (eventId: string, position: any) => {
     setOpenInfoWindowId(eventId);
@@ -51,6 +55,12 @@ const MapComponent: React.FC<MapComponentProps> = ({ events }) => {
       // mapRef.current.setZoom(15); // Установите желаемый уровень зума
     }
   }, [mapCenter]);
+
+  const currentPosMarkerOptions = {
+    icon: {
+      url: "https://maps.google.com/mapfiles/ms/icons/blue-dot.png",
+    },
+  };
 
   return (
     <LoadScriptNext googleMapsApiKey={API_KEY}>
@@ -73,6 +83,11 @@ const MapComponent: React.FC<MapComponentProps> = ({ events }) => {
           }
         }}
       >
+        <Marker
+          position={{ lat: filters.latitude, lng: filters.longitude }}
+          title="Current Location"
+          options={currentPosMarkerOptions}
+        />
         {events &&
           events.map((event) => (
             <Marker

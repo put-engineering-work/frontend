@@ -36,7 +36,7 @@ const RadiusFilter = ({
         id="rangeInput"
         name="rangeInput"
         min="0"
-        max="100"
+        max="50000"
         value={filters.radius}
         onChange={handleRangeChange}
       />
