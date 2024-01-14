@@ -127,7 +127,6 @@ const Footer = () => {
             </Box>
           </Box>
         </Box>
-        {/* check */}
         <Divider
           sx={{
             backgroundColor: "text.primary",
