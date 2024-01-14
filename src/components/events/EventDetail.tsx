@@ -13,6 +13,7 @@ import {
   Avatar,
   Rating,
   Button,
+  Breadcrumbs,
 } from "@mui/material";
 import {
   AccessTime as AccessTimeIcon,
@@ -28,6 +29,7 @@ import { useTranslation } from "react-i18next";
 import AvatarImage from "../../assets/1.png";
 import { getDataJson, postData } from "../../utils/fetchData";
 import EventDetailsMembers from "./members/EventDetailsMembers";
+import { StyledBreadcrumb } from "../../utils/StyledBreadcrumb";
 
 const EventDetail = () => {
   const { t } = useTranslation();
@@ -179,6 +181,7 @@ const EventDetail = () => {
     name,
     startDate,
     host,
+    categories,
   } = event;
 
   const staticMapUrl = `https://maps.googleapis.com/maps/api/staticmap?center=${latitude},${longitude}&zoom=17&size=380x220&maptype=roadmap&markers=color:red%7C${latitude},${longitude}&key=${API_KEY}`;
@@ -403,12 +406,24 @@ const EventDetail = () => {
                     display: "flex",
                     flexDirection: "row",
                     gap: 1,
-                    mb: 1,
+                    mb: 2,
                   }}
                   variant="subtitle1"
                 >
                   <CategoryIcon /> {t("event.category")}
                 </Typography>
+                <Breadcrumbs aria-label="breadcrumb">
+                  {categories.map((item: string) => {
+                    return (
+                      <StyledBreadcrumb
+                        component="a"
+                        href="#"
+                        label={t(`event.add_event.cateoriess.${item}`)}
+                      />
+                    );
+                  })}
+                </Breadcrumbs>
+
                 <Typography variant="body2"></Typography>
               </Box>
             </CardContent>

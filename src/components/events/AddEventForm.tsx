@@ -1,5 +1,11 @@
 import React, { useEffect, useRef, useState } from "react";
-import { TextField, Button, Box, Typography } from "@mui/material";
+import {
+  TextField,
+  Button,
+  Box,
+  Typography,
+  Autocomplete,
+} from "@mui/material";
 import { DateTimePicker, LocalizationProvider } from "@mui/x-date-pickers";
 import { AdapterDayjs } from "@mui/x-date-pickers/AdapterDayjs";
 import { useTranslation } from "react-i18next";
@@ -8,7 +14,7 @@ import "dayjs/locale/pl";
 import { GoogleMap, LoadScriptNext, Marker } from "@react-google-maps/api";
 import { API_KEY } from "../../constants/keys";
 import { mapOptions } from "../../constants/mapOptions";
-import { postFormData } from "../../utils/fetchData";
+import { getDataJson, postFormData } from "../../utils/fetchData";
 import { useNavigate } from "react-router-dom";
 import dayjs from "dayjs";
 import CustomFileInput from "./CustomFileInput";
@@ -21,6 +27,7 @@ interface AddEventForm {
   longitude: number;
   name: string;
   startDate: string;
+  categories: string[];
   photos: FileList | null;
 }
 
@@ -29,6 +36,8 @@ const AddEventForm: React.FC = () => {
   const navigate = useNavigate();
 
   const mapRef = useRef<any | null>(null);
+
+  const [categories, setCategories] = useState<string[]>([]);
 
   const [mapCenter] = useState({
     lat: 52.409538,
@@ -45,13 +54,20 @@ const AddEventForm: React.FC = () => {
     longitude: 0,
     name: "",
     startDate: "",
+    categories: [],
     photos: null,
   });
 
   const [errorForm, setErrorForm] = useState("");
 
+  const fetchCategories = async () => {
+    const categories = await getDataJson(`events/all-categories`);
+    setCategories(categories);
+  };
+
   useEffect(() => {
     console.log(formData);
+    fetchCategories();
   }, [formData]);
 
   const handleMapClick = (event: any) => {
@@ -80,8 +96,17 @@ const AddEventForm: React.FC = () => {
       [name]: formattedDate,
     }));
   };
+
+  const handleCategories = (_: any, values: any) => {
+    setFormData((prevData) => ({
+      ...prevData,
+      categories: values,
+    }));
+  };
+
   const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     const { name, value } = e.target;
+
     setFormData((prevData) => ({
       ...prevData,
       [name]: value,
@@ -150,6 +175,12 @@ const AddEventForm: React.FC = () => {
     formDataToSend.append("endDate", formData.endDate);
     formDataToSend.append("latitude", String(formData.latitude));
     formDataToSend.append("longitude", String(formData.longitude));
+
+    if (formData.categories) {
+      for (let i = 0; i < formData.categories.length; i++) {
+        formDataToSend.append("categories", formData.categories[i]);
+      }
+    }
 
     if (formData.photos) {
       for (let i = 0; i < formData.photos.length; i++) {
@@ -230,7 +261,7 @@ const AddEventForm: React.FC = () => {
   };
 
   return (
-    <Box>
+    <Box sx={{ width: "100%", px: 5 }}>
       <Typography variant="h5" mb={2}>
         {t("event.add_event.add_event")}
       </Typography>
@@ -267,6 +298,20 @@ const AddEventForm: React.FC = () => {
           value={formData.description}
           onChange={handleChange}
           fullWidth
+        />
+
+        <Autocomplete
+          sx={{ minWidth: "100%", mb: 2 }}
+          multiple
+          id="categories"
+          options={categories}
+          getOptionLabel={(option) => t(`event.add_event.cateoriess.${option}`)}
+          onChange={handleCategories}
+          value={formData.categories}
+          renderInput={(params) => (
+            <TextField {...params} label={t("event.add_event.categories")} />
+          )}
+          disableCloseOnSelect
         />
         <LocalizationProvider
           dateAdapter={AdapterDayjs}

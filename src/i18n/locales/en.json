@@ -87,7 +87,16 @@
       "LOCATION": "Select event location",
       "DATE_ERROR": "The start date cannot be greater than the end date!",
       "selected": "selected",
-      "choose_files": "Choose Files"
+      "choose_files": "Choose Files",
+      "categories": "Categories",
+      "cateoriess": {
+        "SPORTS": "Sports",
+        "ART": "Art",
+        "TECHNOLOGY": "Technology",
+        "SCIENCE": "Science",
+        "MUSIC": "Music",
+        "FASHION": "Fashion"
+      }
     },
     "rating": "Hosted events rating",
     "host": "Host of the event",
@@ -99,7 +108,7 @@
     "filters": {
       "radius": "Radius (m)",
       "select_radius": "Select radius",
-      "event_name": "Event name"
+    "event_name": "Event name"
     }
   },
   "chat": {

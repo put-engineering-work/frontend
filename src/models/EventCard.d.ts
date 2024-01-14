@@ -34,5 +34,5 @@ declare interface EventFilters {
   radius: number;
   startDate: string?;
   eventName: string?;
-  selectedCategories: string[]?;
+  selectedCategories: string[];
 }

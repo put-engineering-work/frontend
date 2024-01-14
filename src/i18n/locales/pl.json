@@ -93,7 +93,16 @@
       "LOCATION": "Wybierz lokalizację wydarzenia",
       "DATE_ERROR": "Data początkowa nie może być późniejsza niż data końcowa!",
       "selected": "wgrano",
-      "choose_files": "Wybierz pliki"
+      "choose_files": "Wybierz pliki",
+      "categories": "Kategorie",
+      "cateoriess": {
+        "SPORTS": "Sporty",
+        "ART": "Sztuka",
+        "TECHNOLOGY": "Technologia",
+        "SCIENCE": "Nauka",
+        "MUSIC": "Muzyka",
+        "FASHION": "Moda"
+      }
     },
     "rating": "Ocena organizowanych wydarzeń",
     "host": "Gospodarz wydarzenia",

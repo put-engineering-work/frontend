@@ -1,7 +1,13 @@
-import React, { useEffect, useState } from "react";
+import { useEffect, useState } from "react";
 import { useTranslation } from "react-i18next";
 import { getDataJson } from "../../../utils/fetchData";
-import { Box, Button, Container, Typography } from "@mui/material";
+import {
+  Box,
+  Button,
+  CircularProgress,
+  Container,
+  Typography,
+} from "@mui/material";
 
 import { useNavigate } from "react-router-dom";
 
@@ -12,10 +18,14 @@ const MyEvents = ({ isLogged }: { isLogged: boolean }) => {
   const { t } = useTranslation();
   const navigate = useNavigate();
 
+  const [loading, setLoading] = useState<boolean>(true);
+
   const [cardEvents, setCardEvents] = useState<EventCard[]>([]);
 
   useEffect(() => {
     const fetchData = async () => {
+      setLoading(true);
+
       try {
         const events = await getDataJson("events/history");
         setCardEvents(events);
@@ -23,6 +33,8 @@ const MyEvents = ({ isLogged }: { isLogged: boolean }) => {
       } catch (error) {
         console.error("Error fetching data:", error);
       }
+
+      setLoading(false);
     };
 
     fetchData();
@@ -42,84 +54,105 @@ const MyEvents = ({ isLogged }: { isLogged: boolean }) => {
           display: "flex",
           flexDirection: "row",
           flexWrap: "wrap",
+          justifyContent:
+            cardEvents && cardEvents.length > 0 ? "flex-start" : "center",
           gap: 5,
+          mb: 5,
         }}
       >
-        {!isLogged ? (
-          <Box
-            sx={{
-              display: "flex",
-              flexDirection: "column",
-              alignItems: "flex-start",
-            }}
-          >
-            <Typography sx={{ my: 2 }}>{t("my_event.no_register")}!</Typography>
-            <Button
+        {!loading ? (
+          !isLogged ? (
+            <Box
               sx={{
                 display: "flex",
-                flexDirection: "row",
-                alignItems: "center",
-                justifyContent: "center",
-                borderRadius: "10px",
-                padding: "8px 35px",
-                fontSize: 15,
-                color: "white",
+                flexDirection: "column",
+                alignItems: "flex-start",
+                justifyContent: "flex-start",
               }}
-              variant="contained"
-              onClick={() => navigate("../login")}
             >
-              {t("my_event.login")}
-            </Button>
-          </Box>
-        ) : cardEvents && cardEvents.length > 0 ? (
-          cardEvents.map((event, index) => (
-            <EventCard
-              key={index}
-              name={event.name}
-              startDate={event.startDate}
-              description={event.description}
-              category={""}
-              id={event.id}
-              endDate={event.endDate}
-              address={event.address}
-              latitude={event.latitude}
-              longitude={event.longitude}
-              link={event.id}
-              photo={
-                event.eventImages && event.eventImages.length > 0
-                  ? ` data:image/png;base64,${event.eventImages[0].image}`
-                  : DefaultImage
-              }
-            />
-          ))
+              <Typography sx={{ my: 2 }}>
+                {t("my_event.no_register")}!
+              </Typography>
+              <Button
+                sx={{
+                  display: "flex",
+                  flexDirection: "row",
+                  alignItems: "center",
+                  justifyContent: "center",
+                  borderRadius: "10px",
+                  padding: "8px 35px",
+                  fontSize: 15,
+                  color: "white",
+                }}
+                variant="contained"
+                onClick={() => navigate("../login")}
+              >
+                {t("my_event.login")}
+              </Button>
+            </Box>
+          ) : cardEvents && cardEvents.length > 0 ? (
+            cardEvents.map((event, index) => (
+              <EventCard
+                key={index}
+                name={event.name}
+                startDate={event.startDate}
+                description={event.description}
+                category={""}
+                id={event.id}
+                endDate={event.endDate}
+                address={event.address}
+                latitude={event.latitude}
+                longitude={event.longitude}
+                link={event.id}
+                photo={
+                  event.eventImages && event.eventImages.length > 0
+                    ? ` data:image/png;base64,${event.eventImages[0].image}`
+                    : DefaultImage
+                }
+              />
+            ))
+          ) : (
+            <Box
+              sx={{
+                display: "flex",
+                flexDirection: "column",
+                alignItems: "flex-start",
+              }}
+            >
+              <Typography sx={{ my: 2 }}>
+                {" "}
+                {t("my_event.no_events")}!
+              </Typography>
+              <Button
+                sx={{
+                  display: "flex",
+                  flexDirection: "row",
+                  alignItems: "center",
+                  justifyContent: "center",
+                  borderRadius: "10px",
+                  padding: "8px 35px",
+                  fontSize: 15,
+                  color: "white",
+                }}
+                variant="contained"
+                onClick={() => navigate("../map")}
+              >
+                {t("my_event.find_event")}
+              </Button>
+            </Box>
+          )
         ) : (
-          <Box
-            sx={{
+          <div
+            style={{
+              height: "80vh",
               display: "flex",
-              flexDirection: "column",
-              alignItems: "flex-start",
+              justifyContent: "center",
+              alignItems: "center",
             }}
           >
-            <Typography sx={{ my: 2 }}> {t("my_event.no_events")}!</Typography>
-            <Button
-              sx={{
-                display: "flex",
-                flexDirection: "row",
-                alignItems: "center",
-                justifyContent: "center",
-                borderRadius: "10px",
-                padding: "8px 35px",
-                fontSize: 15,
-                color: "white",
-              }}
-              variant="contained"
-              onClick={() => navigate("../map")}
-            >
-              {t("my_event.find_event")}
-            </Button>
-          </Box>
+            <CircularProgress color="primary" />
+          </div>
         )}
-        {}
       </Box>
     </Container>
   );

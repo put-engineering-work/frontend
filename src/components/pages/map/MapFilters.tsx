@@ -6,6 +6,7 @@ import NameFilters from "./MapFilters/NameFilters";
 import CityFilter from "./MapFilters/CityFilter";
 import CategoriesFilter from "./MapFilters/CategoriesFilter";
 import { useTranslation } from "react-i18next";
+import CategotyFilter from "./MapFilters/CategotyFilter";
 
 const MapFilters = ({
   filters,
@@ -36,6 +37,7 @@ const MapFilters = ({
       <CityFilter setFilters={setFilters} mapRef={mapRef} />
       <NameFilters filters={filters} handleFilters={handleFilters} />
       <RadiusFilter filters={filters} handleFilters={handleFilters} />
+      <CategotyFilter filters={filters} setFilters={setFilters} />
       <DateFilter filters={filters} handleFilters={handleFilters} />
       <CategoriesFilter filters={filters} handleFilters={handleFilters} />
       <Button variant="contained" onClick={fetchData}>
