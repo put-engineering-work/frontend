@@ -11,6 +11,16 @@ body {
   height: 100%;
 }
 
+.css-nzinn5-MuiContainer-root,
 .MuiBox-root.css-8atqhb {
   flex: 1 0 auto;
+}
+.css-nzinn5-MuiContainer-root {
+  padding-bottom: 20px;
+}
+
+@media (max-width: 768px) {
+  .footer-logo {
+    padding-inline: 30%;
+  }
 }

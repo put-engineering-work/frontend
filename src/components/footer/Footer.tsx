@@ -30,6 +30,7 @@ const Footer = () => {
           width: "100%",
           "@media (max-width:768px)": {
             borderInline: "1px solid",
+            padding: "10%",
           },
         }}
       >
@@ -44,7 +45,7 @@ const Footer = () => {
             },
           }}
         >
-          <img src={Image} width="100%" alt="" />
+          <img className="footer-logo" src={Image} width="100%" alt="" />
           <Box sx={{ display: "flex", flexDirection: "column", gap: 1 }}>
             <Typography component="h1" variant="h5">
               Information
