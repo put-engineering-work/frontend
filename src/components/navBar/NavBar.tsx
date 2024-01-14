@@ -21,9 +21,18 @@ import { useTranslation } from "react-i18next";
 const NavBar: FC<{
   colorMode: any;
   theme: Theme;
-  isLogged: Boolean;
+  isLogged: boolean;
+  isOpened: boolean;
   handleLogged: any;
-}> = ({ colorMode, theme, isLogged, handleLogged }) => {
+  isSideBarShow: boolean;
+}> = ({
+  colorMode,
+  theme,
+  isLogged,
+  isOpened,
+  handleLogged,
+  isSideBarShow,
+}) => {
   const { t } = useTranslation();
 
   const [anchorElUser, setAnchorElUser] = useState<null | HTMLElement>(null);
@@ -74,15 +83,17 @@ const NavBar: FC<{
         p: 3,
       }}
     >
-      {isLogged || checkPermiisons() ? (
+      {isSideBarShow || checkPermiisons() ? (
         <Typography
           variant="h4"
           component="div"
           sx={{
             flexGrow: 1,
+            cursor: "pointer",
             width: `calc(100% - ${drawerWidth}px)`,
-            ml: `${drawerWidth}px`,
+            ml: isOpened ? `240px` : `60px`,
           }}
+          onClick={() => navigate("/")}
         >
           LeisureLink
         </Typography>

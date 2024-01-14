@@ -75,9 +75,11 @@ const App = () => {
     <I18nextProvider i18n={i18n}>
       <CssBaseline />
       <NavBar
+        isSideBarShow={isSideBarShow}
         colorMode={colorMode}
         theme={theme}
         isLogged={isLogged}
+        isOpened={isOpened}
         handleLogged={handleLogged}
       />
       <SideBar
