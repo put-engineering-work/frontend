@@ -36,12 +36,14 @@ const App = () => {
       i18n.changeLanguage(language);
     }
 
-    // if (localStorage.getItem("user") === null) {
-    //   navigate("/login");
-    // } else {
-    //   setIsLogged(true);
-    // }
+    if (localStorage.getItem("user") !== null) {
+      setIsLogged(true);
+    }
   }, []);
+
+  useEffect(() => {
+    console.log(isLogged);
+  }, [isLogged]);
 
   const handleLogged = () => {
     setIsLogged((prev) => !prev);
@@ -102,7 +104,7 @@ const App = () => {
             path="/login"
             element={<LoginForm handleLogged={handleLogged} />}
           />
-          <Route path="/my_events" element={<MyEvents />} />
+          <Route path="/my_events" element={<MyEvents isLogged={isLogged} />} />
           <Route path="/home" element={<Home isLogged={isLogged} />} />
           <Route path="/register" element={<RegisterForm />} />
           <Route path="/map" element={<MapPage />} />

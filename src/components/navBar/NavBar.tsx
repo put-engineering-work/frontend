@@ -9,12 +9,14 @@ import {
 } from "@mui/material";
 import Brightness4Icon from "@mui/icons-material/Brightness4";
 import Brightness7Icon from "@mui/icons-material/Brightness7";
-import { FC, useEffect, useState } from "react";
+import { FC, useState } from "react";
 import { drawerWidth } from "../../utils/Constants";
 import LanguageSwitcher from "../LanguageSwitcher";
 import Tooltip from "@mui/material/Tooltip";
 import Avatar from "@mui/material/Avatar";
 import { useNavigate } from "react-router-dom";
+import { toast, ToastContainer } from "react-toastify";
+import { useTranslation } from "react-i18next";
 
 const NavBar: FC<{
   colorMode: any;
@@ -22,6 +24,8 @@ const NavBar: FC<{
   isLogged: Boolean;
   handleLogged: any;
 }> = ({ colorMode, theme, isLogged, handleLogged }) => {
+  const { t } = useTranslation();
+
   const [anchorElUser, setAnchorElUser] = useState<null | HTMLElement>(null);
   const navigate = useNavigate();
 
@@ -38,6 +42,7 @@ const NavBar: FC<{
     handleLogged();
     clearUserData();
     navigate("/");
+    toast.info(t(`homeContent.success_logout`));
   };
 
   const checkPermiisons = () => {
@@ -139,6 +144,14 @@ const NavBar: FC<{
           </Menu>
         </Box>
       )}
+      <ToastContainer
+        position="bottom-left"
+        autoClose={3000}
+        hideProgressBar={false}
+        closeOnClick
+        pauseOnHover
+        theme={theme.palette.mode}
+      />
     </Box>
   );
 };

@@ -6,8 +6,11 @@ import { useTranslation } from "react-i18next";
 import { useNavigate } from "react-router-dom";
 import { postData } from "../../../utils/fetchData";
 import MapFilters from "./MapFilters";
+import { defaultFilters } from "./MapFilters/defaultFilters";
 
 const MapPage: React.FC = () => {
+  const [filters, setFilters] = useState<EventFilters>(defaultFilters);
+
   const { t } = useTranslation();
   const navigate = useNavigate();
   const [events, setEvents] = useState([]);
@@ -16,23 +19,20 @@ const MapPage: React.FC = () => {
     navigate("/add_event");
   };
 
-  // useEffect(() => {
-  //   const fetchData = async () => {
-  //     try {
-  //       const eve = await postData("events/search", {
-  //         latitude: 52.409538,
-  //         longitude: 16.9191063,
-  //         radius: 10000000000,
-  //       });
-  //       console.log(eve);
-  //       setEvents(eve);
-  //     } catch (error) {
-  //       console.error("Error fetching data:", error);
-  //     }
-  //   };
+  const fetchData = async () => {
+    try {
+      const eve = await postData("events/search", filters);
 
-  //   fetchData();
-  // }, []);
+      console.log(eve);
+      setEvents(eve);
+    } catch (error) {
+      console.error("Error fetching data:", error);
+    }
+  };
+
+  useEffect(() => {
+    fetchData();
+  }, []);
 
   return (
     <Box sx={{ width: "100%" }}>
@@ -64,9 +64,13 @@ const MapPage: React.FC = () => {
             {" "}
             {t("map.filters")}
           </Typography>
-          <MapFilters />
+          <MapFilters
+            filters={filters}
+            setFilters={setFilters}
+            fetchData={fetchData}
+          />
         </Box>
-        {/* <MapComponent events={events} /> */}
+        <MapComponent events={events} filters={filters} />
       </Box>
     </Box>
   );

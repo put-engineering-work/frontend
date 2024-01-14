@@ -69,7 +69,8 @@ export default function SignIn(props: any) {
       if (responseData.code === "ACCEPTED") {
         localStorage.setItem("user", JSON.stringify(responseData));
         props.handleLogged();
-        navigate("/home");
+        navigate("/");
+        toast.success(t(`login.success_logout`));
       } else {
         toast.error(t(`login.errors.${responseData.message}`));
       }

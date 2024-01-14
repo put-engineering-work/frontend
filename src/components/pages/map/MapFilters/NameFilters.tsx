@@ -14,9 +14,9 @@ const NameFilters = ({
     <TextField
       label={t("event.filters.event_name")}
       variant="outlined"
-      value={filters.name}
+      value={filters.eventName}
       autoComplete="off"
-      onChange={(event) => handleFilters("name", event.target.value)}
+      onChange={(event) => handleFilters("eventName", event.target.value)}
     />
   );
 };

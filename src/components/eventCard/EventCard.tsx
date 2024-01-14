@@ -8,7 +8,7 @@ import LocationOnIcon from "@mui/icons-material/LocationOn";
 import { useTranslation } from "react-i18next";
 import CheckCircleIcon from "@mui/icons-material/CheckCircle";
 
-import Image1 from "../../assets/1.png";
+import Image1 from "../../assets/event.jpg";
 import { Link } from "react-router-dom";
 
 interface EventCardProps {
@@ -61,9 +61,9 @@ const EventCard: React.FC<EventCardProps> = ({
         }}
       >
         <Link style={{ textDecoration: "none" }} to={`/events/${link}`}>
-          <img width={330} height={250} src={photo} alt="image" />
+          <img width={330} src={photo} alt="image" />
           <Typography
-            sx={{ mt: 1, ml: 2, color: "text.primary", height: 70 }}
+            sx={{ mt: 1, ml: 2, color: "white", height: 70 }}
             variant="h5"
             component="div"
           >

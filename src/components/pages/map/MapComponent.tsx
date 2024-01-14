@@ -17,9 +17,10 @@ interface Event {
 
 interface MapComponentProps {
   events: Event[];
+  filters: EventFilters;
 }
 
-const MapComponent: React.FC<MapComponentProps> = ({ events }) => {
+const MapComponent: React.FC<MapComponentProps> = ({ events, filters }) => {
   const mapContainerStyle = {
     width: "100%",
     height: "600px",
@@ -52,6 +53,12 @@ const MapComponent: React.FC<MapComponentProps> = ({ events }) => {
     }
   }, [mapCenter]);
 
+  const currentPosMarkerOptions = {
+    icon: {
+      url: "https://maps.google.com/mapfiles/ms/icons/blue-dot.png",
+    },
+  };
+
   return (
     <LoadScriptNext googleMapsApiKey={API_KEY}>
       <GoogleMap
@@ -73,6 +80,11 @@ const MapComponent: React.FC<MapComponentProps> = ({ events }) => {
           }
         }}
       >
+        <Marker
+          position={{ lat: filters.latitude, lng: filters.longitude }}
+          title="Current Location"
+          options={currentPosMarkerOptions}
+        />
         {events &&
           events.map((event) => (
             <Marker

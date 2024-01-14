@@ -26,7 +26,8 @@
       "create": "Utwórz swoje wydarzenie",
       "lorem": "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco",
       "createBtn": "Utwórz wydarzenie"
-    }
+    },
+    "success_logout": "Pomyślnie się wylogowałeś"
   },
   "registration": {
     "sign_up": "Stwórz konto",
@@ -55,12 +56,14 @@
       "email": "Zły format e-mail",
       "USER_NOT_FOUND": "Użytkownik nie znaleziony",
       "WRONG_DATA": "Wpisałeś nieprawidłowe dane"
-    }
+    },
+    "success_logout": "Pomyślnie się zalogowałeś"
   },
   "map": {
     "add_event": "Dodaj wydarzenie",
     "filters": "Filtry",
-    "view_details": "Pokaż szczegóły"
+    "view_details": "Pokaż szczegóły",
+    "enter_filters": "Zastosuj filtry"
   },
   "event": {
     "date_time": "Data i godzina",
@@ -100,7 +103,7 @@
       "LEAVE": "Opuść wydarzenie"
     },
     "filters": {
-      "radius": "Promień",
+      "radius": "Promień (m)",
       "select_radius": "Wybierz promień",
       "event_name": "Nazwa wydarzenia"
     }
