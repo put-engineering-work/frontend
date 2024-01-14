@@ -53,17 +53,33 @@ const EventCard: React.FC<EventCardProps> = ({
         width: 350,
         display: "flex",
         justifyContent: "center",
+        padding: 2,
       }}
     >
       <CardContent
         sx={{
-          padding: 2,
+          padding: 0,
+          width: "100%",
         }}
       >
-        <Link style={{ textDecoration: "none" }} to={`/events/${link}`}>
-          <img width={330} src={photo} alt="image" />
+        <Link
+          style={{ textDecoration: "none", width: "100%" }}
+          to={`/events/${link}`}
+        >
+          <img width="100%" src={photo} alt="image" />
           <Typography
-            sx={{ mt: 1, ml: 2, color: "text.primary", height: 70 }}
+            sx={{
+              mt: 1,
+              ml: 2,
+              color: "text.primary",
+              height: 68,
+              wordBreak: "break-all",
+              overflow: "hidden",
+              textOverflow: "ellipsis",
+              display: "-webkit-box",
+              WebkitLineClamp: 2,
+              WebkitBoxOrient: "vertical",
+            }}
             variant="h5"
             component="div"
           >
@@ -96,11 +112,17 @@ const EventCard: React.FC<EventCardProps> = ({
 
           <Typography
             sx={{
-              display: "flex",
+              // display: "flex",
               flexDirection: "row",
               alignItems: "center",
               gap: 1,
               mb: 1,
+              wordBreak: "break-all",
+              overflow: "hidden",
+              textOverflow: "ellipsis",
+              display: "-webkit-box",
+              WebkitLineClamp: 1,
+              WebkitBoxOrient: "vertical",
             }}
             variant="body2"
             color="text.primary"
@@ -143,11 +165,15 @@ const EventCard: React.FC<EventCardProps> = ({
                 </Typography>
                 <Typography
                   sx={{
-                    display: "flex",
-                    flexDirection: "row",
-                    alignItems: "center",
-                    gap: 1,
+                    height: 36,
                     mb: 1,
+                    wordBreak: "break-word",
+                    overflow: "hidden",
+                    textOverflow: "ellipsis",
+                    display: "-webkit-box",
+                    WebkitLineClamp: 2,
+                    WebkitBoxOrient: "vertical",
+                    pr: 1,
                   }}
                   variant="body2"
                   color="text.main"

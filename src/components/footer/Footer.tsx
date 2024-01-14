@@ -27,6 +27,7 @@ const Footer = () => {
           display: "block",
           paddingInline: 2,
           paddingTop: 10,
+          width: "100%",
           "@media (max-width:768px)": {
             borderInline: "1px solid",
           },
