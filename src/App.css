@@ -7,12 +7,23 @@ body {
   height: 100%;
 }
 
-#root {
+#root,
+.css-1bg72my-MuiPaper-root,
+.MuiBox-root.css-1ofqeah {
   height: 100%;
 }
 
+.css-l5mmgl {
+  height: unset !important;
+}
+
+.MuiContainer-root.MuiContainer-maxWidthLg.css-6he8z-MuiContainer-root,
 .css-nzinn5-MuiContainer-root,
-.MuiBox-root.css-8atqhb {
+.MuiBox-root.css-8atqhb,
+.MuiBox-root.css-3dhuck,
+.MuiBox-root.css-owkjdj,
+.MuiBox-root.css-na3d9l,
+.MuiBox-root.css-l5mmgl {
   flex: 1 0 auto;
 }
 .css-nzinn5-MuiContainer-root {
