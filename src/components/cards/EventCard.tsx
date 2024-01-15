@@ -107,13 +107,16 @@ const EventCard: React.FC<EventCardProps> = ({
             <Typography sx={{ mb: 1 }} variant="body2" color="text.primary">
               {t("homeContent.categories")}:
             </Typography>
-            <Breadcrumbs aria-label="breadcrumb">
+            <Breadcrumbs aria-label="breadcrumb" sx={{ height: 70 }}>
               {categories.map((item: string, index: number) => {
                 return (
                   <StyledBreadcrumb
                     key={index}
                     component="a"
                     href="#"
+                    onClick={(event) => {
+                      event.preventDefault();
+                    }}
                     label={t(`event.add_event.cateoriess.${item}`)}
                   />
                 );
@@ -138,7 +141,7 @@ const EventCard: React.FC<EventCardProps> = ({
 
           <Typography
             sx={{
-              // display: "flex",
+              display: "flex",
               flexDirection: "row",
               alignItems: "center",
               gap: 1,
@@ -146,7 +149,6 @@ const EventCard: React.FC<EventCardProps> = ({
               wordBreak: "break-all",
               overflow: "hidden",
               textOverflow: "ellipsis",
-              display: "-webkit-box",
               WebkitLineClamp: 1,
               WebkitBoxOrient: "vertical",
             }}

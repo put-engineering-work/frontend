@@ -8,13 +8,14 @@ import { postData } from "../../../utils/fetchData";
 import MapFilters from "./MapFilters";
 import { defaultFilters } from "./MapFilters/defaultFilters";
 
-const MapPage: React.FC = () => {
+const MapPage = ({ isLogged }: { isLogged: boolean }) => {
   const mapRef = useRef<any | null>(null);
 
   const [filters, setFilters] = useState<EventFilters>(defaultFilters);
 
   const { t } = useTranslation();
   const navigate = useNavigate();
+
   const [events, setEvents] = useState([]);
 
   const handleAddButtonClick = () => {
@@ -47,21 +48,24 @@ const MapPage: React.FC = () => {
         }}
       >
         <Box sx={{ width: "100%" }}>
-          <IconButton
-            sx={{
-              width: "100%",
-              backgroundColor: "primary.main",
-              borderRadius: "8px",
-              "&:hover": {
-                backgroundColor: "primary.dark",
-              },
-              mb: 2,
-            }}
-            onClick={handleAddButtonClick}
-          >
-            <AddIcon />
-            {t("map.add_event")}
-          </IconButton>
+          {isLogged && (
+            <IconButton
+              sx={{
+                width: "100%",
+                backgroundColor: "primary.main",
+                borderRadius: "8px",
+                "&:hover": {
+                  backgroundColor: "primary.dark",
+                },
+                mb: 2,
+              }}
+              onClick={handleAddButtonClick}
+            >
+              <AddIcon />
+              {t("map.add_event")}
+            </IconButton>
+          )}
+
           <Typography variant="h6" mb={2}>
             {" "}
             {t("map.filters")}

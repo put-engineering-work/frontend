@@ -111,7 +111,7 @@ const App = () => {
           <Route path="/my_events" element={<MyEvents isLogged={isLogged} />} />
           <Route path="/home" element={<Home isLogged={isLogged} />} />
           <Route path="/register" element={<RegisterForm />} />
-          <Route path="/map" element={<MapPage />} />
+          <Route path="/map" element={<MapPage isLogged={isLogged} />} />
           <Route path="/add_event" element={<AddEventForm />} />
           <Route path="/events/:eventId" element={<EventDetail />} />
           <Route path="/events/:eventId/chat" element={<EventChat />} />
