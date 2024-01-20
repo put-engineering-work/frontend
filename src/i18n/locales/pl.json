@@ -27,7 +27,8 @@
       "lorem": "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco",
       "createBtn": "Utwórz wydarzenie"
     },
-    "success_logout": "Pomyślnie się wylogowałeś"
+    "success_logout": "Pomyślnie się wylogowałeś",
+    "no_categories": "Brak kategorii"
   },
   "registration": {
     "sign_up": "Stwórz konto",

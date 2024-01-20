@@ -87,7 +87,6 @@ const MapCard = ({ event }: { event: EventCard }) => {
             <Typography
               sx={{
                 mt: 1,
-                ml: 2,
                 mb: 1,
                 color: "text.primary",
                 wordBreak: "break-all",
@@ -130,21 +129,27 @@ const MapCard = ({ event }: { event: EventCard }) => {
             <Typography sx={{ mb: 1 }} variant="body2" color="text.primary">
               {t("homeContent.categories")}:
             </Typography>
-            <Breadcrumbs aria-label="breadcrumb">
-              {event.categories.map((item: string, index: number) => {
-                return (
-                  <StyledBreadcrumb
-                    key={index}
-                    component="a"
-                    href="#"
-                    onClick={(event) => {
-                      event.preventDefault();
-                    }}
-                    label={t(`event.add_event.cateoriess.${item}`)}
-                  />
-                );
-              })}
-            </Breadcrumbs>
+            {event.categories.length > 0 ? (
+              <Breadcrumbs aria-label="breadcrumb">
+                {event.categories.map((item: string, index: number) => {
+                  return (
+                    <StyledBreadcrumb
+                      key={index}
+                      component="a"
+                      href="#"
+                      onClick={(event) => {
+                        event.preventDefault();
+                      }}
+                      label={t(`event.add_event.cateoriess.${item}`)}
+                    />
+                  );
+                })}
+              </Breadcrumbs>
+            ) : (
+              <Typography sx={{ mb: 1 }} variant="body2" color="text.primary">
+                {t("homeContent.no_categories")}
+              </Typography>
+            )}
           </Box>
           <Typography
             sx={{
