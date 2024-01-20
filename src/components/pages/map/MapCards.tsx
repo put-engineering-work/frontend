@@ -1,5 +1,5 @@
 import { Box, Pagination } from "@mui/material";
-import React, { useState } from "react";
+import React, { useRef, useState } from "react";
 import MapCard from "./MapCard";
 
 interface MapComponentProps {
@@ -9,9 +9,11 @@ interface MapComponentProps {
 const MapCards: React.FC<MapComponentProps> = ({ events }) => {
   const itemsPerPage = 10;
   const [page, setPage] = useState<number>(1);
+  const topRef = useRef<any>(null);
 
   const handleChangePage = (event: any, newPage: any) => {
     setPage(newPage);
+    topRef.current?.scrollIntoView({ behavior: "smooth" });
   };
 
   const count = Math.ceil(events.length / itemsPerPage);
@@ -30,6 +32,7 @@ const MapCards: React.FC<MapComponentProps> = ({ events }) => {
         gap: 3,
       }}
     >
+      <Box ref={topRef}></Box>
       {currentEvents.map((event) => (
         <MapCard event={event} />
       ))}
