@@ -124,20 +124,6 @@ const SideBar = ({
               <ListItemText primary={t("sideBar.map")} />
             </ListItemButton>
           </ListItem>
-          <ListItem
-            key={t("sideBar.ratings")}
-            disablePadding
-            onClick={() => {
-              handleMobile();
-            }}
-          >
-            <ListItemButton>
-              <ListItemIcon>
-                <StarsIcon />
-              </ListItemIcon>
-              <ListItemText primary={t("sideBar.ratings")} />
-            </ListItemButton>
-          </ListItem>
         </List>
         <Divider
           sx={{
@@ -170,15 +156,6 @@ const SideBar = ({
                 <EmojiEventsIcon />
               </ListItemIcon>
               <ListItemText primary={t("sideBar.my_event")} />
-            </ListItemButton>
-          </ListItem>
-
-          <ListItem key={t("sideBar.recommendation")} disablePadding>
-            <ListItemButton>
-              <ListItemIcon>
-                <RecommendIcon />
-              </ListItemIcon>
-              <ListItemText primary={t("sideBar.recommendation")} />
             </ListItemButton>
           </ListItem>
         </List>
