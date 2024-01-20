@@ -115,7 +115,8 @@
       "radius": "Promień (m)",
       "select_radius": "Wybierz promień",
       "event_name": "Nazwa wydarzenia"
-    }
+    },
+    "guests": "Goście"
   },
   "chat": {
     "send": "Wysłać",

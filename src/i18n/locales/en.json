@@ -116,7 +116,8 @@
       "radius": "Radius (m)",
       "select_radius": "Select radius",
       "event_name": "Event name"
-    }
+    },
+    "guests": "Guests"
   },
   "chat": {
     "send": "Send",
