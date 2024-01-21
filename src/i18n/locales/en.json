@@ -27,7 +27,8 @@
       "lorem": "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco",
       "createBtn": "Create event"
     },
-    "success_logout": "You have successfully logged out"
+    "success_logout": "You have successfully logged out",
+    "no_categories": "No categories"
   },
   "registration": {
     "sign_up": "Create an Account",
@@ -117,7 +118,8 @@
       "select_radius": "Select radius",
       "event_name": "Event name"
     },
-    "comments": "Comments:"
+    "comments": "Comments:",
+    "guests": "Guests"
   },
   "chat": {
     "send": "Send",

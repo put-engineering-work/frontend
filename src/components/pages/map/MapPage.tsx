@@ -7,6 +7,7 @@ import { useNavigate } from "react-router-dom";
 import { postData } from "../../../utils/fetchData";
 import MapFilters from "./MapFilters";
 import { defaultFilters } from "./MapFilters/defaultFilters";
+import MapCards from "./MapCards";
 
 const MapPage = ({ isLogged }: { isLogged: boolean }) => {
   const mapRef = useRef<any | null>(null);
@@ -78,6 +79,7 @@ const MapPage = ({ isLogged }: { isLogged: boolean }) => {
           />
         </Box>
         <MapComponent events={events} filters={filters} mapRef={mapRef} />
+        <MapCards events={events} />
       </Box>
     </Box>
   );
