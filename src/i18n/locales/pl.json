@@ -118,6 +118,7 @@
       "event_name": "Nazwa wydarzenia"
     },
     "comments": "Komentarze",
+    "comment": "Komentarz",
     "guests": "Goście"
   },
   "chat": {

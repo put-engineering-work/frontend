@@ -196,7 +196,17 @@ const EventDetail = () => {
   };
 
   return (
-    <Box sx={{ mx: 10, mt: 3, maxWidth: "1600px" }}>
+    <Box
+      sx={{
+        mx: 10,
+        mt: 3,
+        width: "100%",
+        maxWidth: "1600px",
+        "@media (max-width:768px)": {
+          paddingInline: "2%",
+        },
+      }}
+    >
       <Box
         sx={{
           display: "flex",
@@ -206,6 +216,11 @@ const EventDetail = () => {
           justifyContent: "space-between",
           alignItems: "center",
           width: "100%",
+          "@media (max-width:768px)": {
+            flexDirection: "column",
+            gap: 2,
+            alignItems: "flex-start",
+          },
         }}
       >
         <Box
@@ -213,6 +228,10 @@ const EventDetail = () => {
             display: "flex",
             flexDirection: "row",
             gap: 10,
+            "@media (max-width:768px)": {
+              flexDirection: "column",
+              gap: 2,
+            },
           }}
         >
           <Box
@@ -283,6 +302,7 @@ const EventDetail = () => {
             padding: "8px 35px",
             fontSize: 14,
             color: "white",
+            "@media (max-width:768px)": {},
           }}
           variant="contained"
           onClick={handleJoinEvent}
@@ -297,7 +317,7 @@ const EventDetail = () => {
         container
         spacing={3}
         sx={{
-          width: "100vh",
+          width: "100%",
         }}
       >
         <Grid item xs={12} lg={8}>

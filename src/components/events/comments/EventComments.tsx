@@ -17,7 +17,7 @@ const EventDetailsMembers = ({ host, members }: EventDetailsMembers) => {
       <Box
         sx={{
           display: "flex",
-          flexDirection: "row",
+          flexDirection: "column",
           flexWrap: "wrap",
           gap: 2,
           overflow: "auto",
