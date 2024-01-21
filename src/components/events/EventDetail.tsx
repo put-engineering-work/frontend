@@ -30,6 +30,7 @@ import AvatarImage from "../../assets/1.png";
 import { getDataJson, postData } from "../../utils/fetchData";
 import EventDetailsMembers from "./members/EventDetailsMembers";
 import { StyledBreadcrumb } from "../../utils/StyledBreadcrumb";
+import EventComments from "./comments/EventComments";
 
 const EventDetail = () => {
   const { t } = useTranslation();
@@ -444,6 +445,7 @@ const EventDetail = () => {
         </Box>
       </Box>
       <EventDetailsMembers host={host} members={members} />
+      <EventComments host={host} members={members}></EventComments>
     </Box>
   );
 };
