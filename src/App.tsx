@@ -1,14 +1,12 @@
 import * as React from "react";
 import { useTheme, ThemeProvider, createTheme } from "@mui/material/styles";
 import { Box, CssBaseline } from "@mui/material";
-import { useEffect, useMemo, useState } from "react";
+import { Suspense, useEffect, useMemo, useState } from "react";
 import "./i18n/i18n";
 import i18n from "./i18n/i18n";
 import { I18nextProvider } from "react-i18next";
 import { Route, Routes, useLocation } from "react-router-dom";
-import Home from "./components/pages/home/HomePage";
-import RegisterForm from "./components/login/RegisterForm";
-import LoginForm from "./components/login/LoginForm";
+
 import NavBar from "./components/navBar/NavBar";
 import "react-toastify/dist/ReactToastify.css";
 import "./App.css";
@@ -20,6 +18,12 @@ import AddEventForm from "./components/events/AddEventForm";
 import Footer from "./components/footer/Footer";
 import EventChat from "./components/events/chat/EventChat";
 import MyEvents from "./components/pages/myEvents/MyEvents";
+
+const Home = React.lazy(() => import("./components/pages/home/HomePage"));
+const RegisterForm = React.lazy(
+  () => import("./components/login/RegisterForm")
+);
+const LoginForm = React.lazy(() => import("./components/login/LoginForm"));
 
 const ColorModeContext = React.createContext({ toggleColorMode: () => {} });
 
@@ -102,20 +106,25 @@ const App = () => {
           height: "100%",
         }}
       >
-        <Routes>
-          <Route path="/" element={<Home isLogged={isLogged} />} />
-          <Route
-            path="/login"
-            element={<LoginForm handleLogged={handleLogged} />}
-          />
-          <Route path="/my_events" element={<MyEvents isLogged={isLogged} />} />
-          <Route path="/home" element={<Home isLogged={isLogged} />} />
-          <Route path="/register" element={<RegisterForm />} />
-          <Route path="/map" element={<MapPage isLogged={isLogged} />} />
-          <Route path="/add_event" element={<AddEventForm />} />
-          <Route path="/events/:eventId" element={<EventDetail />} />
-          <Route path="/events/:eventId/chat" element={<EventChat />} />
-        </Routes>
+        <Suspense fallback={<div>Loading...</div>}>
+          <Routes>
+            <Route path="/" element={<Home isLogged={isLogged} />} />
+            <Route
+              path="/login"
+              element={<LoginForm handleLogged={handleLogged} />}
+            />
+            <Route
+              path="/my_events"
+              element={<MyEvents isLogged={isLogged} />}
+            />
+            <Route path="/home" element={<Home isLogged={isLogged} />} />
+            <Route path="/register" element={<RegisterForm />} />
+            <Route path="/map" element={<MapPage isLogged={isLogged} />} />
+            <Route path="/add_event" element={<AddEventForm />} />
+            <Route path="/events/:eventId" element={<EventDetail />} />
+            <Route path="/events/:eventId/chat" element={<EventChat />} />
+          </Routes>
+        </Suspense>
         <Footer />
       </Box>
     </I18nextProvider>
