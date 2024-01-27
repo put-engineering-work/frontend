@@ -1,13 +1,21 @@
 import React, { useState } from "react";
-import { Box, Button, TextField, Typography, Rating } from "@mui/material";
-import { postFormData } from "../../../utils/fetchData";
+import {
+  Box,
+  Button,
+  TextField,
+  Typography,
+  Rating,
+  FormControl,
+} from "@mui/material";
+import { postData, postFormData } from "../../../utils/fetchData";
+import { useTranslation } from "react-i18next";
 
 interface CommentFormProps {
   eventId: string;
   onCommentSubmit: () => void;
 }
 
-const CommentForm: React.FC<CommentFormProps> = ({
+const AddCommentForm: React.FC<CommentFormProps> = ({
   eventId,
   onCommentSubmit,
 }) => {
@@ -15,7 +23,7 @@ const CommentForm: React.FC<CommentFormProps> = ({
     content: "",
     grade: 0,
   });
-
+  const { t } = useTranslation();
   const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     const { name, value } = e.target;
     setCommentData((prevData) => ({
@@ -31,16 +39,33 @@ const CommentForm: React.FC<CommentFormProps> = ({
     }));
   };
 
+  const [errorForm, setErrorForm] = useState("");
+  const validateForm = (commentData: any) => {
+    if (!commentData.content) {
+      setErrorForm("CONTENT_ERROR");
+      return false;
+    }
+
+    if (commentData.grade < 1 || commentData.grade > 5) {
+      setErrorForm("GRADE_ERROR");
+      return false;
+    }
+
+    setErrorForm("");
+    return true;
+  };
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
-
+    if (!validateForm(commentData)) {
+      return;
+    }
     try {
-      const result = await postFormData(`/events/create/${eventId}/comment`, {
+      const result = await postData(`events/create/${eventId}/comment`, {
         content: commentData.content,
         grade: commentData.grade,
       });
 
-      if (result.code === "COMMENT_CREATED") {
+      if (result.code === "CREATED") {
         onCommentSubmit();
       } else {
         console.log("Error creating comment");
@@ -53,7 +78,7 @@ const CommentForm: React.FC<CommentFormProps> = ({
   return (
     <form onSubmit={handleSubmit}>
       <TextField
-        label="Comment"
+        label={t("event.comments.comment")}
         name="content"
         value={commentData.content}
         onChange={handleChange}
@@ -62,20 +87,33 @@ const CommentForm: React.FC<CommentFormProps> = ({
         rows={4}
         margin="normal"
         variant="outlined"
+        error={errorForm === "CONTENT_ERROR"}
+        helperText={
+          errorForm === "CONTENT_ERROR" && t(`event.comments.add_comment_btn`)
+        }
       />
       <Box>
-        <Typography>Rating:</Typography>
-        <Rating
-          name="grade"
-          value={commentData.grade}
-          onChange={(event, newValue) => handleRatingChange(newValue as number)}
-        />
+        <FormControl error={errorForm === "RATING_ERROR"}>
+          <Typography>{t("event.comments.rating")}</Typography>
+          <Rating
+            name="grade"
+            value={commentData.grade}
+            onChange={(event, newValue) =>
+              handleRatingChange(newValue as number)
+            }
+          />
+          {errorForm === "GRADE_ERROR" && (
+            <Typography color="error">
+              {t("event.comments.RATING_ERROR")}
+            </Typography>
+          )}
+        </FormControl>
       </Box>
       <Button type="submit" variant="contained" color="primary">
-        Submit Comment
+        {t("event.comments.add_comment_btn")}
       </Button>
     </form>
   );
 };
 
-export default CommentForm;
+export default AddCommentForm;

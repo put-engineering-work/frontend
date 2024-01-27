@@ -15,7 +15,7 @@ const EventDetailsMembers = ({ comments, eventId }: EventDetailsMembers) => {
   return (
     <Box sx={{ display: "flex", flexDirection: "column", gap: 2, mb: 10 }}>
       <AddCommentForm eventId={eventId} onCommentSubmit={handleCommentSubmit} />
-      <Typography variant="h6">{t("event.comments")}</Typography>
+      <Typography variant="h6">{t("event.comments.comments")}</Typography>
       <Box
         sx={{
           display: "flex",
@@ -41,7 +41,7 @@ const EventDetailsMembers = ({ comments, eventId }: EventDetailsMembers) => {
         {comments && comments.length > 10 && (
           <CommentCard
             key="and"
-            content={t("event.more_guests")}
+            content={t("event.comments.more_guests")}
             grade={NaN}
             commentDate={"2024-12-02T18:00:00+01:00"}
             // numberOfComments={comments.length - 10}

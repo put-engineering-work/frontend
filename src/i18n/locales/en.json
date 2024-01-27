@@ -118,9 +118,13 @@
       "select_radius": "Select radius",
       "event_name": "Event name"
     },
-    "comments": "Comments",
-    "comment": "Comment",
-    "add_comment_btn": "Add comment",
+    "comments": {
+      "comments": "Comments",
+      "comment": "Comment",
+      "rating:": "Rating",
+      "add_comment_btn": "Add comment",
+      "RATING_ERROR": "Add rating"
+    },
     "guests": "Guests"
   },
   "chat": {

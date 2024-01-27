@@ -118,9 +118,13 @@
       "select_radius": "Wybierz promień",
       "event_name": "Nazwa wydarzenia"
     },
-    "comments": "Komentarze",
-    "comment": "Komentarz",
-    "add_comment_btn": "Dodać komentarz",
+    "comments": {
+      "comments": "Komentarze",
+      "comment": "Komentarz",
+      "rating": "Ocena",
+      "add_comment_btn": "Dodaj komentarz",
+      "RATING_ERROR": "Dodaj ocenę"
+    },
     "guests": "Goście"
   },
   "chat": {
