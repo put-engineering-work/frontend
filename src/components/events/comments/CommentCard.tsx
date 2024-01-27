@@ -1,18 +1,14 @@
-import { Avatar, Box, Typography } from "@mui/material";
+import { Avatar, Box, Rating, Typography } from "@mui/material";
 import { useTranslation } from "react-i18next";
 
 const CommentCard = ({
-  name,
-  lastName,
-  role,
-  image,
-  numberOfComments,
+  content,
+  grade,
+  commentDate,
 }: {
-  name: string;
-  lastName: string;
-  role: string;
-  image?: string;
-  numberOfComments?: number;
+  content: string;
+  grade: number;
+  commentDate: string;
 }) => {
   const { t } = useTranslation();
 
@@ -38,7 +34,8 @@ const CommentCard = ({
           alignItems: "center",
         }}
       >
-        <Typography
+        <Rating name="simple-controlled" value={grade} readOnly />
+        {/* <Typography
           sx={{
             alignSelf: "flex-start",
             fontSize: 13,
@@ -50,7 +47,9 @@ const CommentCard = ({
         <Avatar sx={{ width: 100, height: 100, mb: 1 }} src={image} alt="image">
           {numberOfComments}
         </Avatar>
-        <Typography sx={{ fontSize: 20 }}>{`${name} ${lastName}`}</Typography>
+        <Typography
+          sx={{ fontSize: 20, textAlign: "center" }}
+        >{`${name} ${lastName}`}</Typography> */}
       </Box>
       <Box sx={{ width: "80%", borderLeft: "1px solid", paddingLeft: 2 }}>
         <Typography
@@ -62,7 +61,7 @@ const CommentCard = ({
         >
           {t(`event.comment`)}:
         </Typography>
-        <Typography sx={{ fontSize: 20 }}>{`${name} ${lastName}`}</Typography>
+        <Typography sx={{ fontSize: 20 }}>{content}</Typography>
       </Box>
     </Box>
   );

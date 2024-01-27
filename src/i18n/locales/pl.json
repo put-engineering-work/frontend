@@ -33,6 +33,7 @@
   "registration": {
     "sign_up": "Stwórz konto",
     "first_name": "Imię",
+    "last_name": "Nazwisko",
     "email_address": "Adres e-mail",
     "password": "Hasło",
     "repeat_password": "Powtórz hasło",
@@ -119,6 +120,7 @@
     },
     "comments": "Komentarze",
     "comment": "Komentarz",
+    "add_comment_btn": "Dodać komentarz",
     "guests": "Goście"
   },
   "chat": {

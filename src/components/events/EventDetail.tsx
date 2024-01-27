@@ -46,6 +46,8 @@ const EventDetail = () => {
   const [userEventRole, setUserEventRole] = useState<string>("NULL");
   const [members, setMembers] = useState<Member[]>([]);
 
+  const [comments, setComments] = useState<Comment[]>([]);
+
   const [images, setImages] = useState<any>([]);
 
   useEffect(() => {
@@ -158,10 +160,25 @@ const EventDetail = () => {
     }
   };
 
+  const fetchEventComments = async () => {
+    try {
+      const eventComments = await getDataJson(
+        `events/event/${eventId}/comments`
+      );
+
+      console.log(eventComments);
+
+      setComments(eventComments);
+    } catch (error) {
+      console.error("Error fetching data:", error);
+    }
+  };
+
   useEffect(() => {
     fetchEventDetails();
     fetchIsRegisteredInfo();
     fetchMembers();
+    fetchEventComments();
   }, [eventId]);
 
   if (!event) {
@@ -465,7 +482,7 @@ const EventDetail = () => {
         </Box>
       </Box>
       <EventDetailsMembers host={host} members={members} />
-      <EventComments host={host} members={members}></EventComments>
+      <EventComments comments={comments} eventId={eventId}></EventComments>
     </Box>
   );
 };

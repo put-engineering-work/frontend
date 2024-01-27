@@ -1,18 +1,20 @@
 import { Box, Typography } from "@mui/material";
 import { useTranslation } from "react-i18next";
 import CommentCard from "./CommentCard";
-import UserImage from "../../../assets/userImage.png";
-
+import AddCommentForm from "./AddCommentForm";
 interface EventDetailsMembers {
-  host: Host;
-  members: Member[];
+  comments: Comment[];
+  eventId: any;
 }
 
-const EventDetailsMembers = ({ host, members }: EventDetailsMembers) => {
+const EventDetailsMembers = ({ comments, eventId }: EventDetailsMembers) => {
   const { t } = useTranslation();
-
+  const handleCommentSubmit = () => {
+    // Handle any necessary actions after submitting a comment
+  };
   return (
     <Box sx={{ display: "flex", flexDirection: "column", gap: 2, mb: 10 }}>
+      <AddCommentForm eventId={eventId} onCommentSubmit={handleCommentSubmit} />
       <Typography variant="h6">{t("event.comments")}</Typography>
       <Box
         sx={{
@@ -22,34 +24,27 @@ const EventDetailsMembers = ({ host, members }: EventDetailsMembers) => {
           gap: 2,
           overflow: "auto",
           width: "100%",
+          paddingInline: 2,
         }}
       >
-        <CommentCard
-          key={host.id}
-          name={host.name}
-          lastName={host.lastname}
-          image={UserImage}
-          role={"ROLE_HOST"}
-        />
-        {members &&
-          members
+        {comments &&
+          comments
             .slice(0, 4)
-            .map((member) => (
+            .map((comment) => (
               <CommentCard
-                key={member.id}
-                name={member.name}
-                lastName={member.lastName}
-                image={UserImage}
-                role={member.type}
+                key={comment.id}
+                content={comment.content}
+                grade={comment.grade}
+                commentDate={comment.commentDate}
               />
             ))}
-        {members && members.length > 4 && (
+        {comments && comments.length > 10 && (
           <CommentCard
             key="and"
-            name={t("event.more_guests")}
-            lastName=""
-            role="And"
-            numberOfComments={members.length - 4}
+            content={t("event.more_guests")}
+            grade={NaN}
+            commentDate={"2024-12-02T18:00:00+01:00"}
+            // numberOfComments={comments.length - 10}
           />
         )}
       </Box>
