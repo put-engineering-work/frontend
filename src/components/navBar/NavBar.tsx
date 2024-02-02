@@ -158,9 +158,9 @@ const NavBar: FC<{
             open={Boolean(anchorElUser)}
             onClose={handleCloseUserMenu}
           >
-            <MenuItem key="Profile" onClick={handleCloseUserMenu}>
+            {/* <MenuItem key="Profile" onClick={handleCloseUserMenu}>
               <Typography textAlign="center">Profile</Typography>
-            </MenuItem>
+            </MenuItem> */}
             <MenuItem key="Logout" onClick={logoutUserMenu}>
               <Typography textAlign="center">Logout</Typography>
             </MenuItem>
