@@ -18,6 +18,7 @@ import AddEventForm from "./components/events/AddEventForm";
 import Footer from "./components/footer/Footer";
 import EventChat from "./components/events/chat/EventChat";
 import MyEvents from "./components/pages/myEvents/MyEvents";
+import NotFoundPage from "./components/pages/notFound/NotFoundPage";
 
 const Home = React.lazy(() => import("./components/pages/home/HomePage"));
 const RegisterForm = React.lazy(
@@ -123,6 +124,7 @@ const App = () => {
             <Route path="/add_event" element={<AddEventForm />} />
             <Route path="/events/:eventId" element={<EventDetail />} />
             <Route path="/events/:eventId/chat" element={<EventChat />} />
+            <Route path="*" element={<NotFoundPage />} />
           </Routes>
         </Suspense>
         <Footer />
