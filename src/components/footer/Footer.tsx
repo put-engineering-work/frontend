@@ -50,22 +50,22 @@ const Footer = () => {
             <Typography component="h1" variant="h5">
               Information
             </Typography>
-            <Link style={{ textDecoration: "none" }} to={"/"}>
+            <Link style={{ textDecoration: "none" }} to={"/faq"}>
               <Typography component="p" sx={{ color: "text.primary" }}>
                 FAQ
               </Typography>
             </Link>
-            <Link style={{ textDecoration: "none" }} to={"/"}>
+            <Link style={{ textDecoration: "none" }} to={"/about"}>
               <Typography component="p" sx={{ color: "text.primary" }}>
                 About us
               </Typography>
             </Link>
-            <Link style={{ textDecoration: "none" }} to={"/"}>
+            <Link style={{ textDecoration: "none" }} to={"/sitemap"}>
               <Typography component="p" sx={{ color: "text.primary" }}>
                 Sitemap
               </Typography>
             </Link>
-            <Link style={{ textDecoration: "none" }} to={"/"}>
+            <Link style={{ textDecoration: "none" }} to={"/cooperation"}>
               <Typography component="p" sx={{ color: "text.primary" }}>
                 Cooperation
               </Typography>
@@ -103,29 +103,29 @@ const Footer = () => {
                 justifyContent: "center",
               }}
             >
-              <Link style={{ textDecoration: "none" }} to={"/"}>
+              <a style={{ textDecoration: "none" }} href="https://www.facebook.com/" target="_blank">
                 <FacebookIcon
                   sx={{ fontSize: 50, color: "text.primary" }}
                 ></FacebookIcon>
-              </Link>
-              <Link style={{ textDecoration: "none" }} to={"/"}>
+              </a>
+              <a style={{ textDecoration: "none" }} href="https://www.instagram.com/" target="_blank">
                 <InstagramIcon
                   sx={{ fontSize: 50, color: "text.primary" }}
                 ></InstagramIcon>
-              </Link>
-              <Link style={{ textDecoration: "none" }} to={"/"}>
+              </a>
+              <a style={{ textDecoration: "none" }} href="https://www.pinterest.com/" target="_blank">
                 <PinterestIcon
                   sx={{ fontSize: 50, color: "text.primary" }}
                 ></PinterestIcon>
-              </Link>
-              <Link style={{ textDecoration: "none" }} to={"/"}>
+              </a>
+              <a style={{ textDecoration: "none" }} href="https://twitter.com/" target="_blank">
                 <XIcon sx={{ fontSize: 50, color: "text.primary" }}></XIcon>
-              </Link>
-              <Link to={"/"}>
+              </a>
+              <a href="https://www.youtube.com/" target="_blank">
                 <YouTubeIcon
                   sx={{ fontSize: 50, color: "text.primary" }}
                 ></YouTubeIcon>
-              </Link>
+              </a>
             </Box>
           </Box>
         </Box>
