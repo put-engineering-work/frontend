@@ -28,7 +28,8 @@
       "createBtn": "Create event"
     },
     "success_logout": "You have successfully logged out",
-    "no_categories": "No categories"
+    "no_categories": "No categories",
+    "host": "Host of the event"
   },
   "registration": {
     "sign_up": "Create an Account",
@@ -149,6 +150,15 @@
   "general": {
     "clear": "Clear",
     "confirm": "Confirm",
-    "loading": "Loading"
+    "loading": "Loading",
+    "guests": "guests"
+  },
+  "category": {
+    "Sports": "Sports",
+    "Art": "Art",
+    "Technology": "Technology",
+    "Science": "Science",
+    "Music": "Music",
+    "Fashion": "Fashion"
   }
 }

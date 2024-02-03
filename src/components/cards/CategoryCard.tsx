@@ -46,7 +46,7 @@ const CategoryCard: React.FC<CategoryCardProps> = ({ name }) => {
             variant="h6"
             component="div"
           >
-            {name}
+            {t(`category.${name}`)}
           </Typography>
         </Link>
       </CardContent>

@@ -30,6 +30,7 @@ import AvatarImage from "../../assets/1.png";
 import { getDataJson, postData } from "../../utils/fetchData";
 import EventDetailsMembers from "./members/EventDetailsMembers";
 import { StyledBreadcrumb } from "../../utils/StyledBreadcrumb";
+import { getToken } from "../../utils/getToken";
 
 const EventDetail = () => {
   const { t } = useTranslation();
@@ -272,22 +273,24 @@ const EventDetail = () => {
             <Rating name="simple-controlled" value={4} readOnly />
           </Box>
         </Box>
-        <Button
-          sx={{
-            display: userEventRole === "ROLE_HOST" ? "none" : "flex",
-            flexDirection: "row",
-            alignItems: "center",
-            justifyContent: "center",
-            borderRadius: "15px",
-            padding: "8px 35px",
-            fontSize: 14,
-            color: "white",
-          }}
-          variant="contained"
-          onClick={handleJoinEvent}
-        >
-          {t(`event.join_button.${joinEventText}`)}
-        </Button>
+        {getToken() && (
+          <Button
+            sx={{
+              display: userEventRole === "ROLE_HOST" ? "none" : "flex",
+              flexDirection: "row",
+              alignItems: "center",
+              justifyContent: "center",
+              borderRadius: "15px",
+              padding: "8px 35px",
+              fontSize: 14,
+              color: "white",
+            }}
+            variant="contained"
+            onClick={handleJoinEvent}
+          >
+            {t(`event.join_button.${joinEventText}`)}
+          </Button>
+        )}
       </Box>
       <Typography variant="h4" sx={{ mb: 2 }}>
         {name}

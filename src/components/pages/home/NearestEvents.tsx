@@ -24,8 +24,9 @@ const NearestEvents = () => {
           longitude: 21.0122,
           radius: 20000,
         });
-        console.log(events);
         const slicedEvents = events.slice(0, 8);
+        console.log(slicedEvents);
+
         setCardEvents(slicedEvents);
       } catch (error) {
         console.error("Error fetching data:", error);

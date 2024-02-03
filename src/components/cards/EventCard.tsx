@@ -38,16 +38,21 @@ const EventCard: React.FC<EventCardProps> = ({
   numberOfMembers,
   host,
 }) => {
-  const { t } = useTranslation();
+  const { t, i18n } = useTranslation();
 
-  const startDateObject = new Date(startDate);
-  const formattedStartDate = startDateObject.toLocaleString("en-US", {
-    weekday: "long",
-    month: "long",
-    day: "numeric",
-    hour: "numeric",
-    minute: "numeric",
-  });
+  const getData = (data: string) => {
+    const startDateObject = new Date(data);
+
+    const locate = i18n.language === "pl" ? "pl-PL" : "en-US";
+
+    return startDateObject.toLocaleString(locate, {
+      weekday: "long",
+      month: "long",
+      day: "numeric",
+      hour: "numeric",
+      minute: "numeric",
+    });
+  };
 
   return (
     <Card
@@ -136,7 +141,7 @@ const EventCard: React.FC<EventCardProps> = ({
             color="text.primary"
           >
             <EventIcon />
-            {formattedStartDate}
+            {getData(startDate)}
           </Typography>
 
           <Typography
@@ -185,11 +190,12 @@ const EventCard: React.FC<EventCardProps> = ({
                     flexDirection: "row",
                     alignItems: "center",
                     gap: 1,
+                    width: 100,
                   }}
                   variant="body2"
                   color="text.secondary"
                 >
-                  Host of the event:
+                  {t("homeContent.host")}:
                 </Typography>
                 <Typography
                   sx={{
@@ -219,7 +225,9 @@ const EventCard: React.FC<EventCardProps> = ({
               }}
             >
               <CheckCircleIcon />
-              <Typography>{numberOfMembers} guests</Typography>
+              <Typography>
+                {numberOfMembers} {t("general.guests")}
+              </Typography>
             </Box>
           </Box>
         </Box>

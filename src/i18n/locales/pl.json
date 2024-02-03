@@ -28,7 +28,8 @@
       "createBtn": "Utwórz wydarzenie"
     },
     "success_logout": "Pomyślnie się wylogowałeś",
-    "no_categories": "Brak kategorii"
+    "no_categories": "Brak kategorii",
+    "host": "Gospodarz wydarzenia"
   },
   "registration": {
     "sign_up": "Stwórz konto",
@@ -113,8 +114,8 @@
       "LEAVE": "Opuść wydarzenie"
     },
     "filters": {
-      "radius": "Promień (m)",
-      "select_radius": "Wybierz promień",
+      "radius": "Odłegłość (m)",
+      "select_radius": "Wybierz odłegłość ",
       "event_name": "Nazwa wydarzenia"
     },
     "guests": "Goście"
@@ -148,6 +149,15 @@
   "general": {
     "clear": "Wyczyść",
     "confirm": "Potwierdź",
-    "loading": "Ładowanie"
+    "loading": "Ładowanie",
+    "guests": "goście"
+  },
+  "category": {
+    "Sports": "Sporty",
+    "Art": "Sztuka",
+    "Technology": "Technologia",
+    "Science": "Nauka",
+    "Music": "Muzyka",
+    "Fashion": "Moda"
   }
 }
