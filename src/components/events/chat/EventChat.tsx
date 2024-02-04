@@ -89,7 +89,6 @@ const EventChat = () => {
     const client = new Client({
       brokerURL: `ws://localhost:8085/chat?token=${getToken()}`,
       onConnect: () => {
-        console.log("Connected!");
         // Подписка на получение истории сообщений
         client.publish({
           destination: `/app/history/${eventId}`,
@@ -97,7 +96,6 @@ const EventChat = () => {
 
         client.subscribe(`/topic/history/${eventId}`, (historyMessage) => {
           const messages = JSON.parse(historyMessage.body);
-          console.log("History message:", messages);
 
           setMessages(messages);
         });
@@ -105,7 +103,6 @@ const EventChat = () => {
         // Подписка на получение текущих сообщений
         client.subscribe(`/topic/messages/${eventId}`, (currentMessage) => {
           const messages = JSON.parse(currentMessage.body);
-          console.log("Current message:", messages);
           setMessages((prevMessages: any) => [
             ...prevMessages,
             JSON.parse(currentMessage.body),
@@ -113,7 +110,6 @@ const EventChat = () => {
         });
       },
       onDisconnect: () => {
-        console.log("Disconnected");
         setStompClient(null);
       },
     });

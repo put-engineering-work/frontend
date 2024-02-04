@@ -26,7 +26,7 @@ const Footer = () => {
         sx={{
           display: "block",
           paddingInline: 2,
-          paddingTop: 10,
+          paddingTop: 5,
           width: "100%",
           "@media (max-width:768px)": {
             borderInline: "1px solid",
@@ -45,35 +45,35 @@ const Footer = () => {
             },
           }}
         >
-          <img className="footer-logo" src={Image} width="100%" alt="" />
+          <img className="footer-logo" src={Image} width="40%" alt="" />
           <Box sx={{ display: "flex", flexDirection: "column", gap: 1 }}>
             <Typography component="h1" variant="h5">
-              Information
+              {t("footer.Information")}
             </Typography>
-            <Link style={{ textDecoration: "none" }} to={"/"}>
+            <Link style={{ textDecoration: "none" }} to={"/faq"}>
               <Typography component="p" sx={{ color: "text.primary" }}>
                 FAQ
               </Typography>
             </Link>
-            <Link style={{ textDecoration: "none" }} to={"/"}>
+            <Link style={{ textDecoration: "none" }} to={"/about"}>
               <Typography component="p" sx={{ color: "text.primary" }}>
-                About us
+                {t("footer.about")}
               </Typography>
             </Link>
-            <Link style={{ textDecoration: "none" }} to={"/"}>
+            <Link style={{ textDecoration: "none" }} to={"/sitemap"}>
               <Typography component="p" sx={{ color: "text.primary" }}>
-                Sitemap
+                {t("footer.Sitemap")}
               </Typography>
             </Link>
-            <Link style={{ textDecoration: "none" }} to={"/"}>
+            <Link style={{ textDecoration: "none" }} to={"/cooperation"}>
               <Typography component="p" sx={{ color: "text.primary" }}>
-                Cooperation
+                {t("footer.Cooperation")}
               </Typography>
             </Link>
           </Box>
           <Box sx={{ display: "flex", flexDirection: "column", gap: 1 }}>
             <Typography component="h1" variant="h5">
-              Contact:
+              {t("footer.Contact")}:
             </Typography>
             <Link style={{ textDecoration: "none" }} to={"/"}>
               <Typography component="p" sx={{ color: "text.primary" }}>
@@ -94,7 +94,7 @@ const Footer = () => {
             }}
           >
             <Typography component="h1" variant="h5" textAlign="center">
-              Follow us on social media:
+              {t("footer.follow")}:
             </Typography>
             <Box
               sx={{
@@ -103,29 +103,45 @@ const Footer = () => {
                 justifyContent: "center",
               }}
             >
-              <Link style={{ textDecoration: "none" }} to={"/"}>
+              <a
+                style={{ textDecoration: "none" }}
+                href="https://www.facebook.com/"
+                target="_blank"
+              >
                 <FacebookIcon
                   sx={{ fontSize: 50, color: "text.primary" }}
                 ></FacebookIcon>
-              </Link>
-              <Link style={{ textDecoration: "none" }} to={"/"}>
+              </a>
+              <a
+                style={{ textDecoration: "none" }}
+                href="https://www.instagram.com/"
+                target="_blank"
+              >
                 <InstagramIcon
                   sx={{ fontSize: 50, color: "text.primary" }}
                 ></InstagramIcon>
-              </Link>
-              <Link style={{ textDecoration: "none" }} to={"/"}>
+              </a>
+              <a
+                style={{ textDecoration: "none" }}
+                href="https://www.pinterest.com/"
+                target="_blank"
+              >
                 <PinterestIcon
                   sx={{ fontSize: 50, color: "text.primary" }}
                 ></PinterestIcon>
-              </Link>
-              <Link style={{ textDecoration: "none" }} to={"/"}>
+              </a>
+              <a
+                style={{ textDecoration: "none" }}
+                href="https://twitter.com/"
+                target="_blank"
+              >
                 <XIcon sx={{ fontSize: 50, color: "text.primary" }}></XIcon>
-              </Link>
-              <Link to={"/"}>
+              </a>
+              <a href="https://www.youtube.com/" target="_blank">
                 <YouTubeIcon
                   sx={{ fontSize: 50, color: "text.primary" }}
                 ></YouTubeIcon>
-              </Link>
+              </a>
             </Box>
           </Box>
         </Box>
@@ -136,7 +152,7 @@ const Footer = () => {
           }}
         ></Divider>
         <Typography sx={{ textAlign: "center" }}>
-          © 2023 LeasureLink All Rights Reserved{" "}
+          © 2023 LeasureLink {t("footer.rights")}{" "}
         </Typography>
       </Box>
     </>

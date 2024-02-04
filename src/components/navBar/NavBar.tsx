@@ -1,5 +1,6 @@
 import {
   Box,
+  Button,
   IconButton,
   Link,
   Menu,
@@ -122,7 +123,28 @@ const NavBar: FC<{
           LeisureLink
         </Typography>
       )}
-
+      {isSideBarShow && !isLogged && (
+        <Button
+          variant="contained"
+          color="primary"
+          sx={{
+            display: "flex",
+            alignItems: "center",
+            color: "#fff",
+            backgroundColor: "#42A5F5",
+            borderRadius: "13px",
+            mr: 2,
+            minWidth: 100,
+          }}
+          onClick={() => {
+            {
+              isLogged ? navigate("/map") : navigate("/login");
+            }
+          }}
+        >
+          {isLogged ? t("homeContent.welcome.find") : t("login.signIn")}
+        </Button>
+      )}
       <LanguageSwitcher />
       <IconButton
         sx={{ ml: 1, mr: isLogged ? 2 : 0 }}
@@ -158,9 +180,9 @@ const NavBar: FC<{
             open={Boolean(anchorElUser)}
             onClose={handleCloseUserMenu}
           >
-            <MenuItem key="Profile" onClick={handleCloseUserMenu}>
+            {/* <MenuItem key="Profile" onClick={handleCloseUserMenu}>
               <Typography textAlign="center">Profile</Typography>
-            </MenuItem>
+            </MenuItem> */}
             <MenuItem key="Logout" onClick={logoutUserMenu}>
               <Typography textAlign="center">Logout</Typography>
             </MenuItem>

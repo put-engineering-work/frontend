@@ -22,10 +22,10 @@ const NearestEvents = () => {
         const events = await postData("events/search", {
           latitude: 52.2297,
           longitude: 21.0122,
-          radius: 10000000,
+          radius: 20000,
         });
-        console.log(events);
         const slicedEvents = events.slice(0, 8);
+
         setCardEvents(slicedEvents);
       } catch (error) {
         console.error("Error fetching data:", error);

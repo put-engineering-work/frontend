@@ -20,16 +20,21 @@ import CheckCircleIcon from "@mui/icons-material/CheckCircle";
 import AvatarImage from "../../../assets/1.png";
 
 const MapCard = ({ event }: { event: EventCard }) => {
-  const { t } = useTranslation();
+  const { t, i18n } = useTranslation();
 
-  const startDateObject = new Date(event.startDate);
-  const formattedStartDate = startDateObject.toLocaleString("en-US", {
-    weekday: "long",
-    month: "long",
-    day: "numeric",
-    hour: "numeric",
-    minute: "numeric",
-  });
+  const getData = (data: string) => {
+    const startDateObject = new Date(data);
+
+    const locate = i18n.language === "pl" ? "pl-PL" : "en-US";
+
+    return startDateObject.toLocaleString(locate, {
+      weekday: "long",
+      month: "long",
+      day: "numeric",
+      hour: "numeric",
+      minute: "numeric",
+    });
+  };
 
   return (
     <Card
@@ -163,7 +168,7 @@ const MapCard = ({ event }: { event: EventCard }) => {
             color="text.primary"
           >
             <EventIcon />
-            {formattedStartDate}
+            {getData(event.startDate)}
           </Typography>
 
           <Typography

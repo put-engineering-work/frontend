@@ -6,8 +6,6 @@ import ListItemText from "@mui/material/ListItemText";
 import List from "@mui/material/List";
 import HomeIcon from "@mui/icons-material/Home";
 import MapIcon from "@mui/icons-material/Map";
-import StarsIcon from "@mui/icons-material/Stars";
-import RecommendIcon from "@mui/icons-material/Recommend";
 import { Drawer, Toolbar, IconButton } from "@mui/material";
 import ArrowForwardIcon from "@mui/icons-material/ArrowForward";
 import ArrowBackIcon from "@mui/icons-material/ArrowBack";

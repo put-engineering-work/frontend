@@ -27,7 +27,6 @@ const MapPage = ({ isLogged }: { isLogged: boolean }) => {
     try {
       const events = await postData("events/search", filters);
 
-      console.log(events);
       setEvents(events);
     } catch (error) {
       console.error("Error fetching data:", error);

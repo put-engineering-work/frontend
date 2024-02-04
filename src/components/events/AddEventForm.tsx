@@ -66,7 +66,6 @@ const AddEventForm: React.FC = () => {
   };
 
   useEffect(() => {
-    console.log(formData);
     fetchCategories();
   }, [formData]);
 
@@ -88,7 +87,6 @@ const AddEventForm: React.FC = () => {
   };
 
   const handleDataChange = (value: any, name: string) => {
-    console.log(name);
     const formattedDate = value.format();
 
     setFormData((prevData) => ({
@@ -160,7 +158,6 @@ const AddEventForm: React.FC = () => {
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
-    console.log("Submitted data:", formData);
 
     if (!validateForm(formData)) {
       return;
@@ -191,7 +188,6 @@ const AddEventForm: React.FC = () => {
     const result = await postFormData("events/create", formDataToSend);
 
     if (result.code === "CREATED") {
-      console.log("created");
       navigate("/my_events");
     } else {
       console.log("error");
@@ -237,8 +233,6 @@ const AddEventForm: React.FC = () => {
       .then((data) => {
         if (data.results && data.results.length > 0) {
           const address = data.results[0].formatted_address;
-          console.log(data.results[0]);
-          console.log("Address:", getAddressString(address));
 
           setFormData((prevData) => ({
             ...prevData,

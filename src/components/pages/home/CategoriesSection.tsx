@@ -1,18 +1,13 @@
-import { Box, Button, Typography } from "@mui/material";
+import { Box, Typography } from "@mui/material";
 import { useTranslation } from "react-i18next";
-import { useNavigate } from "react-router-dom";
 import CategoryCard from "../../cards/CategoryCard";
-import { useState } from "react";
-import { coordinates } from "../../../constants/coordinates";
 import { categories } from "../../../constants/categories";
 
 const CategoriesSection = () => {
   const { t } = useTranslation();
-  const navigate = useNavigate();
 
-  const [cardCategories, setCardCategoriess] = useState<CategoryCard[]>([]);
+  const slicedCategories = categories.slice(0, 8);
 
-  const slicedCategories = categories.slice(0, 6);
   return (
     <Box
       sx={{
@@ -36,9 +31,13 @@ const CategoriesSection = () => {
           },
         }}
       >
-        {/* TODO: */}
         {slicedCategories.map((category, index) => (
-          <CategoryCard key={index} name={category.name} id={category.id} />
+          <CategoryCard
+            key={index}
+            name={category.name}
+            id={category.id}
+            image={category.image}
+          />
         ))}
       </Box>
     </Box>

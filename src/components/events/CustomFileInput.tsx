@@ -37,7 +37,7 @@ const CustomFileInput: React.FC<CustomFileInputProps> = ({ onChange }) => {
         )}
         <input
           type="file"
-          accept="image/*"
+          accept="image/png, image/jpeg"
           onChange={handleFileChange}
           multiple
           style={{ display: "none" }}

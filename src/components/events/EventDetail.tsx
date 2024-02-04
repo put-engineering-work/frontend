@@ -31,6 +31,7 @@ import { getDataJson, postData } from "../../utils/fetchData";
 import EventDetailsMembers from "./members/EventDetailsMembers";
 import { StyledBreadcrumb } from "../../utils/StyledBreadcrumb";
 import EventComments from "./comments/EventComments";
+import { getToken } from "../../utils/getToken";
 
 const EventDetail = () => {
   const { t } = useTranslation();
@@ -58,15 +59,9 @@ const EventDetail = () => {
     handleStepChange(activeStep);
   }, [activeStep]);
 
-  useEffect(() => {
-    console.log(userEventRole);
-  }, [userEventRole]);
-
   const fetchIsRegisteredInfo = async () => {
     try {
       const userRole = await getDataJson(`events/is-registered/${eventId}`);
-
-      console.log(userRole);
 
       if (userRole.message === "ROLE_GUEST") {
         setJoinEventText("LEAVE");
@@ -96,8 +91,6 @@ const EventDetail = () => {
     try {
       const event = await getDataJson(`events/event/${eventId}`);
 
-      console.log(event);
-
       const images = getImages(event.eventImages);
       if (images.length === 0) {
         setImages([Image]);
@@ -115,7 +108,6 @@ const EventDetail = () => {
     try {
       const members = await getDataJson(`events/event/${eventId}/members`);
 
-      console.log(members);
       setMembers(members);
     } catch (error) {
       console.error("Error fetching data:", error);
@@ -124,11 +116,8 @@ const EventDetail = () => {
 
   const handleJoinEvent = async () => {
     try {
-      console.log(userEventRole);
       if (userEventRole !== "ROLE_GUEST") {
         const addUser = await postData(`events/${eventId}/add-user`, {});
-
-        console.log(addUser);
 
         if (addUser.code === "OK") {
           setJoinEventText("LEAVE");
@@ -141,8 +130,6 @@ const EventDetail = () => {
         fetchIsRegisteredInfo();
       } else {
         const removeMe = await postData(`events/remove-me/${eventId}`, {});
-
-        console.log(removeMe);
 
         if (removeMe.code === "OK") {
           setJoinEventText("JOIN");
@@ -309,23 +296,24 @@ const EventDetail = () => {
             <Rating name="simple-controlled" value={4} readOnly />
           </Box>
         </Box>
-        <Button
-          sx={{
-            display: userEventRole === "ROLE_HOST" ? "none" : "flex",
-            flexDirection: "row",
-            alignItems: "center",
-            justifyContent: "center",
-            borderRadius: "15px",
-            padding: "8px 35px",
-            fontSize: 14,
-            color: "white",
-            "@media (max-width:768px)": {},
-          }}
-          variant="contained"
-          onClick={handleJoinEvent}
-        >
-          {t(`event.join_button.${joinEventText}`)}
-        </Button>
+        {getToken() && (
+          <Button
+            sx={{
+              display: userEventRole === "ROLE_HOST" ? "none" : "flex",
+              flexDirection: "row",
+              alignItems: "center",
+              justifyContent: "center",
+              borderRadius: "15px",
+              padding: "8px 35px",
+              fontSize: 14,
+              color: "white",
+            }}
+            variant="contained"
+            onClick={handleJoinEvent}
+          >
+            {t(`event.join_button.${joinEventText}`)}
+          </Button>
+        )}
       </Box>
       <Typography variant="h4" sx={{ mb: 2 }}>
         {name}

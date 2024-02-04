@@ -28,7 +28,8 @@
       "createBtn": "Create event"
     },
     "success_logout": "You have successfully logged out",
-    "no_categories": "No categories"
+    "no_categories": "No categories",
+    "host": "Host of the event"
   },
   "registration": {
     "sign_up": "Create an Account",
@@ -98,7 +99,7 @@
       "choose_files": "Choose Files",
       "categories": "Categories",
       "cateoriess": {
-        "SPORTS": "Sports",
+        "SPORTS": "Sport",
         "ART": "Art",
         "TECHNOLOGY": "Technology",
         "SCIENCE": "Science",
@@ -156,6 +157,26 @@
   "general": {
     "clear": "Clear",
     "confirm": "Confirm",
-    "loading": "Loading"
+    "loading": "Loading",
+    "guests": "guests"
+  },
+  "category": {
+    "Sport": "Sport",
+    "Art": "Art",
+    "Technology": "Technology",
+    "Science": "Science",
+    "Music": "Music",
+    "Fashion": "Fashion",
+    "Food": "Food",
+    "Travel": "Travel"
+  },
+  "footer": {
+    "Information": "Information",
+    "about": "About us",
+    "Sitemap": "Sitemap",
+    "Cooperation": "Cooperation",
+    "Contact": "Contact",
+    "follow": "Follow us on social media",
+    "rights": "All Rights Reserved"
   }
 }

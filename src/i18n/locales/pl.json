@@ -28,7 +28,8 @@
       "createBtn": "Utwórz wydarzenie"
     },
     "success_logout": "Pomyślnie się wylogowałeś",
-    "no_categories": "Brak kategorii"
+    "no_categories": "Brak kategorii",
+    "host": "Gospodarz wydarzenia"
   },
   "registration": {
     "sign_up": "Stwórz konto",
@@ -98,7 +99,7 @@
       "choose_files": "Wybierz pliki",
       "categories": "Kategorie",
       "cateoriess": {
-        "SPORTS": "Sporty",
+        "SPORTS": "Sport",
         "ART": "Sztuka",
         "TECHNOLOGY": "Technologia",
         "SCIENCE": "Nauka",
@@ -114,8 +115,8 @@
       "LEAVE": "Opuść wydarzenie"
     },
     "filters": {
-      "radius": "Promień (m)",
-      "select_radius": "Wybierz promień",
+      "radius": "Odłegłość (m)",
+      "select_radius": "Wybierz odłegłość ",
       "event_name": "Nazwa wydarzenia"
     },
     "comments": {
@@ -156,6 +157,26 @@
   "general": {
     "clear": "Wyczyść",
     "confirm": "Potwierdź",
-    "loading": "Ładowanie"
+    "loading": "Ładowanie",
+    "guests": "goście"
+  },
+  "category": {
+    "Sport": "Sport",
+    "Art": "Sztuka",
+    "Technology": "Technologia",
+    "Science": "Nauka",
+    "Music": "Muzyka",
+    "Fashion": "Moda",
+    "Food": "Żywność",
+    "Travel": "Podróż"
+  },
+  "footer": {
+    "Information": "Informacja",
+    "about": "O nas",
+    "Sitemap": "Mapa witryny",
+    "Cooperation": "Współpraca",
+    "Contact": "Kontakt",
+    "follow": "Śledź nas w mediach społecznościowych",
+    "rights": "Wszelkie prawa zastrzeżone"
   }
 }

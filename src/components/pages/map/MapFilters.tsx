@@ -21,10 +21,6 @@ const MapFilters = ({
 }) => {
   const { t } = useTranslation();
 
-  useEffect(() => {
-    console.log(filters);
-  }, [filters]);
-
   const handleFilters = (name: string, value: any) => {
     setFilters((old: EventFilters) => ({
       ...old,
