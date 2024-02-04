@@ -6,7 +6,7 @@ import { categories } from "../../../constants/categories";
 const CategoriesSection = () => {
   const { t } = useTranslation();
 
-  const slicedCategories = categories.slice(0, 8);
+  const slicedCategories = categories;
 
   return (
     <Box

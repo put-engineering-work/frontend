@@ -31,13 +31,14 @@ const CategoryCard: React.FC<CategoryCardProps> = ({ name, image }) => {
       <CardContent
         sx={{
           padding: 1,
-          pt:2
+          pt: 2,
         }}
       >
         <Link style={{ textDecoration: "none" }} to={`/map`}>
           <img
-            width="110px"
+            width="100%"
             height="110px"
+            style={{ objectFit: "contain" }}
             src={image}
             alt="image"
             className="event-card"
