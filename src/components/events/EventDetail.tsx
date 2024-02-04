@@ -161,9 +161,12 @@ const EventDetail = () => {
 
   useEffect(() => {
     fetchEventDetails();
-    fetchIsRegisteredInfo();
+
     fetchMembers();
     fetchEventComments();
+    if (localStorage.getItem("user")) {
+      fetchIsRegisteredInfo();
+    }
   }, [eventId]);
 
   if (!event) {
@@ -440,6 +443,7 @@ const EventDetail = () => {
                   {categories.map((item: string) => {
                     return (
                       <StyledBreadcrumb
+                        key={item}
                         component="a"
                         href="#"
                         label={t(`event.add_event.cateoriess.${item}`)}

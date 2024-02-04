@@ -1,5 +1,4 @@
 import { format } from "date-fns";
-import i18n from "../i18n/i18n";
 
 export const getInitialLanguage = () => {
   const storageData = localStorage.getItem("language");

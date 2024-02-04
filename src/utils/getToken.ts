@@ -6,7 +6,6 @@ export const getToken = () => {
     const token = user.token;
     return token;
   } else {
-    console.error("User data not found in localStorage");
     return null;
   }
 };
