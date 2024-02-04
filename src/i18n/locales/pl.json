@@ -104,7 +104,8 @@
         "SCIENCE": "Nauka",
         "MUSIC": "Muzyka",
         "FASHION": "Moda"
-      }
+      },
+      "WRONG_IMAGE_FORMAT": "Zły format obrazów"
     },
     "rating": "Ocena organizowanych wydarzeń",
     "host": "Gospodarz wydarzenia",

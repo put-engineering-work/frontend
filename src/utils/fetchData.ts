@@ -86,12 +86,8 @@ export const postFormData = async (endpoint: string, formData: any) => {
       body: formData,
     });
 
-    if (!response.ok) {
-      throw new Error(`HTTP error! Status: ${response.status}`);
-    }
-
+    console.log(response);
     const responseData = await response.json();
-
     return responseData;
   } catch (error) {
     console.error("Error:", error);

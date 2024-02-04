@@ -105,7 +105,8 @@
         "SCIENCE": "Science",
         "MUSIC": "Music",
         "FASHION": "Fashion"
-      }
+      },
+      "WRONG_IMAGE_FORMAT": "Wrong images format"
     },
     "rating": "Hosted events rating",
     "host": "Host of the event",
