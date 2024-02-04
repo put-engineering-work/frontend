@@ -155,7 +155,7 @@ const EventDetail = () => {
 
       console.log(eventComments);
 
-      setComments(eventComments);
+      setComments(eventComments.reverse());
     } catch (error) {
       console.error("Error fetching data:", error);
     }
@@ -470,7 +470,11 @@ const EventDetail = () => {
         </Box>
       </Box>
       <EventDetailsMembers host={host} members={members} />
-      <EventComments comments={comments} eventId={eventId}></EventComments>
+      <EventComments
+        comments={comments}
+        eventId={eventId}
+        onCommentSubmit={fetchEventComments}
+      ></EventComments>
     </Box>
   );
 };

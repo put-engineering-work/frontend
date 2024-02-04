@@ -104,7 +104,10 @@
         "TECHNOLOGY": "Technology",
         "SCIENCE": "Science",
         "MUSIC": "Music",
-        "FASHION": "Fashion"
+        "FASHION": "Fashion",
+        "FOOD": "Food",
+        "TRAVEL": "Travel",
+        "EXPOS": "Expos"
       }
     },
     "rating": "Hosted events rating",
@@ -120,9 +123,9 @@
       "event_name": "Event name"
     },
     "comments": {
+      "rating": "Rating",
       "comments": "Comments",
       "comment": "Comment",
-      "rating:": "Rating",
       "add_comment_btn": "Add comment",
       "RATING_ERROR": "Add rating"
     },

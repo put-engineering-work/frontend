@@ -1,5 +1,7 @@
 import { Avatar, Box, Rating, Typography } from "@mui/material";
 import { useTranslation } from "react-i18next";
+import { getFormatedDate } from "../../../utils/utlits";
+import { format } from "date-fns";
 
 const CommentCard = ({
   content,
@@ -30,38 +32,19 @@ const CommentCard = ({
         sx={{
           display: "flex",
           flexDirection: "column",
-          width: "15%",
-          alignItems: "center",
         }}
       >
-        <Rating name="simple-controlled" value={grade} readOnly />
-        {/* <Typography
-          sx={{
-            alignSelf: "flex-start",
-            fontSize: 13,
-            color: "text.secondary",
-          }}
-        >
-          {t(`event.roles.${role}`)}:
+        <Typography sx={{ paddingBottom: 1 }}>
+          {format(new Date(commentDate), "dd.MM.y, HH:mm")}
         </Typography>
-        <Avatar sx={{ width: 100, height: 100, mb: 1 }} src={image} alt="image">
-          {numberOfComments}
-        </Avatar>
-        <Typography
-          sx={{ fontSize: 20, textAlign: "center" }}
-        >{`${name} ${lastName}`}</Typography> */}
-      </Box>
-      <Box sx={{ width: "80%", borderLeft: "1px solid", paddingLeft: 2 }}>
-        <Typography
-          sx={{
-            alignSelf: "flex-start",
-            fontSize: 13,
-            color: "text.secondary",
-          }}
-        >
-          {t(`event.comment`)}:
-        </Typography>
-        <Typography sx={{ fontSize: 20 }}>{content}</Typography>
+        <Rating
+          sx={{ paddingBottom: 1 }}
+          name="simple-controlled"
+          value={grade}
+          readOnly
+        />
+
+        <Typography sx={{ fontSize: 20 }}>&emsp;{content}</Typography>
       </Box>
     </Box>
   );

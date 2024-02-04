@@ -104,7 +104,10 @@
         "TECHNOLOGY": "Technologia",
         "SCIENCE": "Nauka",
         "MUSIC": "Muzyka",
-        "FASHION": "Moda"
+        "FASHION": "Moda",
+        "FOOD": "Żywność",
+        "TRAVEL": "Podróż",
+        "EXPOS": "Expos"
       }
     },
     "rating": "Ocena organizowanych wydarzeń",
@@ -120,9 +123,9 @@
       "event_name": "Nazwa wydarzenia"
     },
     "comments": {
+      "rating": "Ocena",
       "comments": "Komentarze",
       "comment": "Komentarz",
-      "rating": "Ocena",
       "add_comment_btn": "Dodaj komentarz",
       "RATING_ERROR": "Dodaj ocenę"
     },

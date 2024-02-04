@@ -94,8 +94,11 @@ const AddCommentForm: React.FC<CommentFormProps> = ({
       />
       <Box>
         <FormControl error={errorForm === "RATING_ERROR"}>
-          <Typography>{t("event.comments.rating")}</Typography>
+          <Typography sx={{ paddingBottom: 1 }}>
+            {t("event.comments.rating")}
+          </Typography>
           <Rating
+            sx={{ paddingBottom: 2 }}
             name="grade"
             value={commentData.grade}
             onChange={(event, newValue) =>

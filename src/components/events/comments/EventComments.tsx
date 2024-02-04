@@ -5,12 +5,17 @@ import AddCommentForm from "./AddCommentForm";
 interface EventDetailsMembers {
   comments: Comment[];
   eventId: any;
+  onCommentSubmit: () => void;
 }
 
-const EventDetailsMembers = ({ comments, eventId }: EventDetailsMembers) => {
+const EventDetailsMembers = ({
+  comments,
+  eventId,
+  onCommentSubmit,
+}: EventDetailsMembers) => {
   const { t } = useTranslation();
   const handleCommentSubmit = () => {
-    // Handle any necessary actions after submitting a comment
+    onCommentSubmit();
   };
   return (
     <Box sx={{ display: "flex", flexDirection: "column", gap: 2, mb: 10 }}>

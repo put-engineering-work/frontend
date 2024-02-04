@@ -83,7 +83,7 @@ const EventCard: React.FC<EventCardProps> = ({
               ml: 2,
               color: "text.primary",
               height: 68,
-              wordBreak: "break-all",
+              wordBreak: "break-word",
               overflow: "hidden",
               textOverflow: "ellipsis",
               display: "-webkit-box",
