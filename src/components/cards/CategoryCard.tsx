@@ -3,15 +3,15 @@ import Card from "@mui/material/Card";
 import CardContent from "@mui/material/CardContent";
 import Typography from "@mui/material/Typography";
 import { useTranslation } from "react-i18next";
-import Image from "../../assets/category-sample.png";
 import { Link } from "react-router-dom";
 
 interface CategoryCardProps {
   id: string;
   name: string;
+  image: string;
 }
 
-const CategoryCard: React.FC<CategoryCardProps> = ({ name }) => {
+const CategoryCard: React.FC<CategoryCardProps> = ({ name, image }) => {
   const { t } = useTranslation();
 
   return (
@@ -31,13 +31,14 @@ const CategoryCard: React.FC<CategoryCardProps> = ({ name }) => {
       <CardContent
         sx={{
           padding: 1,
+          pt:2
         }}
       >
         <Link style={{ textDecoration: "none" }} to={`/map`}>
           <img
-            width="100%"
-            height="auto"
-            src={Image}
+            width="110px"
+            height="110px"
+            src={image}
             alt="image"
             className="event-card"
           />
