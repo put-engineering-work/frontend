@@ -156,6 +156,7 @@ const EventCard: React.FC<EventCardProps> = ({
               textOverflow: "ellipsis",
               WebkitLineClamp: 1,
               WebkitBoxOrient: "vertical",
+              height: 40,
             }}
             variant="body2"
             color="text.primary"
