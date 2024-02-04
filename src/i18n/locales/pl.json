@@ -98,7 +98,7 @@
       "choose_files": "Wybierz pliki",
       "categories": "Kategorie",
       "cateoriess": {
-        "SPORTS": "Sporty",
+        "SPORTS": "Sport",
         "ART": "Sztuka",
         "TECHNOLOGY": "Technologia",
         "SCIENCE": "Nauka",
@@ -153,7 +153,7 @@
     "guests": "goście"
   },
   "category": {
-    "Sports": "Sporty",
+    "Sport": "Sport",
     "Art": "Sztuka",
     "Technology": "Technologia",
     "Science": "Nauka",

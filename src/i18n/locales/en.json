@@ -99,7 +99,7 @@
       "choose_files": "Choose Files",
       "categories": "Categories",
       "cateoriess": {
-        "SPORTS": "Sports",
+        "SPORTS": "Sport",
         "ART": "Art",
         "TECHNOLOGY": "Technology",
         "SCIENCE": "Science",
@@ -154,7 +154,7 @@
     "guests": "guests"
   },
   "category": {
-    "Sports": "Sports",
+    "Sport": "Sport",
     "Art": "Art",
     "Technology": "Technology",
     "Science": "Science",
