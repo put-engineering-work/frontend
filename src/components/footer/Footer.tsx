@@ -45,7 +45,7 @@ const Footer = () => {
             },
           }}
         >
-          <img className="footer-logo" src={Image} width="70%" alt="" />
+          <img className="footer-logo" src={Image} width="40%" alt="" />
           <Box sx={{ display: "flex", flexDirection: "column", gap: 1 }}>
             <Typography component="h1" variant="h5">
               {t("footer.Information")}
