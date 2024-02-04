@@ -6,7 +6,7 @@ import Music from "../assets/music.png";
 import Fashion from "../assets/fashion.png";
 import Food from "../assets/food.png";
 import Travel from "../assets/travel.png";
-
+import Expo from "../assets/Expo.png";
 export const categories = [
   {
     id: "3fa85f64-5717-4562-b3fc-2c963f66afa6",
@@ -47,5 +47,10 @@ export const categories = [
     id: "3fa85f64-5717-4562-b3fc-2c963f66afa12",
     name: "Travel",
     image: Travel,
+  },
+  {
+    id: "3fa85f64-5717-4562-b3fc-2c963f66afa13",
+    name: "Expo",
+    image: Expo,
   },
 ];
