@@ -8,8 +8,6 @@ const CategoriesSection = () => {
 
   const slicedCategories = categories.slice(0, 6);
 
-  console.log(slicedCategories);
-
   return (
     <Box
       sx={{

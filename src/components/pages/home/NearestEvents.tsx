@@ -25,7 +25,6 @@ const NearestEvents = () => {
           radius: 20000,
         });
         const slicedEvents = events.slice(0, 8);
-        console.log(slicedEvents);
 
         setCardEvents(slicedEvents);
       } catch (error) {

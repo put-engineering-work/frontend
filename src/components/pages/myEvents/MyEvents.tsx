@@ -29,7 +29,6 @@ const MyEvents = ({ isLogged }: { isLogged: boolean }) => {
       try {
         const events = await getDataJson("events/history");
         setCardEvents(events);
-        console.log(events);
       } catch (error) {
         console.error("Error fetching data:", error);
       }
