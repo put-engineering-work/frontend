@@ -160,5 +160,14 @@
     "Science": "Science",
     "Music": "Music",
     "Fashion": "Fashion"
+  },
+  "footer": {
+    "Information": "Information",
+    "about": "About us",
+    "Sitemap": "Sitemap",
+    "Cooperation": "Cooperation",
+    "Contact": "Contact",
+    "follow": "Follow us on social media",
+    "rights": "All Rights Reserved"
   }
 }

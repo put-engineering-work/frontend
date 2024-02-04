@@ -159,5 +159,14 @@
     "Science": "Nauka",
     "Music": "Muzyka",
     "Fashion": "Moda"
+  },
+  "footer": {
+    "Information": "Informacja",
+    "about": "O nas",
+    "Sitemap": "Mapa witryny",
+    "Cooperation": "Współpraca",
+    "Contact": "Kontakt",
+    "follow": "Śledź nas w mediach społecznościowych",
+    "rights": "Wszelkie prawa zastrzeżone"
   }
 }
