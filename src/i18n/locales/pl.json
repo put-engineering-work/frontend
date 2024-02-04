@@ -107,7 +107,8 @@
         "FASHION": "Moda",
         "FOOD": "Żywność",
         "TRAVEL": "Podróż",
-        "EXPOS": "Expos"
+        "EXPOS": "Expos",
+        "EXHIBITIONS": "Wystawy"
       },
       "WRONG_IMAGE_FORMAT": "Zły format obrazów"
     },
@@ -174,7 +175,8 @@
     "Fashion": "Moda",
     "Food": "Żywność",
     "Travel": "Podróż",
-    "Expos": "Expos"
+    "Expo": "Expos",
+    "Exhibitions": "Wystawy"
   },
   "footer": {
     "Information": "Informacja",

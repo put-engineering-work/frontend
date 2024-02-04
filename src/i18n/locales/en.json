@@ -104,11 +104,11 @@
         "TECHNOLOGY": "Technology",
         "SCIENCE": "Science",
         "MUSIC": "Music",
-
         "FASHION": "Fashion",
         "FOOD": "Food",
         "TRAVEL": "Travel",
-        "EXPOS": "Expos"
+        "EXPOS": "Expos",
+        "EXHIBITIONS": "Exhibitions"
       },
       "WRONG_IMAGE_FORMAT": "Wrong images format"
     },
@@ -175,7 +175,8 @@
     "Fashion": "Fashion",
     "Food": "Food",
     "Travel": "Travel",
-    "Expo": "Expos"
+    "Expo": "Expos",
+    "Exhibitions": "Exhibitions"
   },
   "footer": {
     "Information": "Information",
