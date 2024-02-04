@@ -158,7 +158,9 @@
     "Technology": "Technologia",
     "Science": "Nauka",
     "Music": "Muzyka",
-    "Fashion": "Moda"
+    "Fashion": "Moda",
+    "Food": "Żywność",
+    "Travel": "Podróż"
   },
   "footer": {
     "Information": "Informacja",

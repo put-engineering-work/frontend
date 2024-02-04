@@ -6,7 +6,7 @@ import { categories } from "../../../constants/categories";
 const CategoriesSection = () => {
   const { t } = useTranslation();
 
-  const slicedCategories = categories.slice(0, 6);
+  const slicedCategories = categories.slice(0, 8);
 
   return (
     <Box
@@ -31,9 +31,13 @@ const CategoriesSection = () => {
           },
         }}
       >
-        {/* TODO: */}
         {slicedCategories.map((category, index) => (
-          <CategoryCard key={index} name={category.name} id={category.id} />
+          <CategoryCard
+            key={index}
+            name={category.name}
+            id={category.id}
+            image={category.image}
+          />
         ))}
       </Box>
     </Box>
