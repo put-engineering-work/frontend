@@ -3,6 +3,7 @@ import React, { Dispatch, useEffect, useRef, useState } from "react";
 import EventCard from "../../cards/EventCard";
 import DefaultImage from "../../../assets/event.jpg";
 import MapCard from "./MapCard";
+import Loader from "../../spinner/Loader";
 
 interface MapComponentProps {
   eventsForCards: any;
@@ -10,6 +11,7 @@ interface MapComponentProps {
   setPage: Dispatch<React.SetStateAction<number>>;
   numberOfPages: number;
   getEventsForCards: (number: number) => Promise<void>;
+  loading: boolean;
 }
 
 const MapCards: React.FC<MapComponentProps> = ({
@@ -17,6 +19,7 @@ const MapCards: React.FC<MapComponentProps> = ({
   numberOfPages,
   page,
   setPage,
+  loading,
   getEventsForCards,
 }) => {
   const topRef = useRef<any>(null);
@@ -61,7 +64,7 @@ const MapCards: React.FC<MapComponentProps> = ({
           gap: 3,
         }}
       >
-        {eventsForCards &&
+        {!loading ? (
           eventsForCards.map((event: any, index: number) =>
             isLargeScreen ? (
               <MapCard key={index} event={event} />
@@ -87,7 +90,18 @@ const MapCards: React.FC<MapComponentProps> = ({
                 }
               />
             )
-          )}
+          )
+        ) : (
+          <Box
+            sx={{
+              display: "flex",
+              alignItems: "center",
+              height: "40vh",
+            }}
+          >
+            <Loader loading={loading} />
+          </Box>
+        )}
       </Box>
       <Pagination
         count={numberOfPages}

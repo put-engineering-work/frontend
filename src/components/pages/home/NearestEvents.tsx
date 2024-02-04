@@ -19,14 +19,13 @@ const NearestEvents = () => {
       setLoading(true);
 
       try {
-        const events = await postData("events/search", {
+        const events = await postData(`events/pageable/8/1`, {
           latitude: 52.2297,
           longitude: 21.0122,
           radius: 20000,
         });
-        const slicedEvents = events.slice(0, 8);
 
-        setCardEvents(slicedEvents);
+        setCardEvents(events);
       } catch (error) {
         console.error("Error fetching data:", error);
       }
