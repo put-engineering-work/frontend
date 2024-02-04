@@ -1,16 +1,24 @@
 import { Box, Pagination } from "@mui/material";
-import React, { useEffect, useRef, useState } from "react";
+import React, { Dispatch, useEffect, useRef, useState } from "react";
 import EventCard from "../../cards/EventCard";
 import DefaultImage from "../../../assets/event.jpg";
 import MapCard from "./MapCard";
 
 interface MapComponentProps {
-  events: EventCard[];
+  eventsForCards: any;
+  page: number;
+  setPage: Dispatch<React.SetStateAction<number>>;
+  numberOfPages: number;
+  getEventsForCards: (number: number) => Promise<void>;
 }
 
-const MapCards: React.FC<MapComponentProps> = ({ events }) => {
-  const itemsPerPage = 10;
-  const [page, setPage] = useState<number>(1);
+const MapCards: React.FC<MapComponentProps> = ({
+  eventsForCards,
+  numberOfPages,
+  page,
+  setPage,
+  getEventsForCards,
+}) => {
   const topRef = useRef<any>(null);
 
   const [isLargeScreen, setIsLargeScreen] = useState(window.innerWidth > 1100);
@@ -28,16 +36,10 @@ const MapCards: React.FC<MapComponentProps> = ({ events }) => {
   }, []);
 
   const handleChangePage = (event: any, newPage: any) => {
+    getEventsForCards(newPage);
     setPage(newPage);
     topRef.current?.scrollIntoView({ behavior: "smooth" });
   };
-
-  const count = Math.ceil(events.length / itemsPerPage);
-
-  const currentEvents = events.slice(
-    (page - 1) * itemsPerPage,
-    page * itemsPerPage
-  );
 
   return (
     <Box
@@ -59,35 +61,36 @@ const MapCards: React.FC<MapComponentProps> = ({ events }) => {
           gap: 3,
         }}
       >
-        {currentEvents.map((event, index) =>
-          isLargeScreen ? (
-            <MapCard event={event} />
-          ) : (
-            <EventCard
-              key={index}
-              name={event.name}
-              startDate={event.startDate}
-              description={event.description}
-              categories={event.categories}
-              id={event.id}
-              endDate={event.endDate}
-              address={event.address}
-              latitude={event.latitude}
-              longitude={event.longitude}
-              link={event.id}
-              numberOfMembers={event.numberOfMembers}
-              host={event.host}
-              photo={
-                event.eventImages && event.eventImages.length > 0
-                  ? ` data:image/png;base64,${event.eventImages[0].image}`
-                  : DefaultImage
-              }
-            />
-          )
-        )}
+        {eventsForCards &&
+          eventsForCards.map((event: any, index: number) =>
+            isLargeScreen ? (
+              <MapCard key={index} event={event} />
+            ) : (
+              <EventCard
+                key={index}
+                name={event.name}
+                startDate={event.startDate}
+                description={event.description}
+                categories={event.categories}
+                id={event.id}
+                endDate={event.endDate}
+                address={event.address}
+                latitude={event.latitude}
+                longitude={event.longitude}
+                link={event.id}
+                numberOfMembers={event.numberOfMembers}
+                host={event.host}
+                photo={
+                  event.eventImages && event.eventImages.length > 0
+                    ? ` data:image/png;base64,${event.eventImages[0].image}`
+                    : DefaultImage
+                }
+              />
+            )
+          )}
       </Box>
       <Pagination
-        count={count}
+        count={numberOfPages}
         page={page}
         onChange={handleChangePage}
         color="primary"

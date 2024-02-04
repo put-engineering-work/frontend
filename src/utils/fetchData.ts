@@ -23,6 +23,31 @@ export const getDataJson = async (endpoint: string) => {
   }
 };
 
+export const getDataInQuery = async (endpoint: string, params: any) => {
+  try {
+    const queryString = new URLSearchParams(params).toString();
+
+    // Make the GET request with the query string
+    const response = await fetch(`${BASE_URL}/${endpoint}?${queryString}`, {
+      method: "POST",
+      headers: {
+        accept: "*/*",
+        Authorization: `Bearer ${getToken()}`,
+      },
+    });
+
+    if (!response.ok) {
+      throw new Error(`HTTP error! Status: ${response.status}`);
+    }
+
+    const responseJson = await response.json();
+
+    return responseJson;
+  } catch (error) {
+    console.error("Error:", error);
+  }
+};
+
 export const postData = async (endpoint: string, data: any) => {
   try {
     const response = await fetch(`${BASE_URL}/${endpoint}`, {
@@ -61,12 +86,8 @@ export const postFormData = async (endpoint: string, formData: any) => {
       body: formData,
     });
 
-    if (!response.ok) {
-      throw new Error(`HTTP error! Status: ${response.status}`);
-    }
-
+    console.log(response);
     const responseData = await response.json();
-
     return responseData;
   } catch (error) {
     console.error("Error:", error);

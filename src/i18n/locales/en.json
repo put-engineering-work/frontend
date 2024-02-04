@@ -104,11 +104,13 @@
         "TECHNOLOGY": "Technology",
         "SCIENCE": "Science",
         "MUSIC": "Music",
+
         "FASHION": "Fashion",
         "FOOD": "Food",
         "TRAVEL": "Travel",
         "EXPOS": "Expos"
-      }
+      },
+      "WRONG_IMAGE_FORMAT": "Wrong images format"
     },
     "rating": "Hosted events rating",
     "host": "Host of the event",

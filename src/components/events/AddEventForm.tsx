@@ -186,9 +186,13 @@ const AddEventForm: React.FC = () => {
     }
 
     const result = await postFormData("events/create", formDataToSend);
+    console.log(result);
 
     if (result.code === "CREATED") {
       navigate("/my_events");
+    } else if (result.message === "WRONG_IMAGE_FORMAT") {
+      setErrorForm("WRONG_IMAGE_FORMAT");
+      return;
     } else {
       console.log("error");
     }
@@ -390,6 +394,11 @@ const AddEventForm: React.FC = () => {
           {errorForm === "COORDINATES_ERROR" && (
             <Typography color="error">
               {t("event.add_event.LOCATION")}
+            </Typography>
+          )}
+          {errorForm === "WRONG_IMAGE_FORMAT" && (
+            <Typography color="error">
+              {t("event.add_event.WRONG_IMAGE_FORMAT")}
             </Typography>
           )}
         </Box>
