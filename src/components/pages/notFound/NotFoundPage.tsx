@@ -16,7 +16,7 @@ export default function NotFoundPage() {
           flexDirection: 'column',
           alignItems: 'center',
           justifyContent: 'center',
-          height: '60vh', 
+          height: '80vh', 
           mt: '-64px',
         }}
       >
