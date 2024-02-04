@@ -4,12 +4,14 @@ import { Box, IconButton, Typography } from "@mui/material";
 import AddIcon from "@mui/icons-material/Add";
 import { useTranslation } from "react-i18next";
 import { useNavigate } from "react-router-dom";
-import { getDataInQuery, postData } from "../../../utils/fetchData";
+import { postData } from "../../../utils/fetchData";
 import MapFilters from "./MapFilters";
 import { defaultFilters } from "./MapFilters/defaultFilters";
 import MapCards from "./MapCards";
 
 const MapPage = ({ isLogged }: { isLogged: boolean }) => {
+  const [loading, setLoading] = useState<boolean>(false);
+
   const itemsPerPage = 10;
   const [page, setPage] = useState<number>(1);
   const [numberOfPages, setNumberOfPages] = useState<number>(0);
@@ -39,12 +41,14 @@ const MapPage = ({ isLogged }: { isLogged: boolean }) => {
   };
 
   const getEventsForCards = async (newPage: number) => {
+    setLoading(true);
     const events = await postData(
       `events/pageable/${itemsPerPage}/${newPage}`,
       filters
     );
 
     setEventsForCards(events);
+    setLoading(false);
   };
 
   const getNumberOfPages = async () => {
@@ -102,6 +106,7 @@ const MapPage = ({ isLogged }: { isLogged: boolean }) => {
         </Box>
         <MapComponent events={eventsForMap} filters={filters} mapRef={mapRef} />
         <MapCards
+          loading={loading}
           numberOfPages={numberOfPages}
           eventsForCards={eventsForCards}
           getEventsForCards={getEventsForCards}

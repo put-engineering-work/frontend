@@ -63,8 +63,8 @@ const MapCard = ({ event }: { event: EventCard }) => {
             to={`/events/${event.id}`}
           >
             <img
-              width="100%"
-              height="90%"
+              width="476"
+              height="280"
               src={
                 event.eventImages && event.eventImages.length > 0
                   ? ` data:image/png;base64,${event.eventImages[0].image}`
@@ -78,7 +78,7 @@ const MapCard = ({ event }: { event: EventCard }) => {
           sx={{
             display: "flex",
             flexDirection: "column",
-            width: "50%",
+            width: "80%",
           }}
         >
           <Box
@@ -203,7 +203,7 @@ const MapCard = ({ event }: { event: EventCard }) => {
           sx={{
             display: "flex",
             flexDirection: "column",
-            width: "17%",
+            width: "10%",
           }}
         >
           <Box
@@ -220,7 +220,7 @@ const MapCard = ({ event }: { event: EventCard }) => {
                 flexDirection: "row",
                 alignItems: "center",
                 gap: 1,
-                mb: 2,
+                mb: 4,
               }}
               variant="body2"
               color="text.secondary"
@@ -236,7 +236,7 @@ const MapCard = ({ event }: { event: EventCard }) => {
               }}
             >
               <Avatar
-                sx={{ width: "80%", height: "80%" }}
+                sx={{ width: "150px", height: "150px" }}
                 src={AvatarImage}
                 alt="image"
               />
