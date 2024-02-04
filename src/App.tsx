@@ -46,10 +46,6 @@ const App = () => {
     }
   }, []);
 
-  useEffect(() => {
-    console.log(isLogged);
-  }, [isLogged]);
-
   const handleLogged = () => {
     setIsLogged((prev) => !prev);
   };
