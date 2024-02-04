@@ -1,0 +1,190 @@
+{
+  "sideBar": {
+    "home": "Home",
+    "map": "Map",
+    "ratings": "Ratings",
+    "recommendation": "Recommendation",
+    "my_event": "My events"
+  },
+  "navBar": {
+    "language": "Language"
+  },
+  "homeContent": {
+    "find": "Find event",
+    "allEvents": "All events",
+    "categories": "Categories",
+    "welcome": {
+      "greetings": "Welcome to LeisureLink!",
+      "message": "Enjoy a life full of exceptional events through our modern application for searching and managing social events. LeisureLink is an innovative tool that enables easy planning, booking, and participation in various events tailored to your interests and schedule",
+      "find": "Find event"
+    },
+    "nearest": "Nearest events in:",
+    "seeMore": "See more",
+    "howTo": {
+      "how": "How does LeasureLink work?",
+      "explain": "Find an event that aligns with your mood, verify the date and start time, check the organizer, and then sign up to participate.",
+      "create": "Create your own event",
+      "lorem": "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco",
+      "createBtn": "Create event"
+    },
+    "success_logout": "You have successfully logged out",
+    "no_categories": "No categories",
+    "host": "Host of the event"
+  },
+  "registration": {
+    "sign_up": "Create an Account",
+    "first_name": "First Name",
+    "last_name": "Last Name",
+    "email_address": "Email Address",
+    "password": "Password",
+    "repeat_password": "Repeat Password",
+    "checkbox_text": "Accept private policy and terms",
+    "register": "Register ",
+    "back_tp_login": "Already have an account? Sign in",
+    "errors": {
+      "UNPROCESSABLE_ENTITY": "User already exist",
+      "oops": "Oops something went wrong",
+      "passwords": "Passwords are not the same",
+      "email": "Bad email format",
+      "password_length": "Password must be consist of at least 8 symbols"
+    }
+  },
+  "login": {
+    "errors": {
+      "email": "Bad email format",
+      "UNAUTHORIZED": "Incorrect password or login",
+      "USER_NOT_FOUND": "User not found",
+      "WRONG_DATA": "You entered incorrect data"
+    },
+    "remember_me": "Remember me",
+    "signIn": "Sign in",
+    "no_account": "Don't have an account? Create account",
+    "button": "Login",
+    "success_logout": "You have successfully logged "
+  },
+  "map": {
+    "add_event": "Add event",
+    "filters": "Filters",
+    "view_details": "View Details",
+    "enter_filters": "Apply filters"
+  },
+  "event": {
+    "date_time": "Date and Time",
+    "start": "Start",
+    "end": "End",
+    "address": "Address",
+    "category": "Category",
+    "description": "Description",
+    "members": "Members",
+    "roles": {
+      "ROLE_GUEST": "Guest",
+      "And": "And",
+      "ROLE_HOST": "Host"
+    },
+    "more_guests": "More guests",
+    "add_event": {
+      "start_date": "Start date",
+      "end_date": "End date",
+      "add_event": "Add event",
+      "name": "Name",
+      "address": "Address",
+      "description": "Description",
+      "NAME_ERROR": "Enter correct name of event!",
+      "ADDRESS_ERROR": "Enter correct address!",
+      "STARTDATE_ERROR": "Enter start date!",
+      "ENDDATE_ERROR": "Enter end date!",
+      "LOCATION": "Select event location",
+      "DATE_ERROR": "The start date cannot be greater than the end date!",
+      "selected": "selected",
+      "choose_files": "Choose Files",
+      "categories": "Categories",
+      "cateoriess": {
+        "SPORTS": "Sport",
+        "ART": "Art",
+        "TECHNOLOGY": "Technology",
+        "SCIENCE": "Science",
+        "MUSIC": "Music",
+        "FASHION": "Fashion",
+        "FOOD": "Food",
+        "TRAVEL": "Travel",
+        "EXPOS": "Expos",
+        "EXHIBITIONS": "Exhibitions"
+      },
+      "WRONG_IMAGE_FORMAT": "Wrong images format"
+    },
+    "rating": "Hosted events rating",
+    "host": "Host of the event",
+    "open_chat": "Open Chat",
+    "join_button": {
+      "JOIN": "Join event",
+      "LEAVE": "Leave event"
+    },
+    "filters": {
+      "radius": "Radius (m)",
+      "select_radius": "Select radius",
+      "event_name": "Event name"
+    },
+    "comments": {
+      "rating": "Rating",
+      "comments": "Comments",
+      "comment": "Comment",
+      "add_comment_btn": "Add comment",
+      "RATING_ERROR": "Add rating",
+      "login": "Log in to leave a comment"
+    },
+    "guests": "Guests"
+  },
+  "chat": {
+    "send": "Send",
+    "room": "Chat ",
+    "write": "Write a message ..."
+  },
+  "translation": {
+    "January": "January",
+    "February": "February",
+    "March": "March",
+    "April": "April",
+    "May": "May",
+    "June": "June",
+    "July": "July",
+    "August": "August",
+    "September": "September",
+    "October": "October",
+    "November": "November",
+    "December": "December"
+  },
+  "my_event": {
+    "title": "My events",
+    "no_events": "You are not currently registered for any event",
+    "find_event": "Find Event",
+    "no_register": "You are not login to applicaton",
+    "login": "Login"
+  },
+  "general": {
+    "clear": "Clear",
+    "confirm": "Confirm",
+    "loading": "Loading",
+    "guests": "guests"
+  },
+  "category": {
+    "Sport": "Sport",
+    "Art": "Art",
+    "Technology": "Technology",
+    "Science": "Science",
+    "Music": "Music",
+    "Fashion": "Fashion",
+    "Food": "Food",
+    "Travel": "Travel",
+    "Expo": "Expos",
+    "Exhibitions": "Exhibitions"
+  },
+  "footer": {
+    "Information": "Information",
+    "about": "About us",
+    "Sitemap": "Sitemap",
+    "Cooperation": "Cooperation",
+    "Contact": "Contact",
+    "follow": "Follow us on social media",
+    "rights": "All Rights Reserved"
+  }
+}

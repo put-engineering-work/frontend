@@ -1,0 +1,190 @@
+{
+  "sideBar": {
+    "home": "Głowna",
+    "map": "Mapa",
+    "ratings": "Oceny",
+    "recommendation": "Rekomendacje",
+    "my_event": "Moje wydarzenia"
+  },
+  "navBar": {
+    "language": "Język"
+  },
+  "homeContent": {
+    "find": "Znaleź wydarzenie",
+    "allEvents": "Wszystkie wydarzenia",
+    "categories": "Kategorie",
+    "welcome": {
+      "greetings": "Witaj w LeisureLink!",
+      "message": "Ciesz się życiem pełnym wyjątkowych wydarzeń za sprawą naszej nowoczesnej aplikacji do wyszukiwania i zarządzania wydarzeniami społecznymi. LeisureLink to innowacyjne narzędzie, które umożliwia łatwe planowanie, rezerwowanie i uczestnictwo w różnorodnych wydarzeniach, dostosowanych do Twoich zainteresowań i harmonogramu",
+      "find": "Wyszukaj wydarzenie"
+    },
+    "nearest": "Najbliższe wydarzenia w:",
+    "seeMore": "Zobacz więcej",
+    "howTo": {
+      "how": "Jak działa LeasureLink",
+      "explain": "Odnajdź wydarzenie harmonizujące z Twoim nastrojem, zweryfikuj datę i godzinę rozpoczęcia, sprawdź organizatora, a następnie zapisz się na uczestnictwo.",
+      "create": "Utwórz swoje wydarzenie",
+      "lorem": "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco",
+      "createBtn": "Utwórz wydarzenie"
+    },
+    "success_logout": "Pomyślnie się wylogowałeś",
+    "no_categories": "Brak kategorii",
+    "host": "Gospodarz wydarzenia"
+  },
+  "registration": {
+    "sign_up": "Stwórz konto",
+    "first_name": "Imię",
+    "last_name": "Nazwisko",
+    "email_address": "Adres e-mail",
+    "password": "Hasło",
+    "repeat_password": "Powtórz hasło",
+    "checkbox_text": "Zaakceptuj politykę prywatności i warunki",
+    "register": "Rejestr",
+    "back_tp_login": "Posiadasz już konto? \nZaloguj się",
+    "errors": {
+      "UNPROCESSABLE_ENTITY": "Użytkownik już istnieje",
+      "oops": "Ups! Coś poszło nie tak",
+      "passwords": "Hasła nie są takie same",
+      "email": "Zły format wiadomości e-mail",
+      "password_length": "Hasło musi składać się z co najmniej 8 znaków"
+    }
+  },
+  "login": {
+    "remember_me": "Zapamiętaj mnie",
+    "signIn": "Zalogować się",
+    "no_account": "Nie masz konta? \nUtwórz konto",
+    "button": "Zaloguj sie",
+    "errors": {
+      "UNAUTHORIZED": "Nieprawidłowe hasło lub login",
+      "email": "Zły format e-mail",
+      "USER_NOT_FOUND": "Użytkownik nie znaleziony",
+      "WRONG_DATA": "Wpisałeś nieprawidłowe dane"
+    },
+    "success_logout": "Pomyślnie się zalogowałeś"
+  },
+  "map": {
+    "add_event": "Dodaj wydarzenie",
+    "filters": "Filtry",
+    "view_details": "Pokaż szczegóły",
+    "enter_filters": "Zastosuj filtry"
+  },
+  "event": {
+    "date_time": "Data i godzina",
+    "start": "Początek",
+    "end": "Koniec",
+    "address": "Adres",
+    "category": "Kategoria",
+    "description": "Opis",
+    "members": "Uczestnicy",
+    "roles": {
+      "ROLE_GUEST": "Gość",
+      "And": "I",
+      "ROLE_HOST": "Gospodarz"
+    },
+    "more_guests": "Więcej gości",
+    "add_event": {
+      "start_date": "Data rozpoczęcia",
+      "end_date": "Data końcowa",
+      "add_event": "Dodaj wydarzenie",
+      "name": "Nazwa",
+      "address": "Adres",
+      "description": "Opis",
+      "NAME_ERROR": "Wpisz poprawną nazwę wydarzenia!",
+      "ADDRESS_ERROR": "Podaj poprawny adres!",
+      "STARTDATE_ERROR": "Podaj datę rozpoczęcia!",
+      "ENDDATE_ERROR": "Wprowadź datę końcową!",
+      "LOCATION": "Wybierz lokalizację wydarzenia",
+      "DATE_ERROR": "Data początkowa nie może być późniejsza niż data końcowa!",
+      "selected": "wgrano",
+      "choose_files": "Wybierz pliki",
+      "categories": "Kategorie",
+      "cateoriess": {
+        "SPORTS": "Sport",
+        "ART": "Sztuka",
+        "TECHNOLOGY": "Technologia",
+        "SCIENCE": "Nauka",
+        "MUSIC": "Muzyka",
+        "FASHION": "Moda",
+        "FOOD": "Żywność",
+        "TRAVEL": "Podróż",
+        "EXPOS": "Expos",
+        "EXHIBITIONS": "Wystawy"
+      },
+      "WRONG_IMAGE_FORMAT": "Zły format obrazów"
+    },
+    "rating": "Ocena organizowanych wydarzeń",
+    "host": "Gospodarz wydarzenia",
+    "open_chat": "Otwórz czat",
+    "join_button": {
+      "JOIN": "Dołącz do wydarzenia",
+      "LEAVE": "Opuść wydarzenie"
+    },
+    "filters": {
+      "radius": "Odłegłość (m)",
+      "select_radius": "Wybierz odłegłość ",
+      "event_name": "Nazwa wydarzenia"
+    },
+    "comments": {
+      "rating": "Ocena",
+      "comments": "Komentarze",
+      "comment": "Komentarz",
+      "add_comment_btn": "Dodaj komentarz",
+      "RATING_ERROR": "Dodaj ocenę",
+      "login": "Zaloguj się, żeby dodać komentarz"
+    },
+    "guests": "Goście"
+  },
+  "chat": {
+    "send": "Wysłać",
+    "room": "Chat ",
+    "write": "Napisać wiadomość ..."
+  },
+  "translation": {
+    "January": "Styczeń",
+    "February": "Luty",
+    "March": "Marzec",
+    "April": "Kwiecień",
+    "May": "Maj",
+    "June": "Czerwiec",
+    "July": "Lipiec",
+    "August": "Sierpień",
+    "September": "Wrzesień",
+    "October": "Październik",
+    "November": "Listopad",
+    "December": "Grudzień"
+  },
+  "my_event": {
+    "title": "Moje wydarzenia",
+    "no_events": "Aktualnie nie jesteś zarejestrowany na żadne wydarzenie",
+    "find_event": "Znajdź wydarzenie",
+    "no_register": "Nie jesteś zalogowany do aplikacji",
+    "login": "Zaloguj sie"
+  },
+  "general": {
+    "clear": "Wyczyść",
+    "confirm": "Potwierdź",
+    "loading": "Ładowanie",
+    "guests": "goście"
+  },
+  "category": {
+    "Sport": "Sport",
+    "Art": "Sztuka",
+    "Technology": "Technologia",
+    "Science": "Nauka",
+    "Music": "Muzyka",
+    "Fashion": "Moda",
+    "Food": "Żywność",
+    "Travel": "Podróż",
+    "Expo": "Expos",
+    "Exhibitions": "Wystawy"
+  },
+  "footer": {
+    "Information": "Informacja",
+    "about": "O nas",
+    "Sitemap": "Mapa witryny",
+    "Cooperation": "Współpraca",
+    "Contact": "Kontakt",
+    "follow": "Śledź nas w mediach społecznościowych",
+    "rights": "Wszelkie prawa zastrzeżone"
+  }
+}
