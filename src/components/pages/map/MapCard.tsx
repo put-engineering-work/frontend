@@ -3,7 +3,6 @@ import {
   Box,
   Breadcrumbs,
   Card,
-  CardContent,
   Divider,
   Typography,
 } from "@mui/material";
@@ -134,7 +133,7 @@ const MapCard = ({ event }: { event: EventCard }) => {
             <Typography sx={{ mb: 1 }} variant="body2" color="text.primary">
               {t("homeContent.categories")}:
             </Typography>
-            {event.categories.length > 0 ? (
+            {event?.categories?.length > 0 ? (
               <Breadcrumbs aria-label="breadcrumb">
                 {event.categories.map((item: string, index: number) => {
                   return (
@@ -252,7 +251,7 @@ const MapCard = ({ event }: { event: EventCard }) => {
                 variant="h6"
                 color="text.main"
               >
-                {event.host.name} {event.host.lastname}
+                {event?.host?.name} {event?.host?.lastname}
               </Typography>
             </Box>
           </Box>
