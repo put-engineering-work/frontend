@@ -153,8 +153,6 @@ const EventDetail = () => {
         `events/event/${eventId}/comments`
       );
 
-      console.log(eventComments);
-
       setComments(eventComments.reverse());
     } catch (error) {
       console.error("Error fetching data:", error);

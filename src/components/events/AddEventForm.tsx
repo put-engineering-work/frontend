@@ -186,7 +186,7 @@ const AddEventForm: React.FC = () => {
     }
 
     const result = await postFormData("events/create", formDataToSend);
-    console.log(result);
+    // console.log(result);
 
     if (result.code === "CREATED") {
       navigate("/my_events");

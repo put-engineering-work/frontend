@@ -86,7 +86,7 @@ export const postFormData = async (endpoint: string, formData: any) => {
       body: formData,
     });
 
-    console.log(response);
+    // console.log(response);
     const responseData = await response.json();
     return responseData;
   } catch (error) {

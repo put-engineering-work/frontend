@@ -67,6 +67,10 @@ const AddCommentForm: React.FC<CommentFormProps> = ({
 
       if (result.code === "CREATED") {
         onCommentSubmit();
+        setCommentData({
+          content: "",
+          grade: 0,
+        });
       } else {
         console.log("Error creating comment");
       }
