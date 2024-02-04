@@ -128,7 +128,8 @@
       "comments": "Komentarze",
       "comment": "Komentarz",
       "add_comment_btn": "Dodaj komentarz",
-      "RATING_ERROR": "Dodaj ocenę"
+      "RATING_ERROR": "Dodaj ocenę",
+      "login": "Zaloguj się, żeby dodać komentarz"
     },
     "guests": "Goście"
   },
@@ -173,7 +174,7 @@
     "Fashion": "Moda",
     "Food": "Żywność",
     "Travel": "Podróż",
-    "Expo": "Expo"
+    "Expos": "Expos"
   },
   "footer": {
     "Information": "Informacja",

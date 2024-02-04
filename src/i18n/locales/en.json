@@ -129,7 +129,8 @@
       "comments": "Comments",
       "comment": "Comment",
       "add_comment_btn": "Add comment",
-      "RATING_ERROR": "Add rating"
+      "RATING_ERROR": "Add rating",
+      "login": "Log in to leave a comment"
     },
     "guests": "Guests"
   },

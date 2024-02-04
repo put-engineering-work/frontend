@@ -1,7 +1,9 @@
-import { Box, Typography } from "@mui/material";
+import { Box, Button, Typography } from "@mui/material";
 import { useTranslation } from "react-i18next";
 import CommentCard from "./CommentCard";
 import AddCommentForm from "./AddCommentForm";
+import { getToken } from "../../../utils/getToken";
+import { useNavigate } from "react-router";
 interface EventDetailsMembers {
   comments: Comment[];
   eventId: any;
@@ -17,9 +19,36 @@ const EventDetailsMembers = ({
   const handleCommentSubmit = () => {
     onCommentSubmit();
   };
+  const navigate = useNavigate();
   return (
     <Box sx={{ display: "flex", flexDirection: "column", gap: 2, mb: 10 }}>
-      <AddCommentForm eventId={eventId} onCommentSubmit={handleCommentSubmit} />
+      {getToken() ? (
+        <AddCommentForm
+          eventId={eventId}
+          onCommentSubmit={handleCommentSubmit}
+        />
+      ) : (
+        <Button
+          variant="contained"
+          color="primary"
+          sx={{
+            display: "flex",
+            alignItems: "center",
+            color: "#fff",
+            backgroundColor: "#42A5F5",
+            borderRadius: "13px",
+            mr: 2,
+            minWidth: 100,
+          }}
+          onClick={() => {
+            {
+              navigate("/login");
+            }
+          }}
+        >
+          {t("event.comments.login")}
+        </Button>
+      )}
       <Typography variant="h6">{t("event.comments.comments")}</Typography>
       <Box
         sx={{

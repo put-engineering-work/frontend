@@ -291,7 +291,7 @@ const EventDetail = () => {
             }}
           >
             <Typography variant="h6">{t("event.rating")}:</Typography>
-            <Rating name="simple-controlled" value={4} readOnly />
+            {/* <Rating name="simple-controlled" value={4} readOnly /> */}
           </Box>
         </Box>
         {getToken() && (
